@@ -168,7 +168,7 @@ yarn react-native run-android
 
 如果配置没有问题，你应该可以看到应用自动安装到设备上并开始运行。注意第一次运行时需要下载大量编译依赖，耗时可能数十分钟。此过程`严重依赖稳定的代理软件`，否则将频繁遭遇链接超时和断开，导致无法运行。
 
-也可以尝试阿里云提供的[maven 镜像](https://help.aliyun.com/document_detail/102512.html?spm=a2c40.aliyun_maven_repo.0.0.361865e90r2x4b)，将`android/build.gradle`中的`jcenter()`和`google()`分别替换为`maven { url 'https://maven.aliyun.com/repository/jcenter' }`和`maven { url 'https://maven.aliyun.com/repository/google' }`（注意有多处需要替换）。
+也可以尝试阿里云提供的[maven 镜像](https://help.aliyun.com/document_detail/102512.html?spm=a2c40.aliyun_maven_repo.0.0.361865e90r2x4b)，将`android/build.gradle`中的`mavenCentral()`和`google()`分别替换为`maven { url 'https://maven.aliyun.com/repository/central' }`和`maven { url 'https://maven.aliyun.com/repository/google' }`（注意可能有多处需要替换）。
 
 `npx react-native run-android`只是运行应用的方式之一。你也可以在 Android Studio 中直接运行应用。
 
