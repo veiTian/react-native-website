@@ -3,19 +3,19 @@ id: colors
 title: 颜色
 ---
 
-Components in React Native are [styled using JavaScript](style). Color properties usually match how [CSS works on the web](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value). General guides on the color usage on each platform could be found below:
+React Native 中的组件是[使用 JavaScript 进行样式化](style)的。颜色属性通常与 Web 上的 [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) 工作方式相匹配。每个平台上关于颜色使用的一般指南如下：
 
 - [Android](https://material.io/design/color/color-usage.html)
 - [iOS](https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/color/)
 
-## Color APIs
+## 颜色相关的 API
 
-React Native has several color APIs designed to allow you to take full advantage of your platform's design and user preferences.
+React Native 有几个颜色 API，旨在让您充分利用平台的设计和用户偏好。
 
-- [PlatformColor](platformcolor) lets you reference the platform's color system.
-- [DynamicColorIOS](dynamiccolorios) is iOS specific and allows you to specify which colors should be used in light or Dark Mode.
+- [PlatformColor](platformcolor) 允许您引用平台的颜色系统。
+- [DynamicColorIOS](dynamiccolorios) 是 iOS 特有的，可以让您指定在浅色或深色模式下使用哪些颜色。
 
-## Color representations
+## 颜色的表示形式
 
 ### 红-绿-蓝 (RGB)
 
@@ -33,13 +33,15 @@ React Native 支持 `rgb()` 和 `rgba()` 两种十六进制与函数方法
 - `'hsl(360, 100%, 100%)'`
 - `'hsla(360, 100%, 100%, 1.0)'`
 
-### Color ints
+### 颜色值
 
-React Native supports also colors as an `int` values (in RGB color mode):
+React Native 还支持将颜色表示为`int`值（以 RGB 颜色模式）：
 
 - `0xff00ff00` (0xrrggbbaa)
 
-> **_Note:_** This might appear similar to the Android [Color](https://developer.android.com/reference/android/graphics/Color) ints representation but on Android values are stored in SRGB color mode (0xaarrggbb).
+:::caution 注意
+这看起来可能与 Android [Color](https://developer.android.com/reference/android/graphics/Color) 的整数表示类似，但在 Android 上的值是以 SRGB 颜色模式（0xaarrggbb）存储的。
+:::
 
 ### 全透明 `transparent`
 

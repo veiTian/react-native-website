@@ -3,6 +3,8 @@ id: debugging
 title: 调试
 ---
 
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
+
 ## 开启调试的快捷键
 
 React Native 在 iOS 模拟器上支持一些快捷键操作，具体会在下文中描述。要使用快捷键请**务必确保模拟器的 Hardware 菜单中，Keyboard 选项下的"Connect Hardware Keyboard"处于开启状态**，否则按键是没有响应的。
@@ -49,7 +51,7 @@ LogBox.ignoreAllLogs();
 
 ### 语法错误
 
-语法错误将自动打开一个全屏的LogBox错误，显示出语法错误的源代码。这个错误是无法取消的，因为它代表了必须在继续使用应用程序之前修复的无效JavaScript执行。要解除这些错误，请修复语法错误并保存以自动解除（启用快速刷新）或按下cmd+r重新加载（禁用快速刷新）。
+语法错误将自动打开一个全屏的 LogBox 错误，显示出语法错误的源代码。这个错误是无法取消的，因为它代表了必须在继续使用应用程序之前修复的无效 JavaScript 执行。要解除这些错误，请修复语法错误并保存以自动解除（启用快速刷新）或按下 cmd+r 重新加载（禁用快速刷新）。
 
 ## Chrome 开发者工具
 
@@ -57,7 +59,7 @@ LogBox.ignoreAllLogs();
 
 在 Chrome 的菜单中选择`Tools → Developer Tools`可以打开开发者工具，也可以通过键盘快捷键来打开（Mac 上是**`Command`**`⌘` + **`Option`**`⌥` + **`I`**，Windows 上是**`Ctrl`** + **`Shift`** + **`I`**或是 F12）。打开[有异常时暂停（Pause On Caught Exceptions）](http://stackoverflow.com/questions/2233339/javascript-is-there-a-way-to-get-chrome-to-break-on-all-errors/17324511#17324511)选项，能够获得更好的开发体验。
 
-> 请注意：在安卓设备上，如果调试器和设备之间的时间差距过大，可能会导致动画、事件行为等不正常或结果不准确。请通过在调试器机器上运行``adb shell "date `date +%m%d%H%M%Y.%S%3N`" ``来纠正这个问题。实际设备需要获取 root 权限才能使用。
+> 请注意：在安卓设备上，如果调试器和设备之间的时间差距过大，可能会导致动画、事件行为等不正常或结果不准确。请通过在调试器机器上运行`` adb shell "date `date +%m%d%H%M%Y.%S%3N`"  ``来纠正这个问题。实际设备需要获取 root 权限才能使用。
 
 > 注意：Chrome 中并不能直接看到 App 的用户界面，而只能提供 console 的输出，以及在 sources 项中断点调试 js 脚本。一些老的教程和文章会提到 React 的 Chrome 插件，这一插件目前并不支持 React Native，而且调试本身并不需要这个插件。不过你可以安装独立（非插件）版本的 React Developer Tools 来辅助查看界面布局，下文会讲述具体安装方法。
 
@@ -77,19 +79,19 @@ LogBox.ignoreAllLogs();
 </TabItem>
 <TabItem value="android">
 
-在用USB线缆连接 Android 5.0+ 设备时，您可以使用[`adb`命令行工具](http://developer.android.com/tools/help/adb.html)将端口转发设置为从设备到计算机：
+在用 USB 线缆连接 Android 5.0+ 设备时，您可以使用[`adb`命令行工具](http://developer.android.com/tools/help/adb.html)将端口转发设置为从设备到计算机：
 
 ```sh
 adb reverse tcp:8081 tcp:8081
 ```
 
-或者，从开发菜单中选择“设置”，然后将“设备的调试服务器主机”设置更新为与您计算机的IP地址相匹配。
+或者，从开发菜单中选择“设置”，然后将“设备的调试服务器主机”设置更新为与您计算机的 IP 地址相匹配。
 
 </TabItem>
 </Tabs>
 
 :::note 注意
-如果你遇到任何问题，可能是因为你的Chrome扩展与调试器产生了意外的交互。尝试禁用所有扩展，并逐个重新启用它们，直到找到有问题的扩展。
+如果你遇到任何问题，可能是因为你的 Chrome 扩展与调试器产生了意外的交互。尝试禁用所有扩展，并逐个重新启用它们，直到找到有问题的扩展。
 :::
 
 <details>

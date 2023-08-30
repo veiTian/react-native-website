@@ -35,13 +35,13 @@ setValue(value);
 setOffset(offset);
 ```
 
-Sets an offset that is applied on top of whatever value is set, whether via `setValue`, an animation, or `Animated.event`. Useful for compensating things like the start of a pan gesture.
+设置一个偏移量，该偏移量会叠加在通过`setValue`、动画或`Animated.event`设置的任何值之上。对于补偿诸如平移手势的起始位置等情况非常有用。
 
 **参数：**
 
-| 名称   | 类型   | 必需 | 说明         |
-| ------ | ------ | ---- | ------------ |
-| offset | number | 是   | Offset value |
+| 名称   | 类型   | 必需 | 说明   |
+| ------ | ------ | ---- | ------ |
+| offset | number | 是   | 偏移量 |
 
 ---
 
@@ -51,7 +51,7 @@ Sets an offset that is applied on top of whatever value is set, whether via `set
 flattenOffset();
 ```
 
-Merges the offset value into the base value and resets the offset to zero. The final output of the value is unchanged.
+将偏移值合并到基础值中，并将偏移重置为零。最终输出的数值保持不变。
 
 ---
 
@@ -61,7 +61,7 @@ Merges the offset value into the base value and resets the offset to zero. The f
 extractOffset();
 ```
 
-Sets the offset value to the base value, and resets the base value to zero. The final output of the value is unchanged.
+将偏移值设置为基准值，并将基准值重置为零。最终输出的数值保持不变。
 
 ---
 
@@ -71,15 +71,15 @@ Sets the offset value to the base value, and resets the base value to zero. The 
 addListener(callback);
 ```
 
-Adds an asynchronous listener to the value so you can observe updates from animations. This is useful because there is no way to synchronously read the value because it might be driven natively.
+给动画值添加一个异步监听器，以便您可以观察动画值的更新。这很有用，因为没有办法同步读取该值，因为它可能是由原生驱动的。
 
-Returns a string that serves as an identifier for the listener.
+返回一个作为监听器标识符的字符串。
 
 **参数：**
 
-| 名称     | 类型     | 必需 | 说明                                                                                        |
-| -------- | -------- | ---- | ------------------------------------------------------------------------------------------- |
-| callback | function | 是   | The callback function which will receive an object with a `value` key set to the new value. |
+| 名称     | 类型     | 必需 | 说明                                                  |
+| -------- | -------- | ---- | ----------------------------------------------------- |
+| callback | function | 是   | 回调函数将接收一个对象，其中`value`键的值设置为新值。 |
 
 ---
 
@@ -89,13 +89,13 @@ Returns a string that serves as an identifier for the listener.
 removeListener(id);
 ```
 
-移除一个监听函数。 The `id` param shall match the identifier previously returned by `addListener()`.
+移除一个监听函数。 `id`参数应与之前由`addListener()`返回的标识符匹配。
 
 **参数：**
 
-| 名称 | 类型   | 必需 | 说明                               |
-| ---- | ------ | ---- | ---------------------------------- |
-| id   | string | 是   | Id for the listener being removed. |
+| 名称 | 类型   | 必需 | 说明                    |
+| ---- | ------ | ---- | ----------------------- |
+| id   | string | 是   | 正在移除的监听器的 ID。 |
 
 ---
 
@@ -115,13 +115,13 @@ removeAllListeners();
 stopAnimation([callback]);
 ```
 
-Stops any running animation or tracking. `callback` is invoked with the final value after stopping the animation, which is useful for updating state to match the animation position with layout.
+停止任何正在运行的动画或跟踪。在停止动画后，将使用最终值调用`callback`，这对于更新状态以匹配布局中的动画位置非常有用。
 
 **参数：**
 
-| 名称     | 类型     | 必需 | 说明                                          |
-| -------- | -------- | ---- | --------------------------------------------- |
-| callback | function | 否   | A function that will receive the final value. |
+| 名称     | 类型     | 必需 | 说明                     |
+| -------- | -------- | ---- | ------------------------ |
+| callback | function | 否   | 一个将接收最终值的函数。 |
 
 ---
 
@@ -131,13 +131,13 @@ Stops any running animation or tracking. `callback` is invoked with the final va
 resetAnimation([callback]);
 ```
 
-Stops any animation and resets the value to its original.
+停止任何动画并将值重置为其原始状态。
 
 **参数：**
 
-| 名称     | 类型     | 必需 | 说明                                             |
-| -------- | -------- | ---- | ------------------------------------------------ |
-| callback | function | 否   | A function that will receive the original value. |
+| 名称     | 类型     | 必需 | 说明                   |
+| -------- | -------- | ---- | ---------------------- |
+| callback | function | 否   | 一个接收原始值的函数。 |
 
 ---
 
@@ -147,9 +147,9 @@ Stops any animation and resets the value to its original.
 interpolate(config);
 ```
 
-Interpolates the value before updating the property, e.g. mapping 0-1 to 0-10.
+在更新属性之前进行插值，例如将 0-1 映射到 0-10。
 
-See `AnimatedInterpolation.js`
+请参阅`AnimatedInterpolation.js`
 
 **参数：**
 
@@ -157,14 +157,14 @@ See `AnimatedInterpolation.js`
 | ------ | ------ | ---- | ------------ |
 | config | object | 是   | 看下面的说明 |
 
-The `config` object is composed of the following keys:
+`config` 对象由以下键组成：
 
-- `inputRange`: an array of numbers
-- `outputRange`: an array of numbers or strings
-- `easing` (optional): a function that returns a number, given an input number
-- `extrapolate` (optional): a string such as 'extend', 'identity', or 'clamp'
-- `extrapolateLeft` (optional): a string such as 'extend', 'identity', or 'clamp'
-- `extrapolateRight` (optional): a string such as 'extend', 'identity', or 'clamp'
+- `inputRange`：一个数字数组
+- `outputRange`：一个数字或字符串的数组
+- `easing`（可选）：一个函数，给定输入数字返回一个数字
+- `extrapolate`（可选）：一个字符串，如 'extend'、'identity' 或 'clamp'
+- `extrapolateLeft`（可选）：一个字符串，如 'extend'、'identity' 或 'clamp'
+- `extrapolateRight`（可选）：
 
 ---
 
@@ -174,14 +174,14 @@ The `config` object is composed of the following keys:
 animate(animation, callback);
 ```
 
-Typically only used internally, but could be used by a custom Animation class.
+通常只在内部使用，但也可以由自定义的动画类使用。
 
 **参数：**
 
-| 名称      | 类型      | 必需 | 说明                |
-| --------- | --------- | ---- | ------------------- |
-| animation | Animation | 是   | See `Animation.js`. |
-| callback  | function  | 是   | Callback function.  |
+| 名称      | 类型      | 必需 | 说明                   |
+| --------- | --------- | ---- | ---------------------- |
+| animation | Animation | 是   | 请参阅 `Animation.js`. |
+| callback  | function  | 是   | 回调函数               |
 
 ---
 
@@ -191,7 +191,7 @@ Typically only used internally, but could be used by a custom Animation class.
 stopTracking();
 ```
 
-Typically only used internally.
+一般只在内部使用。
 
 ---
 
@@ -201,10 +201,10 @@ Typically only used internally.
 track(tracking);
 ```
 
-Typically only used internally.
+一般只在内部使用。
 
 **参数：**
 
-| 名称     | 类型         | 必需 | 说明                  |
-| -------- | ------------ | ---- | --------------------- |
-| tracking | AnimatedNode | 是   | See `AnimatedNode.js` |
+| 名称     | 类型         | 必需 | 说明                     |
+| -------- | ------------ | ---- | ------------------------ |
+| tracking | AnimatedNode | 是   | 请参阅 `AnimatedNode.js` |

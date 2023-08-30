@@ -3,23 +3,23 @@ id: imagebackground
 title: ImageBackground
 ---
 
-A common feature request from developers familiar with the web is `background-image`. To handle this use case, you can use the `<ImageBackground>` component, which has the same props as `<Image>`, and add whatever children to it you would like to layer on top of it.
+对于熟悉 Web 开发的开发人员来说，`background-image`是一个常见的功能请求。为了处理这种情况，您可以使用`<ImageBackground>`组件，它具有与`<Image>`相同的属性，并且可以添加任何子元素以覆盖在其上面。
 
-You might not want to use `<ImageBackground>` in some cases, since the implementation is very simple. Refer to `<ImageBackground>`'s [source code](https://github.com/facebook/react-native/blob/master/Libraries/Image/ImageBackground.js) for more insight, and create your own custom component when needed.
+在某些情况下，您可能不想使用`<ImageBackground>`，因为其实现比较基础。请参考`<ImageBackground>`的[源代码](https://github.com/facebook/react-native/blob/main/packages/react-native/Libraries/Image/ImageBackground.js)以获取更多信息，并在需要时创建自己的自定义组件。
 
-Note that you must specify some width and height style attributes.
+请注意，您必须指定一些宽度和高度样式属性。
 
 ## 示例
 
 ```SnackPlayer name=ImageBackground
-import React from "react";
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
+import React from 'react';
+import {ImageBackground, StyleSheet, Text, View} from 'react-native';
 
-const image = { uri: "https://zh-hans.reactjs.org/logo-og.png" };
+const image = {uri: 'https://legacy.reactjs.org/logo-og.png'};
 
 const App = () => (
   <View style={styles.container}>
-    <ImageBackground source={image} style={styles.image}>
+    <ImageBackground source={image} resizeMode="cover" style={styles.image}>
       <Text style={styles.text}>Inside</Text>
     </ImageBackground>
   </View>
@@ -28,20 +28,19 @@ const App = () => (
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column"
   },
   image: {
     flex: 1,
-    resizeMode: "cover",
-    justifyContent: "center"
+    justifyContent: 'center',
   },
   text: {
-    color: "white",
+    color: 'white',
     fontSize: 42,
-    fontWeight: "bold",
-    textAlign: "center",
-    background: "#000000a0"
-  }
+    lineHeight: 84,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    backgroundColor: '#000000c0',
+  },
 });
 
 export default App;
@@ -55,22 +54,30 @@ export default App;
 
 ### [Image Props](image.md#props)
 
+继承 [Image Props](image.md#props).
+
+---
+
 ### `imageStyle`
 
-| 类型                                 | 必需 |
-| ------------------------------------ | ---- |
-| [image styles](image-style-props.md) | 否   |
+| 类型                                |
+| ----------------------------------- |
+| [Image Style](image-style-props.md) |
+
+---
 
 ### `imageRef`
 
-Allows to set a reference to the inner `Image` component
+设置对内部`Image`组件的引用。
 
-| 类型                                                          | 必需 |
-| ------------------------------------------------------------- | ---- |
-| [Ref](https://zh-hans.reactjs.org/docs/refs-and-the-dom.html) | 否   |
+| 类型                                                  |
+| ----------------------------------------------------- |
+| [Ref](https://reactjs.org/docs/refs-and-the-dom.html) |
+
+---
 
 ### `style`
 
-| Type                              |
+| 类型                              |
 | --------------------------------- |
 | [View Style](view-style-props.md) |

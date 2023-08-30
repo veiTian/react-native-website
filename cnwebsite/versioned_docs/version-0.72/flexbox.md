@@ -3,6 +3,8 @@ id: flexbox
 title: 使用 Flexbox 布局
 ---
 
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
+
 我们在 React Native 中使用 flexbox 规则来指定某个组件的子元素的布局。Flexbox 可以在不同屏幕尺寸上提供一致的布局结构。
 
 一般来说，使用`flexDirection`、`alignItems`和 `justifyContent`三个样式属性就已经能满足大多数布局需求。
@@ -168,7 +170,7 @@ export default FlexDirectionBasics;
 
 ## Layout Direction
 
-布局方向指定了层次结构中的子元素和文本应该被排列的方向。布局方向还会影响到`start`和`end`所指代的边缘。默认情况下，React Native采用从左到右（LTR）的布局方向进行排列。在这种模式下，`start`表示左侧，而`end`表示右侧。
+布局方向指定了层次结构中的子元素和文本应该被排列的方向。布局方向还会影响到`start`和`end`所指代的边缘。默认情况下，React Native 采用从左到右（LTR）的布局方向进行排列。在这种模式下，`start`表示左侧，而`end`表示右侧。
 
 - `LTR（默认值）`: 文本和子元素从左到右进行排列。对于一个元素来说，在其起始位置应用的外边距和内边距将被应用在左侧。
 
@@ -1425,7 +1427,7 @@ export default RowGapAndColumnGap;
 
 `width`和`height`都可以取以下值：
 
-- `auto`（**默认值**）React Native根据元素的内容计算其宽度/高度，无论是其他子元素、文本还是图像。
+- `auto`（**默认值**）React Native 根据元素的内容计算其宽度/高度，无论是其他子元素、文本还是图像。
 
 - `pixels`以绝对像素定义宽度/高度。根据组件上设置的其他样式，这可能是节点最终尺寸也可能不是。
 
@@ -1590,7 +1592,7 @@ export default WidthHeightBasics;
 
 - `relative`（**默认值**） 默认情况下，一个元素是相对定位的。这意味着一个元素根据布局的正常流程进行定位，然后根据 `top`、`right`、`bottom` 和 `left` 的值进行偏移。该偏移不会影响任何兄弟或父级元素的位置。
 
-- `absolute` 绝对定位时，一个元素不参与正常布局流程。它独立于其兄弟元素进行布局。位置是基于 `top`, `right`, `bottom`, 和 	'left' 值来确定的。
+- `absolute` 绝对定位时，一个元素不参与正常布局流程。它独立于其兄弟元素进行布局。位置是基于 `top`, `right`, `bottom`, 和 'left' 值来确定的。
 
 ```SnackPlayer name=Absolute%20%26%20Relative%20Layout
 import React, { useState } from "react";
