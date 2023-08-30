@@ -99,8 +99,6 @@ npx react-native@X.XX.X init AwesomeProject --version X.XX.X
 
 还可以使用`--template`来使用一些社区提供的模板。
 
-````
-
 ### [可选文件] Xcode 的环境配置文件
 
 从 React Native 版本 0.69 开始，可以使用模板提供的 `.xcode.env` 文件来配置 Xcode 环境。
@@ -113,14 +111,12 @@ npx react-native@X.XX.X init AwesomeProject --version X.XX.X
 
 在你的项目目录中运行`yarn ios`或者`yarn react-native run-ios`：
 
-```bash
-
+```sh
 cd AwesomeProject
 yarn ios
 # 或者
 yarn react-native run-ios
-
-````
+```
 
 此命令会对项目的原生部分进行编译，同时在另外一个命令行中启动`Metro`服务对 js 代码进行实时打包处理（类似 webpack）。`Metro`服务也可以使用`yarn start`命令单独启动。
 
