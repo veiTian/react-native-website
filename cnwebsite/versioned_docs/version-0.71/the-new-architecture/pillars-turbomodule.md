@@ -458,7 +458,7 @@ RCT_REMAP_METHOD(add, addA:(NSInteger)a
 
 最后，`getTurboModule` 方法将获取 Turbo Native Module 实例，以此使 JavaScript 能够执行模块的方法。这个方法在 `RTNCalculatorSpec.h` 中声明，并且是之前由 Codegen 生成的代码。
 
-:::提示
+:::info 提示
 您可以查看 [RCTBridgeModule.h](https://github.com/facebook/react-native/blob/main/React/Base/RCTBridgeModule.h) 代码，了解更多用于导出模块及其方法的宏定义。
 :::
 

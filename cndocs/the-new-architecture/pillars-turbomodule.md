@@ -166,7 +166,7 @@ shared 是 `package.json` 文件中的一个配置项，它将在 yarn 安装您
 - `name`：第三方库的名称。按照惯例，名称应以 `Spec` 为结尾
 - `type`：在这个 npm 包里的模块类型。在本例中，我们开发的是 Turbo Native Module，所以值为 `modules`
 - `jsSrcsDir`：用于找到 `js` 接口声明文件的相对路径，它将被 **Codegen** 解析
-- `android.javaPackageName`：由 **Codegen** 生成的 Java 包名 (需与AndroidManifest.xml中包名一致)
+- `android.javaPackageName`：由 **Codegen** 生成的 Java 包名 (需与 AndroidManifest.xml 中包名一致)
 
 ### iOS：创建 `podspec` 文件
 
@@ -442,7 +442,7 @@ RCT_REMAP_METHOD(add, addA:(NSInteger)a
 
 最后，`getTurboModule` 方法将获取 Turbo Native Module 实例，以此使 JavaScript 能够执行模块的方法。这个方法在 `RTNCalculatorSpec.h` 中声明，并且是之前由 Codegen 生成的代码。
 
-:::提示
+:::info 提示
 您可以查看 [RCTBridgeModule.h](https://github.com/facebook/react-native/blob/main/React/Base/RCTBridgeModule.h) 代码，了解更多用于导出模块及其方法的宏定义。
 :::
 
