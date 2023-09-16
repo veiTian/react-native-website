@@ -211,7 +211,7 @@ dependencies {
 
 当此属性为 true 时，表示此图片是一个启用了无障碍功能的元素。
 
-| 类型 | 默认值 |
+| 类型 | 默认值  |
 | ---- | ------- |
 | bool | `false` |
 
@@ -275,7 +275,7 @@ blurRadius(模糊半径)：为图片添加一个指定半径的模糊滤镜。
 
 Similarly to `source`, this property represents the resource used to render the loading indicator for the image, displayed until image is ready to be displayed, typically after when it got downloaded from network.
 
-| Type                                                  |
+| 类型                                                  |
 | ----------------------------------------------------- |
 | [ImageSource](image#imagesource) (`uri` only), number |
 
@@ -285,7 +285,7 @@ Similarly to `source`, this property represents the resource used to render the 
 
 当加载错误的时候调用此回调函数。
 
-| Type |
+| 类型 |
 | ---- |
 
 | function(`{ nativeEvent: { error } }`) => void
@@ -296,9 +296,9 @@ Similarly to `source`, this property represents the resource used to render the 
 
 当元素加载或者布局改变的时候调用。
 
-| Type                                         |
-| -------------------------------------------- |
-| function([LayoutEvent](layoutevent)) => void |
+| 类型                                                    |
+| ------------------------------------------------------- |
+| `md ({nativeEvent: [LayoutEvent](layoutevent)} => void` |
 
 ---
 
@@ -306,11 +306,11 @@ Similarly to `source`, this property represents the resource used to render the 
 
 加载成功完成时调用此回调函数。
 
-**Example:** `onLoad={({nativeEvent: {source: {width, height}}}) => setImageRealSize({width, height})}`
+**示例:** `onLoad={({nativeEvent: {source: {width, height}}}) => setImageRealSize({width, height})}`
 
-| Type                                                              |
-| ----------------------------------------------------------------- |
-| ({ nativeEvent: [ImageLoadEvent](image#imageloadevent) }) => void |
+| 类型                                                                   |
+| ---------------------------------------------------------------------- |
+| `md ({ nativeEvent: [ImageLoadEvent](image#imageloadevent) }) => void` |
 
 ---
 
@@ -376,7 +376,7 @@ When true, enables progressive jpeg streaming. https://frescolib.org/docs/progre
 
 - `scale`: 对图片进行缩放。和`resize`相比，`scale`速度更快（一般有硬件加速），而且图片质量更优。在图片尺寸比容器尺寸小或者只是稍大一点时，应该优先使用此选项。
 
-关于`resize`和`scale`的详细说明请参考<http://frescolib.org/docs/resizing.html>。
+关于`resize`和`scale`的详细说明请参考 http://frescolib.org/docs/resizing.html
 
 | Type                                  | Default  |
 | ------------------------------------- | -------- |

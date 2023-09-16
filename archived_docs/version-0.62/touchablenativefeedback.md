@@ -107,7 +107,7 @@ static SelectableBackground(rippleRadius: ?number)
 static SelectableBackgroundBorderless(rippleRadius: ?number)
 ```
 
-会创建一个对象，表示安卓主题默认的对于被选中的无边框对象的背景(?android:attr/selectableItemBackgroundBorderless)。只适用于 Android API level 21+。`rippleRadius` parameter controls the radius of the ripple effect.
+会创建一个对象，表示安卓主题默认的对于被选中的无边框对象的背景(`?android:attr/selectableItemBackgroundBorderless`)。只适用于 Android API level 21+。`rippleRadius` parameter controls the radius of the ripple effect.
 
 ---
 

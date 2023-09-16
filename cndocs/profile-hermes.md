@@ -19,13 +19,13 @@ Follow the instructions below to get started profiling:
 
 ## Record a Hermes sampling profile
 
-To record a sampling profiler from the Developer Menu:
+To record a sampling profiler from the Dev Menu:
 
 1. Navigate to your running Metro server terminal.
-2. Press `d` to open the **Developer Menu.**
+2. Press `d` to open the **Dev Menu.**
 3. Select **Enable Sampling Profiler.**
 4. Execute your JavaScript by in your app (press buttons, etc.)
-5. Open the **Developer Menu** by pressing `d` again.
+5. Open the **Dev Menu** by pressing `d` again.
 6. Select **Disable Sampling Profiler** to stop recording and save the sampling profiler.
 
 A toast will show the location where the sampling profiler has been saved, usually in `/data/user/0/com.appName/cache/*.cpuprofile`
@@ -42,31 +42,9 @@ npx react-native profile-hermes [destinationDir]
 
 ### Enabling source map
 
-A source map is used to enhance the profile and associate trace events with the application code. You can automatically generate a source map when converting the Hermes tracing profile to a Chrome tracing profile by enabling `bundleInDebug` if the app is running in development mode. This allows React Native to build the bundle during its running process. Here's how:
-
-1. In your app's `android/app/build.gradle` file, add:
-
-```groovy
-project.ext.react = [
-  bundleInDebug: true,
-]
-```
-
-:::info 提示
-Be sure to clean the build whenever you make any changes to `build.gradle`
+:::info
+You may read about source maps on the [source maps](sourcemaps.md) page.
 :::
-
-2. Clean the build by running:
-
-```sh
-cd android && ./gradlew clean
-```
-
-3. Run your app:
-
-```sh
-npx react-native run-android
-```
 
 ### Common errors
 
@@ -93,7 +71,7 @@ To open the profile in Chrome DevTools:
 2. Select the **Performance** tab.
 3. Right click and choose **Load profile...**
 
- <img src="/docs/assets/openChromeProfile.png" alt="Loading a performance profile on Chrome DevTools" />
+<img src="/docs/assets/openChromeProfile.png" alt="Loading a performance profile on Chrome DevTools" />
 
 ## How does the Hermes Profile Transformer work?
 

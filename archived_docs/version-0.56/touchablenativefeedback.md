@@ -3,11 +3,12 @@ id: version-0.56-touchablenativefeedback
 title: TouchableNativeFeedback
 original_id: touchablenativefeedback
 ---
+
 ##### 本文档贡献者：[sunnylqm](https://github.com/search?q=sunnylqm%40qq.com+in%3Aemail&type=Users)(100.00%)
 
-本组件用于封装视图，使其可以正确响应触摸操作（仅限Android平台）。在Android设备上，这个组件利用原生状态来渲染触摸的反馈。
+本组件用于封装视图，使其可以正确响应触摸操作（仅限 Android 平台）。在 Android 设备上，这个组件利用原生状态来渲染触摸的反馈。
 
-目前它只支持一个单独的View实例作为子节点。在底层实现上，实际会创建一个新的RCTView节点替换当前的子View，并附带一些额外的属性。
+目前它只支持一个单独的 View 实例作为子节点。在底层实现上，实际会创建一个新的 RCTView 节点替换当前的子 View，并附带一些额外的属性。
 
 原生触摸操作反馈的背景可以使用`background`属性来自定义。
 
@@ -27,19 +28,19 @@ renderButton: function() {
 },
 ```
 
-### 查看Props
+### 查看 Props
 
-* [TouchableWithoutFeedback props...](touchablewithoutfeedback.md#props)
+- [TouchableWithoutFeedback props...](touchablewithoutfeedback.md#props)
 
-- [`background`](touchablenativefeedback.md#background)
-- [`useForeground`](touchablenativefeedback.md#useforeground)
+* [`background`](touchablenativefeedback.md#background)
+* [`useForeground`](touchablenativefeedback.md#useforeground)
 
 ### 查看方法
 
-* [`SelectableBackground`](touchablenativefeedback.md#selectablebackground)
-* [`SelectableBackgroundBorderless`](touchablenativefeedback.md#selectablebackgroundborderless)
-* [`Ripple`](touchablenativefeedback.md#ripple)
-* [`canUseNativeForeground`](touchablenativefeedback.md#canusenativeforeground)
+- [`SelectableBackground`](touchablenativefeedback.md#selectablebackground)
+- [`SelectableBackgroundBorderless`](touchablenativefeedback.md#selectablebackgroundborderless)
+- [`Ripple`](touchablenativefeedback.md#ripple)
+- [`canUseNativeForeground`](touchablenativefeedback.md#canusenativeforeground)
 
 ---
 
@@ -85,7 +86,7 @@ static SelectableBackground()
 static SelectableBackgroundBorderless()
 ```
 
-会创建一个对象，表示安卓主题默认的对于被选中的无边框对象的背景(?android:attr/selectableItemBackgroundBorderless)。只适用于Android API level 21+。
+会创建一个对象，表示安卓主题默认的对于被选中的无边框对象的背景(`?android:attr/selectableItemBackgroundBorderless`)。只适用于 Android API level 21+。
 
 ---
 
@@ -95,7 +96,7 @@ static SelectableBackgroundBorderless()
 static Ripple(color: string, borderless: boolean)
 ```
 
-会创建一个对象，当按钮被按下时产生一个涟漪状的背景，你可以通过color参数来指定颜色，如果参数`borderless`是true，那么涟漪还会渲染到视图的范围之外（参见原生的actionbar buttons作为该效果的一个例子）。这个背景类型只在Android API level 21+适用。
+会创建一个对象，当按钮被按下时产生一个涟漪状的背景，你可以通过 color 参数来指定颜色，如果参数`borderless`是 true，那么涟漪还会渲染到视图的范围之外（参见原生的 actionbar buttons 作为该效果的一个例子）。这个背景类型只在 Android API level 21+适用。
 
 **参数：**
 

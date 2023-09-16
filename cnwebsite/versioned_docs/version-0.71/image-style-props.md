@@ -602,7 +602,7 @@ Set an opacity value for the image. The number should be in the range from `0.0`
 
 常见的用法就是在不能圆角透明时，设置`overlayColor`和背景色一致。
 
-详细说明可参考<https://frescolib.org/docs/rounded-corners-and-circles.html>。
+详细说明可参考 https://frescolib.org/docs/rounded-corners-and-circles.html
 
 | 类型   |
 | ------ |

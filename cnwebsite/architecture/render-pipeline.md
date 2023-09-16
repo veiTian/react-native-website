@@ -122,10 +122,10 @@ function MyComponent() {
   return (
     <View>
       <View
-        style={{ backgroundColor: 'red', height: 20, width: 20 }}
+        style={{backgroundColor: 'red', height: 20, width: 20}}
       />
       <View
-        style={{ backgroundColor: 'blue', height: 20, width: 20 }}
+        style={{backgroundColor: 'blue', height: 20, width: 20}}
       />
     </View>
   );
@@ -141,10 +141,10 @@ function MyComponent() {
 ```jsx
 <View>
   <View
-    style={{ backgroundColor: 'yellow', height: 20, width: 20 }}
+    style={{backgroundColor: 'yellow', height: 20, width: 20}}
   />
   <View
-    style={{ backgroundColor: 'blue', height: 20, width: 20 }}
+    style={{backgroundColor: 'blue', height: 20, width: 20}}
   />
 </View>
 ```
@@ -165,7 +165,7 @@ React Native 渲染器利用结构共享的方式，将不可变特性的开销�
 
 在上面的例子中，React 创建新树使用了这些操作：
 
-1. CloneNode(**Node 3**, {backgroundColor: 'yellow'}) → **Node 3'**
+1. CloneNode(**Node 3**, `{backgroundColor: 'yellow'}`) → **Node 3'**
 2. CloneNode(**Node 2**) → **Node 2'**
 3. AppendChild(**Node 2'**, **Node 3'**)
 4. AppendChild(**Node 2'**, **Node 4**)

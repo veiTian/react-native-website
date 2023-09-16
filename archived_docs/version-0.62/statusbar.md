@@ -299,9 +299,9 @@ static setTranslucent(translucent: boolean)
 
 状态栏动画过渡效果
 
-| 类型   |
-| ------ |
-| \$Enum |
+| 类型  |
+| ----- |
+| $Enum |
 
 **常量：**
 
@@ -317,9 +317,9 @@ static setTranslucent(translucent: boolean)
 
 状态栏样式
 
-| 类型   |
-| ------ |
-| \$Enum |
+| 类型  |
+| ----- |
+| $Enum |
 
 **常量：**
 

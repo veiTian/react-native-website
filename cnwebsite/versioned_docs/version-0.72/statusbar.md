@@ -170,8 +170,8 @@ Get and remove the last StatusBar entry from the stack.
 
 **参数:**
 
-| 名称                                                   | 类型 | 描述                           |
-| ------------------------------------------------------ | ---- | ------------------------------------- |
+| 名称                                               | 类型 | 描述                                  |
+| -------------------------------------------------- | ---- | ------------------------------------- |
 | entry <div class="label basic required">必需</div> | any  | Entry returned from `pushStackEntry`. |
 
 ---
@@ -186,8 +186,8 @@ static pushStackEntry(props: any)
 
 **参数:**
 
-| 名称                                                   | 类型 | 描述                                                      |
-| ------------------------------------------------------ | ---- | ---------------------------------------------------------------- |
+| 名称                                               | 类型 | 描述                                                             |
+| -------------------------------------------------- | ---- | ---------------------------------------------------------------- |
 | props <div class="label basic required">必需</div> | any  | Object containing the StatusBar props to use in the stack entry. |
 
 ---
@@ -202,12 +202,12 @@ Replace an existing StatusBar stack entry with new props.
 
 **参数:**
 
-| 名称                                                   | 类型 | 描述                                                                  |
-| ------------------------------------------------------ | ---- | ---------------------------------------------------------------------------- |
+| 名称                                               | 类型 | 描述                                                                         |
+| -------------------------------------------------- | ---- | ---------------------------------------------------------------------------- |
 | entry <div class="label basic required">必需</div> | any  | Entry returned from `pushStackEntry` to replace.                             |
 | props <div class="label basic required">必需</div> | any  | Object containing the StatusBar props to use in the replacement stack entry. |
 
-----
+---
 
 ### `setBackgroundColor()`
 
@@ -296,9 +296,9 @@ static setTranslucent(translucent: boolean)
 
 状态栏动画过渡效果
 
-| 类型   |
-| ------ |
-| \$Enum |
+| 类型  |
+| ----- |
+| $Enum |
 
 **常量：**
 
@@ -314,9 +314,9 @@ static setTranslucent(translucent: boolean)
 
 状态栏样式
 
-| 类型   |
-| ------ |
-| \$Enum |
+| 类型  |
+| ----- |
+| $Enum |
 
 **常量：**
 

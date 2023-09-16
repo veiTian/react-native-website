@@ -4,7 +4,7 @@ title: 使用新的 Hermes 引擎
 ---
 
 <a href="https://hermesengine.dev">
-<img width={300} height={300} className="hermes-logo" src="/docs/assets/HermesLogo.svg" />
+  <img width={300} height={300} className="hermes-logo" src="/docs/assets/HermesLogo.svg" style={{height: "auto"}}/>
 </a>
 
 [Hermes](https://hermesengine.dev) 是专门针对 React Native 应用而优化的全新开源 JavaScript 引擎。对于很多应用来说，启用 Hermes 引擎可以优化启动时间，减少内存占用以及空间占用。目前 Hermes 是一个**可选的**特性，本文档会为你介绍如何将其启用。
@@ -30,7 +30,7 @@ Hermes 需要 [Microsoft Visual C++ 2015 Redistributable](https://www.microsoft.
 ```diff
   project.ext.react = [
       entryFile: "index.js",
--     enableHermes: false  // 
+-     enableHermes: false  //
 +     enableHermes: true  // 修改后需 clean 编译缓存并重新编译
   ]
 ```

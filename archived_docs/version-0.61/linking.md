@@ -219,7 +219,7 @@ getInitialURL();
 
 如果应用是被一个链接调起的，则会返回相应的链接地址。否则它会返回`null`。
 
-> 如果要在 Android 上支持深度链接，请参阅<http://developer.android.com/training/app-indexing/deep-linking.html#handling-intents>
+> 如果要在 Android 上支持深度链接，请参阅 http://developer.android.com/training/app-indexing/deep-linking.html#handling-intents
 
 ---
 

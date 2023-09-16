@@ -299,10 +299,10 @@ Attaches a listener to remote or local notification events while the app is runn
 
 Valid events are:
 
-- `notification` : Fired when a remote notification is received. The handler will be invoked with an instance of `PushNotificationIOS`.
-- `localNotification` : Fired when a local notification is received. The handler will be invoked with an instance of `PushNotificationIOS`.
-- `register`: Fired when the user registers for remote notifications. The handler will be invoked with a hex string representing the deviceToken.
-- `registrationError`: Fired when the user fails to register for remote notifications. Typically occurs when APNS is having issues, or the device is a simulator. The handler will be invoked with {message: string, code: number, details: any}.
+- `notification`：当接收到远程通知时触发。处理程序将使用一个`PushNotificationIOS`实例调用。
+- `localNotification`：当接收到本地通知时触发。处理程序将使用一个`PushNotificationIOS`实例调用。
+- `register`：当用户注册远程通知时触发。处理程序将使用表示设备令牌的十六进制字符串调用。
+- `registrationError`: 当用户无法注册远程通知时触发。通常在 APNS 出现问题或设备为模拟器时发生。处理程序将被调用并传入 `{message: string, code: number, details: any}`。
 
 ---
 

@@ -331,7 +331,7 @@ The `statusBarTranslucent` prop determines whether your modal should go under th
 
 ### `presentationStyle`
 
-`presentationStyle`决定 modal（在较大屏幕的设备比如 iPad 或是 Plus 机型）如何展现。更多细节请参阅<https://developer.apple.com/reference/uikit/uimodalpresentationstyle>。
+`presentationStyle`决定 modal（在较大屏幕的设备比如 iPad 或是 Plus 机型）如何展现。更多细节请参阅 https://developer.apple.com/reference/uikit/uimodalpresentationstyle
 
 - `fullScreen`完全盖满屏幕。
 - `pageSheet`竖直方向几乎盖满，水平居中，左右留出一定空白（仅用于大屏设备）。

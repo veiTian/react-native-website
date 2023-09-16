@@ -59,13 +59,13 @@ AlertIOS.alert(
     {
       text: 'Cancel',
       onPress: () => console.log('Cancel Pressed'),
-      style: 'cancel'
+      style: 'cancel',
     },
     {
       text: 'Install',
-      onPress: () => console.log('Install Pressed')
-    }
-  ]
+      onPress: () => console.log('Install Pressed'),
+    },
+  ],
 );
 ```
 
@@ -100,15 +100,15 @@ AlertIOS.prompt(
     {
       text: 'Cancel',
       onPress: () => console.log('Cancel Pressed'),
-      style: 'cancel'
+      style: 'cancel',
     },
     {
       text: 'OK',
-      onPress: (password) =>
-        console.log('OK Pressed, password: ' + password)
-    }
+      onPress: password =>
+        console.log('OK Pressed, password: ' + password),
+    },
   ],
-  'secure-text'
+  'secure-text',
 );
 ```
 
@@ -120,9 +120,9 @@ Example with the default button and a custom callback:
 AlertIOS.prompt(
   'Update username',
   null,
-  (text) => console.log('Your username is ' + text),
+  text => console.log('Your username is ' + text),
   null,
-  'default'
+  'default',
 );
 ```
 
@@ -132,9 +132,9 @@ AlertIOS.prompt(
 
 An Alert button type
 
-| 类型   |
-| ------ |
-| \$Enum |
+| 类型  |
+| ----- |
+| $Enum |
 
 **常量：**
 
@@ -151,9 +151,9 @@ An Alert button type
 
 An Alert button style
 
-| 类型   |
-| ------ |
-| \$Enum |
+| 类型  |
+| ----- |
+| $Enum |
 
 **常量：**
 

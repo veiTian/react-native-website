@@ -123,7 +123,7 @@ const Versions = () => {
       </table>
       <h2>归档的版本</h2>
       <p>
-        老版本的文档（<code>0.63</code>
+        老版本的文档（<code>0.70</code>
         之前）由于格式不兼容，将仅以markdown形式的文档保存，不再发布到网页上，请移步
         <a href="https://github.com/reactnativecn/react-native-website/tree/production/archived_docs">
           归档文档目录

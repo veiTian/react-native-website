@@ -94,7 +94,7 @@ Check TouchableNativeFeedback.canUseNativeForeground() first, as this is only av
 static SelectableBackground(rippleRadius: ?number)
 ```
 
-会创建一个对象，表示安卓主题默认的对于被选中对象的背景(?android:attr/selectableItemBackground)。`rippleRadius` parameter controls the radius of the ripple effect.
+会创建一个对象，表示安卓主题默认的对于被选中对象的背景(`?android:attr/selectableItemBackground`)。`rippleRadius` 参数控制涟漪效果的半径。
 
 ---
 
@@ -104,7 +104,7 @@ static SelectableBackground(rippleRadius: ?number)
 static SelectableBackgroundBorderless(rippleRadius: ?number)
 ```
 
-会创建一个对象，表示安卓主题默认的对于被选中的无边框对象的背景(?android:attr/selectableItemBackgroundBorderless)。只适用于 Android API level 21+。`rippleRadius` parameter controls the radius of the ripple effect.
+会创建一个对象，表示安卓主题默认的对于被选中的无边框对象的背景(`?android:attr/selectableItemBackgroundBorderless`)。只适用于 Android API level 21+。`rippleRadius` 参数控制涟漪效果的半径。
 
 ---
 

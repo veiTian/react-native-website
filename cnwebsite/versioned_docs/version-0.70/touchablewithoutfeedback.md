@@ -173,9 +173,9 @@ Overrides the text that's read by the screen reader when the user interacts with
 
 这一属性定义了按钮的外延范围。这一范围也会使`pressRetentionOffset`变得更大。 **注意：** 触摸范围不会超过父视图的边界，也不会影响原先和本组件层叠的视图（保留原先的触摸优先级）。
 
-| 类型                                                               | 必需 |
-| ------------------------------------------------------------------ | ---- |
-| object: {top: number, left: number, bottom: number, right: number} | 否   |
+| 类型                                                                 | 必需 |
+| -------------------------------------------------------------------- | ---- |
+| object: `{top: number, left: number, bottom: number, right: number}` | 否   |
 
 ---
 
@@ -253,9 +253,9 @@ Called as soon as the touch is released even before onPress.
 
 在当前视图不能滚动的前提下指定这个属性，可以决定当手指移开多远距离之后，会不再激活按钮。但如果手指再次移回范围内，按钮会被再次激活。只要视图不能滚动，你可以来回多次这样的操作。确保你传入一个常量来减少内存分配。
 
-| 类型                                                               | 必需 |
-| ------------------------------------------------------------------ | ---- |
-| object: {top: number, left: number, bottom: number, right: number} | 否   |
+| 类型                                                                 | 必需 |
+| -------------------------------------------------------------------- | ---- |
+| object: `{top: number, left: number, bottom: number, right: number}` | 否   |
 
 ---
 

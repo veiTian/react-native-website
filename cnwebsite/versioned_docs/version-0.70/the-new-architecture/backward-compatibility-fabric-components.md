@@ -29,7 +29,7 @@ While the last step is the same for all the platforms, the first two steps are d
 
 ## Configure the Fabric Component Dependencies
 
-### <a name="dependencies-ios" />iOS
+### iOS {#dependencies-ios}
 
 The Apple platform installs Fabric Components using [Cocoapods](https://cocoapods.org) as dependency manager.
 
@@ -396,7 +396,7 @@ The **goal** is to conditionally `export` from the `index` file the proper objec
 
 ```ts
 // @flow
-import { requireNativeComponent } from 'react-native';
+import {requireNativeComponent} from 'react-native';
 
 const isFabricEnabled = global.nativeFabricUIManager != null;
 

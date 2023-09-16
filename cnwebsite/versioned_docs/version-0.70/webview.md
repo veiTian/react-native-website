@@ -440,9 +440,9 @@ List of origin strings to allow being navigated to. The strings allow wildcards 
 
 webview 插入到滑动视图时距离边缘的距离。默认为`{top: 0, left: 0, bottom: 0, right: 0}`。
 
-| 类型                                                               | 必需 | 平台 |
-| ------------------------------------------------------------------ | ---- | ---- |
-| object: {top: number, left: number, bottom: number, right: number} | 否   | iOS  |
+| 类型                                                                 | 必需 | 平台 |
+| -------------------------------------------------------------------- | ---- | ---- |
+| object: `{top: number, left: number, bottom: number, right: number}` | 否   | iOS  |
 
 ---
 

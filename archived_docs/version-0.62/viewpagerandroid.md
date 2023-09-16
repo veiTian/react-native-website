@@ -170,9 +170,9 @@ A helper function to scroll to a specific page in the ViewPager. The transition 
 
 ### ViewPagerScrollState
 
-| 类型   |
-| ------ |
-| \$Enum |
+| 类型  |
+| ----- |
+| $Enum |
 
 **常量:**
 

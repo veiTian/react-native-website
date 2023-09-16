@@ -353,9 +353,9 @@ export default App;
 
 ### `textShadowOffset`
 
-| 类型                                   | 必需 |
-| -------------------------------------- | ---- |
-| object: {width: number,height: number} | 否   |
+| 类型                                     | 必需 |
+| ---------------------------------------- | ---- |
+| object: `{width: number,height: number}` | 否   |
 
 ---
 

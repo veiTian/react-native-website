@@ -182,7 +182,7 @@ export default App;
 ### <div class="label required basic">必需</div> **`renderItem`**
 
 ```jsx
-renderItem({ item, index, separators });
+renderItem({item, index, separators});
 ```
 
 从`data`中挨个取出数据并渲染到列表中。
@@ -208,22 +208,19 @@ Provides additional metadata like `index` if you need it, as well as a more gene
 <FlatList
   ItemSeparatorComponent={
     Platform.OS !== 'android' &&
-    (({ highlighted }) => (
+    (({highlighted}) => (
       <View
-        style={[
-          style.separator,
-          highlighted && { marginLeft: 0 }
-        ]}
+        style={[style.separator, highlighted && {marginLeft: 0}]}
       />
     ))
   }
-  data={[{ title: 'Title Text', key: 'item1' }]}
-  renderItem={({ item, index, separators }) => (
+  data={[{title: 'Title Text', key: 'item1'}]}
+  renderItem={({item, index, separators}) => (
     <TouchableHighlight
       onPress={() => this._onPress(item)}
       onShowUnderlay={separators.highlight}
       onHideUnderlay={separators.unhighlight}>
-      <View style={{ backgroundColor: 'white' }}>
+      <View style={{backgroundColor: 'white'}}>
         <Text>{item.title}</Text>
       </View>
     </TouchableHighlight>
@@ -438,9 +435,9 @@ Provides additional metadata like `index` if you need it, as well as a more gene
 
 在可见行元素变化时调用。可见范围和变化频率等参数的配置请设置`viewabilityConfig`属性。
 
-| 类型     |
-| -------- |
-| function |
+| 类型                                                                                                  |
+| ----------------------------------------------------------------------------------------------------- |
+| `md (callback: {changed: [ViewToken](viewtoken)[], viewableItems: [ViewToken](viewtoken)[]} => void;` |
 
 ---
 

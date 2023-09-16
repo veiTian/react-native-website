@@ -242,9 +242,7 @@ class MyAppHeaderText extends Component {
   render() {
     return (
       <MyAppText>
-        <Text style={{ fontSize: 20 }}>
-          {this.props.children}
-        </Text>
+        <Text style={{fontSize: 20}}>{this.props.children}</Text>
       </MyAppText>
     );
   }
@@ -256,9 +254,9 @@ Composing `MyAppText` in this way ensures that we get the styles from a top-leve
 React Native 实际上还是有一部分样式继承的实现，不过仅限于文本标签的子树。在下面的代码里，第二部分会在加粗的同时又显示为红色：
 
 ```jsx
-<Text style={{ fontWeight: 'bold' }}>
+<Text style={{fontWeight: 'bold'}}>
   I am bold
-  <Text style={{ color: 'red' }}>and red</Text>
+  <Text style={{color: 'red'}}>and red</Text>
 </Text>
 ```
 
@@ -446,9 +444,9 @@ Invoked on Text layout
 
 When the scroll view is disabled, this defines how far your touch may move off of the button, before deactivating the button. Once deactivated, try moving it back and you'll see that the button is once again reactivated! Move it back and forth several times while the scroll view is disabled. Ensure you pass in a constant to reduce memory allocations.
 
-| 类型                                                               | 必需 |
-| ------------------------------------------------------------------ | ---- |
-| object: {top: number, left: number, bottom: number, right: number} | 否   |
+| 类型                                                                 | 必需 |
+| -------------------------------------------------------------------- | ---- |
+| object: `{top: number, left: number, bottom: number, right: number}` | 否   |
 
 ---
 
@@ -470,7 +468,7 @@ When the scroll view is disabled, this defines how far your touch may move off o
 
 - [View Style Props...](view-style-props.md#style)
 
-- **`textShadowOffset`**: object: {width: number,height: number}
+- **`textShadowOffset`**: object: `{width: number,height: number}`
 
 - **`color`**: [color](colors.md)
 
@@ -531,7 +529,6 @@ Android: Only supported since Android 5.0 - older versions will ignore this attr
 | string | 否   |
 
 ---
-
 
 ### `selectionColor`
 
@@ -649,7 +646,7 @@ Specifies the disabled state of the text view for testing purposes.
 {
   lines: [
     TextLayout,
-    TextLayout
+    TextLayout,
     // ...
   ];
   target: 1127;

@@ -15,14 +15,14 @@ React Native 在 iOS 模拟器上支持一些快捷键操作，具体会在下�
 
 ![](assets/DevMenu.png)
 
-> 在发布（production）版本中开发者菜单将无法使用。
+> 在发布（release）版本中开发者菜单将无法使用。
 
 ## LogBox
 
 开发版本中的错误和警告会在您的应用程序内部的 LogBox 中显示。
 
 :::note 注意
-LogBox 在发布版本（release/production）中是自动禁用的。
+LogBox 在发布版本（release）中是自动禁用的。
 :::
 
 ## 控制台的错误与警告提示
@@ -55,7 +55,7 @@ LogBox.ignoreAllLogs();
 
 ## Chrome 开发者工具
 
-在开发者菜单中选择"Debug JS Remotely"选项，即可以开始在 Chrome 中调试 JavaScript 代码。点击这个选项的同时会自动打开调试页面 <http://localhost:8081/debugger-ui>.(如果地址栏打开的是 ip 地址，则请自行改为 localhost)
+在开发者菜单中选择"Debug JS Remotely"选项，即可以开始在 Chrome 中调试 JavaScript 代码。点击这个选项的同时会自动打开调试页面 http://localhost:8081/debugger-ui (如果地址栏打开的是 ip 地址，则请自行改为 localhost)
 
 在 Chrome 的菜单中选择`Tools → Developer Tools`可以打开开发者工具，也可以通过键盘快捷键来打开（Mac 上是**`Command`**`⌘` + **`Option`**`⌥` + **`I`**，Windows 上是**`Ctrl`** + **`Shift`** + **`I`**或是 F12）。打开[有异常时暂停（Pause On Caught Exceptions）](http://stackoverflow.com/questions/2233339/javascript-is-there-a-way-to-get-chrome-to-break-on-all-errors/17324511#17324511)选项，能够获得更好的开发体验。
 

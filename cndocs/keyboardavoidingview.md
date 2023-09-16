@@ -66,7 +66,7 @@ export default KeyboardAvoidingComponent;
 
 ### [View Props](view.md#props)
 
-Inherits [View Props](view.md#props).
+继承了所有的[View Props](view.md#props).
 
 ---
 

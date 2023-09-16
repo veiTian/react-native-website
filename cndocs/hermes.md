@@ -4,7 +4,7 @@ title: 使用新的 Hermes 引擎
 ---
 
 <a href="https://hermesengine.dev">
-<img width={300} height={300} className="hermes-logo" src="/docs/assets/HermesLogo.svg" />
+  <img width={300} height={300} className="hermes-logo" src="/docs/assets/HermesLogo.svg" style={{height: "auto"}}/>
 </a>
 
 [Hermes](https://hermesengine.dev) 是专门针对 React Native 应用而优化的全新开源 JavaScript 引擎。对于很多应用来说，启用 Hermes 引擎可以优化启动时间，减少内存占用以及空间占用。从 React Native 0.70 版本开始 Hermes 已经默认启用，无需开发者再做任何配置。

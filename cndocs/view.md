@@ -131,9 +131,9 @@ An accessibility hint helps users understand what will happen when they perform 
 
 > 触摸范围不会扩展到父视图之外，另外如果触摸到两个重叠的视图，Z-index 高的元素会优先。
 
-| 类型                                                               | 必需 |
-| ------------------------------------------------------------------ | ---- |
-| object: {top: number, left: number, bottom: number, right: number} | 否   |
+| 类型                                                                 | 必需 |
+| -------------------------------------------------------------------- | ---- |
+| object: `{top: number, left: number, bottom: number, right: number}` | 否   |
 
 ---
 

@@ -188,9 +188,9 @@ Caveat 1: Reordering elements in the scrollview with this enabled will probably 
 
 Caveat 2: This uses `contentOffset` and `frame.origin` in native code to compute visibility. Occlusion, transforms, and other complexity won't be taken into account as to whether content is "visible" or not.
 
-| Type                                                                     |
-| ------------------------------------------------------------------------ |
-| object: { minIndexForVisible: number, autoscrollToTopThreshold: number } |
+| Type                                                                       |
+| -------------------------------------------------------------------------- |
+| object: `{ minIndexForVisible: number, autoscrollToTopThreshold: number }` |
 
 ---
 
@@ -484,9 +484,9 @@ Tag used to log scroll performance on this scroll view. Will force momentum even
 
 内容范围相对滚动视图边缘的坐标。默认为`{top: 0, left: 0, bottom: 0, right: 0}`。
 
-| 类型                                                               | 必需 | 平台 |
-| ------------------------------------------------------------------ | ---- | ---- |
-| object: {top: number, left: number, bottom: number, right: number} | 否   | iOS  |
+| 类型                                                                 | 必需 | 平台 |
+| -------------------------------------------------------------------- | ---- | ---- |
+| object: `{top: number, left: number, bottom: number, right: number}` | 否   | iOS  |
 
 ---
 
@@ -571,9 +571,9 @@ This property specifies how the safe area insets are used to modify the content 
 
 决定滚动条距离视图边缘的坐标。这个值应该和`contentInset`一样。默认值为`{0, 0, 0, 0}`。
 
-| 类型                                                               | 必需 | 平台 |
-| ------------------------------------------------------------------ | ---- | ---- |
-| object: {top: number, left: number, bottom: number, right: number} | 否   | iOS  |
+| 类型                                                                 | 必需 | 平台 |
+| -------------------------------------------------------------------- | ---- | ---- |
+| object: `{top: number, left: number, bottom: number, right: number}` | 否   | iOS  |
 
 ---
 
@@ -661,7 +661,7 @@ scrollTo(
   object,
   ([x]: number),
   ([animated]: boolean),
-  ([duration]: number)
+  ([duration]: number),
 );
 ```
 
@@ -680,7 +680,7 @@ scrollTo(
 ### `scrollToEnd()`
 
 ```jsx
-scrollToEnd(([options]: { animated: boolean, duration: number }));
+scrollToEnd(([options]: {animated: boolean, duration: number}));
 ```
 
 滚动到视图底部（水平方向的视图则滚动到最右边）。

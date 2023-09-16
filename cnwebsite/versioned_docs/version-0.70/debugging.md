@@ -41,7 +41,7 @@ These notifications can be hidden using `LogBox.ignoreAllLogs()`. This is useful
 > Ignore logs as a last resort and create a task to fix any logs that are ignored.
 
 ```jsx
-import { LogBox } from 'react-native';
+import {LogBox} from 'react-native';
 
 // Ignore log notification by message:
 LogBox.ignoreLogs(['Warning: ...']);
@@ -60,7 +60,7 @@ Syntax errors will automatically open a full screen LogBox error with the source
 
 ## Chrome 开发者工具
 
-在开发者菜单中选择"Debug JS Remotely"选项，即可以开始在 Chrome 中调试 JavaScript 代码。点击这个选项的同时会自动打开调试页面 <http://localhost:8081/debugger-ui>.(如果地址栏打开的是 ip 地址，则请自行改为 localhost)
+在开发者菜单中选择"Debug JS Remotely"选项，即可以开始在 Chrome 中调试 JavaScript 代码。点击这个选项的同时会自动打开调试页面 http://localhost:8081/debugger-ui (如果地址栏打开的是 ip 地址，则请自行改为 localhost)
 
 在 Chrome 的菜单中选择`Tools → Developer Tools`可以打开开发者工具，也可以通过键盘快捷键来打开（Mac 上是**`Command`**`⌘` + **`Option`**`⌥` + **`I`**，Windows 上是**`Ctrl`** + **`Shift`** + **`I`**或是 F12）。打开[有异常时暂停（Pause On Caught Exceptions）](http://stackoverflow.com/questions/2233339/javascript-is-there-a-way-to-get-chrome-to-break-on-all-errors/17324511#17324511)选项，能够获得更好的开发体验。
 

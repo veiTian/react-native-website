@@ -21,15 +21,13 @@ React Native 渲染器通过一系列加工处理，将 React 代码渲染到宿
 >
 > React 影子树（React Shadow Tree）：React 影子树是通过 Fabric 渲染器创建的，树由一系列 React 影子节点组成。一个 React 影子节点是一个对象，代表一个已经挂载的 React 宿主组件，其包含的属性 props 来自 JavaScript。它也包括布局信息，比如坐标系 x、y，宽高 width、height。在新渲染器 Fabric 中，React 影子节点对象只存在于 C++ 中。而在老架构中，它存在于手机运行时的堆栈中，比如 Android 的 JVM。
 >
-> 宿主视图树（Host View Tree）：宿主视图树就是一系列的宿主视图。宿主平台有 Android 平台、iOS 平台等等。在 Android 上，宿主视图就是 `android.view.ViewGroup`实例、 `android.widget.TextView`实例等等。宿主视图就像积木一样地构成了宿主视图树。每个宿主视图的大小和坐标位置基于的是 `LayoutMetrics`，而  `LayoutMetrics`是通过布局引擎 Yoga 计算出来的。宿主视图的样式和内容信息，是从 React 影子树中得到的。
+> 宿主视图树（Host View Tree）：宿主视图树就是一系列的宿主视图。宿主平台有 Android 平台、iOS 平台等等。在 Android 上，宿主视图就是 `android.view.ViewGroup`实例、 `android.widget.TextView`实例等等。宿主视图就像积木一样地构成了宿主视图树。每个宿主视图的大小和坐标位置基于的是 `LayoutMetrics`，而 `LayoutMetrics`是通过布局引擎 Yoga 计算出来的。宿主视图的样式和内容信息，是从 React 影子树中得到的。
 
 > 渲染流水线的各个阶段可能发生在不同的线程中，更详细的信息可以参考线程模型部分。
 
 ![React Native renderer Data flow](https://reactnative.dev/assets/images/data-flow-17cc787288df187badd01e1ff17d2833.jpg)
 
-
-
- 渲染流水线存在三种不同场景：
+渲染流水线存在三种不同场景：
 
 1. 初始化渲染
 2. React 状态更新
@@ -55,7 +53,7 @@ function MyComponent() {
 // <MyComponent />
 ```
 
-在上面的例子中，` <MyComponent />`是 React 元素。React 会将 React 元素简化为最终的 React 宿主组件。每一次都会递归地调用函数组件  MyComponet ，或类组件的  render 方法，直至所有的组件都被调用过。现在，你拥有一棵 React 宿主组件的 React 元素树。
+在上面的例子中，` <MyComponent />`是 React 元素。React 会将 React 元素简化为最终的 React 宿主组件。每一次都会递归地调用函数组件 MyComponet ，或类组件的 render 方法，直至所有的组件都被调用过。现在，你拥有一棵 React 宿主组件的 React 元素树。
 
 ![Phase one: render](https://reactnative.dev/assets/images/phase-one-render-cdd8336227468340a4c6b37d485e5bf8.png)
 
@@ -74,7 +72,7 @@ function MyComponent() {
 **其他细节**
 
 - 创建 React 影子节点、创建两个影子节点的父子关系的操作是同步的，也是线程安全的。该操作的执行是从 React（JavaScript）到渲染器（C++）的，大部分情况下是在 JavaScript 线程上执行的。（译注：后面线程模型有解释）
-- React 元素树和元素树中的元素并不是一直存在的，它只一个当前视图的描述，而最终是由 React  “fiber” 来实现的。每一个 “fiber” 都代表一个宿主组件，存着一个 C++ 指针，指向 React 影子节点。这些都是因为有了 JSI 才有可能实现的。学习更多关于 “fibers” 的资料参考[这篇文档](https://github.com/acdlite/react-fiber-architecture#what-is-a-fiber)。
+- React 元素树和元素树中的元素并不是一直存在的，它只一个当前视图的描述，而最终是由 React “fiber” 来实现的。每一个 “fiber” 都代表一个宿主组件，存着一个 C++ 指针，指向 React 影子节点。这些都是因为有了 JSI 才有可能实现的。学习更多关于 “fibers” 的资料参考[这篇文档](https://github.com/acdlite/react-fiber-architecture#what-is-a-fiber)。
 - React 影子树是不可变的。为了更新任意的 React 影子节点，渲染器会创建了一棵新的 React 影子树。为了让状态更新更高效，渲染器提供了 clone 操作。更多细节可参考后面的 React 状态更新部分。
 
 在上面的示例中，各个渲染阶段的产物如图所示：
@@ -110,7 +108,7 @@ function MyComponent() {
 </View>
 ```
 
-站在更高的抽象层次上，React Native 渲染器为每个 React 影子节点创建了对应的宿主视图，并且将它们挂载在屏幕上。在上面的例子中，渲染器为`<View>` 创建了`android.view.ViewGroup` 实例，为  `<Text>` 创建了文字内容为“Hello World”的 `android.widget.TextView`实例 。iOS 也是类似的，创建了一个 `UIView` 并调用 `NSLayoutManager` 创建文本。然后会为宿主视图配置来自 React 影子节点上的属性，这些宿主视图的大小位置都是通过计算好的布局信息配置的。
+站在更高的抽象层次上，React Native 渲染器为每个 React 影子节点创建了对应的宿主视图，并且将它们挂载在屏幕上。在上面的例子中，渲染器为`<View>` 创建了`android.view.ViewGroup` 实例，为 `<Text>` 创建了文字内容为“Hello World”的 `android.widget.TextView`实例 。iOS 也是类似的，创建了一个 `UIView` 并调用 `NSLayoutManager` 创建文本。然后会为宿主视图配置来自 React 影子节点上的属性，这些宿主视图的大小位置都是通过计算好的布局信息配置的。
 
 ![Step two](https://reactnative.dev/assets/images/render-pipeline-3-1dc3249f58a1ecef0392b7faabaca37c.png)
 
@@ -136,10 +134,10 @@ function MyComponent() {
   return (
     <View>
       <View
-        style={{ backgroundColor: 'red', height: 20, width: 20 }}
+        style={{backgroundColor: 'red', height: 20, width: 20}}
       />
       <View
-        style={{ backgroundColor: 'blue', height: 20, width: 20 }}
+        style={{backgroundColor: 'blue', height: 20, width: 20}}
       />
     </View>
   );
@@ -155,10 +153,10 @@ function MyComponent() {
 ```jsx
 <View>
   <View
-    style={{ backgroundColor: 'yellow', height: 20, width: 20 }}
+    style={{backgroundColor: 'yellow', height: 20, width: 20}}
   />
   <View
-    style={{ backgroundColor: 'blue', height: 20, width: 20 }}
+    style={{backgroundColor: 'blue', height: 20, width: 20}}
   />
 </View>
 ```
@@ -179,7 +177,7 @@ React Native 渲染器利用结构共享的方式，将不可变特性的开销�
 
 在上面的例子中，React 创建新树使用了这些操作：
 
-1. CloneNode(**Node 3**, {backgroundColor: 'yellow'}) → **Node 3'**
+1. CloneNode(**Node 3**, `{backgroundColor: 'yellow'}`) → **Node 3'**
 2. CloneNode(**Node 2**) → **Node 2'**
 3. AppendChild(**Node 2'**, **Node 3'**)
 4. AppendChild(**Node 2'**, **Node 4**)
@@ -208,9 +206,7 @@ React Native 渲染器利用结构共享的方式，将不可变特性的开销�
 ![Phase three: mount](https://reactnative.dev/assets/images/phase-three-mount-3544340fff87101e0f7815560061fec7.png)
 
 - **树提升（Tree Promotion ，Next Tree → Rendered Tree）:** 在这个步骤中，会自动将“下一棵树”提升为“先前渲染的树”，因此在下一个挂载阶段，树的对比计算用的是正确的树。
-- **视图挂载（View Mounting）：**这个步骤会在对应的原生视图上执行原子变更操作。在上面的例子中，只有**视图3（View 3）**的背景颜色会更新，变为黄色。
-
-
+- **视图挂载（View Mounting）：**这个步骤会在对应的原生视图上执行原子变更操作。在上面的例子中，只有**视图 3（View 3）**的背景颜色会更新，变为黄色。
 
 ![Render pipeline 6](https://reactnative.dev/assets/images/render-pipeline-6-dabe7cbda658efec9aeb1ad3be75b72c.png)
 

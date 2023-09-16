@@ -68,7 +68,7 @@ export default function UselessTextInputMultiline() {
 
 `TextInput`在安卓上默认有一个底边框，同时会有一些 padding。如果要想使其看起来和 iOS 上尽量一致，则需要设置`padding: 0`。
 
-又又，在安卓上长按选择文本会导致`windowSoftInputMode`设置变为`adjustResize`，这样可能导致绝对定位的元素被键盘给顶起来。要解决这一问题你需要在 AndroidManifest.xml 中明确指定合适的`windowSoftInputMode`( <https://developer.android.com/guide/topics/manifest/activity-element.html> )值，或是自己监听事件来处理布局变化。
+又又，在安卓上长按选择文本会导致`windowSoftInputMode`设置变为`adjustResize`，这样可能导致绝对定位的元素被键盘给顶起来。要解决这一问题你需要在 AndroidManifest.xml 中明确指定合适的`windowSoftInputMode`(https://developer.android.com/guide/topics/manifest/activity-element.html)值，或是自己监听事件来处理布局变化。
 
 ---
 
@@ -608,9 +608,9 @@ If `false`, scrolling of the text view will be disabled. The default value is `t
 
 设置选中文字的范围（指定首尾的索引值）。如果首尾为同一索引位置，则相当于指定光标的位置。
 
-| 类型                                | 必需 |
-| ----------------------------------- | ---- |
-| object: {start: number,end: number} | No   |
+| 类型                                  | 必需 |
+| ------------------------------------- | ---- |
+| object: `{start: number,end: number}` | No   |
 
 ---
 
