@@ -3,8 +3,6 @@ id: sectionlist
 title: SectionList
 ---
 
-import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
-
 高性能的分组(section)列表组件，支持下面这些常用的功能：
 
 - 完全跨平台。
@@ -22,45 +20,47 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import con
 
 ## 示例
 
-<Tabs groupId="syntax" defaultValue={constants.defaultSyntax} values={constants.syntax}>
-<TabItem value="functional">
-
 ```SnackPlayer name=SectionList%20Example
-import React from "react";
-import { StyleSheet, Text, View, SafeAreaView, SectionList, StatusBar } from "react-native";
+import React from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  SectionList,
+  StatusBar,
+} from 'react-native';
 
 const DATA = [
   {
-    title: "Main dishes",
-    data: ["Pizza", "Burger", "Risotto"]
+    title: 'Main dishes',
+    data: ['Pizza', 'Burger', 'Risotto'],
   },
   {
-    title: "Sides",
-    data: ["French Fries", "Onion Rings", "Fried Shrimps"]
+    title: 'Sides',
+    data: ['French Fries', 'Onion Rings', 'Fried Shrimps'],
   },
   {
-    title: "Drinks",
-    data: ["Water", "Coke", "Beer"]
+    title: 'Drinks',
+    data: ['Water', 'Coke', 'Beer'],
   },
   {
-    title: "Desserts",
-    data: ["Cheese Cake", "Ice Cream"]
-  }
+    title: 'Desserts',
+    data: ['Cheese Cake', 'Ice Cream'],
+  },
 ];
-
-const Item = ({ title }) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
-  </View>
-);
 
 const App = () => (
   <SafeAreaView style={styles.container}>
     <SectionList
       sections={DATA}
       keyExtractor={(item, index) => item + index}
-      renderItem={({ item }) => <Item title={item} />}
-      renderSectionHeader={({ section: { title } }) => (
+      renderItem={({item}) => (
+        <View style={styles.item}>
+          <Text style={styles.title}>{item}</Text>
+        </View>
+      )}
+      renderSectionHeader={({section: {title}}) => (
         <Text style={styles.header}>{title}</Text>
       )}
     />
@@ -71,99 +71,24 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: StatusBar.currentHeight,
-    marginHorizontal: 16
+    marginHorizontal: 16,
   },
   item: {
-    backgroundColor: "#f9c2ff",
+    backgroundColor: '#f9c2ff',
     padding: 20,
-    marginVertical: 8
+    marginVertical: 8,
   },
   header: {
     fontSize: 32,
-    backgroundColor: "#fff"
+    backgroundColor: '#fff',
   },
   title: {
-    fontSize: 24
-  }
+    fontSize: 24,
+  },
 });
 
 export default App;
 ```
-
-</TabItem>
-<TabItem value="classical">
-
-```SnackPlayer name=SectionList%20Example
-import React, { Component } from "react";
-import { StyleSheet, Text, View, SafeAreaView, SectionList, StatusBar } from "react-native";
-
-const DATA = [
-  {
-    title: "Main dishes",
-    data: ["Pizza", "Burger", "Risotto"]
-  },
-  {
-    title: "Sides",
-    data: ["French Fries", "Onion Rings", "Fried Shrimps"]
-  },
-  {
-    title: "Drinks",
-    data: ["Water", "Coke", "Beer"]
-  },
-  {
-    title: "Desserts",
-    data: ["Cheese Cake", "Ice Cream"]
-  }
-];
-
-Item = ({ title }) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
-  </View>
-);
-
-class App extends Component {
-  render() {
-    return (
-      <SafeAreaView style={styles.container}>
-        <SectionList
-          sections={DATA}
-          keyExtractor={(item, index) => item + index}
-          renderItem={({ item }) => <Item title={item} />}
-          renderSectionHeader={({ section: { title } }) => (
-            <Text style={styles.header}>{title}</Text>
-          )}
-        />
-      </SafeAreaView>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: StatusBar.currentHeight,
-    marginHorizontal: 16
-  },
-  item: {
-    backgroundColor: "#f9c2ff",
-    padding: 20,
-    marginVertical: 8
-  },
-  header: {
-    fontSize: 32,
-    backgroundColor: "#fff"
-  },
-  title: {
-    fontSize: 24
-  }
-});
-
-export default App;
-```
-
-</TabItem>
-</Tabs>
 
 本组件实质是基于[`<VirtualizedList>`](virtualizedlist.md)组件的封装，继承了其所有 props（也包括所有[`<ScrollView>`](scrollview.md))的 props）。此外还有下面这些需要注意的事项：
 
@@ -178,7 +103,7 @@ export default App;
 
 ## Props
 
-Inherits [ScrollView Props](scrollview.md#props).
+继承了所有的[ScrollView Props](scrollview.md#props).
 
 ### `sections`
 
@@ -214,31 +139,21 @@ Inherits [ScrollView Props](scrollview.md#props).
 
 用来渲染每一个 section 中的每一个列表项的默认渲染器。可以在 section 级别上进行覆盖重写。必须返回一个 react 组件。
 
-| 类型     |
-| -------- |
-| function |
+| 类型 |
+| ---- |
+| 函数 |
 
-The render function will be passed an object with the following keys:
+渲染函数将传递一个带有以下键的对象：
 
-- 'item' (object) - the item object as specified in this section's `data` key
-- 'index' (number) - Item's index within the section.
-- 'section' (object) - The full section object as specified in `sections`.
-- 'separators' (object) - An object with the following keys:
-  - 'highlight' (function) - `() => void`
-  - 'unhighlight' (function) - `() => void`
-  - 'updateProps' (function) - `(select, newProps) => void`
-    - 'select' (enum) - possible values are 'leading', 'trailing'
-    - 'newProps' (object)
-
----
-
-### `onEndReached`
-
-当列表被滚动到距离内容最底部不足`onEndReachedThreshold`的距离时调用。
-
-| 类型                                        | 必需 |
-| ------------------------------------------- | ---- |
-| [(info: {distanceFromEnd: number}) => void] | 否   |
+- `item`（对象） - 此部分`data`键中指定的项目对象
+- `index`（数字） - 该项在部分内的索引。
+- `section`（对象） - 指定为`sections`中完整的部分对象。
+- `separators`（对象） - 一个具有以下键的对象：
+  - `highlight`（函数） - `() => void`
+  - `unhighlight`（函数） - `() => void`
+  - `updateProps`（函数） - `(select, newProps) => void`
+    - `select` （枚举值）- 可能值为`leading`，`trailing`
+    - `newProps` (对象)
 
 ---
 
@@ -314,26 +229,11 @@ The render function will be passed an object with the following keys:
 
 ### `onViewableItemsChanged`
 
-在可见行元素变化时调用。可见范围和变化频率等参数的配置请设置`viewabilityConfig`属性。
+当行的可见性发生变化时调用，根据`viewabilityConfig`属性定义。
 
-| 类型     | 必需 |
-| -------- | ---- |
-| function | 否   |
-
-The function will be passed an object with the following keys:
-
-- 'viewableItems' (array of `ViewToken`s)
-- 'changed' (array of `ViewToken`s)
-
-The `ViewToken` type is exported by `ViewabilityHelper.js`:
-
-| 名称       | 类型    | 必需 |
-| ---------- | ------- | ---- |
-| item       | any     | 是   |
-| key        | string  | 是   |
-| index      | number  | 否   |
-| isViewable | boolean | 是   |
-| section    | any     | 否   |
+| 类型                                                                                                  |
+| ----------------------------------------------------------------------------------------------------- |
+| `md (callback: {changed: [ViewToken](viewtoken)[], viewableItems: [ViewToken](viewtoken)[]}) => void` |
 
 ---
 
@@ -373,9 +273,9 @@ This may improve scroll performance for large lists.
 
 每个组的尾部组件。
 
-| Type                                                                   |
-| ---------------------------------------------------------------------- |
-| (info: { section: [Section](sectionlist#section) }) => element, `null` |
+| Type                                                                      |
+| ------------------------------------------------------------------------- |
+| `md (info: {section: [Section](sectionlist#section)}) => element ｜ null` |
 
 ---
 
@@ -383,9 +283,9 @@ This may improve scroll performance for large lists.
 
 在每个 section 的头部渲染。在 iOS 上，这些 headers 是默认粘接在`ScrollView`的顶部的. 参见[`stickySectionHeadersEnabled`](#stickySectionHeadersEnabled)。
 
-| Type                                                                   |
-| ---------------------------------------------------------------------- |
-| (info: { section: [Section](sectionlist#section) }) => element, `null` |
+| Type                                                                      |
+| ------------------------------------------------------------------------- |
+| `md (info: {section: [Section](sectionlist#section)}) => element ｜ null` |
 
 ---
 

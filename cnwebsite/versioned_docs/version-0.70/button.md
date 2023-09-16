@@ -119,9 +119,9 @@ export default App;
 
 用户点击此按钮时所调用的处理函数
 
-| 类型                                        |
-| ------------------------------------------- |
-| ({ nativeEvent: [PressEvent](pressevent) }) |
+| 类型                                           |
+| ---------------------------------------------- |
+| `md ({nativeEvent: [PressEvent](pressevent)})` |
 
 ---
 

@@ -79,9 +79,9 @@ export default VirtualizedListExample;
 
 ## Props
 
-### `renderItem`
+### <div class="label required basic">Required</div> **`renderItem`**
 
-```jsx
+```tsx
 (info: any) => ?React.Element<any>
 ```
 
@@ -95,7 +95,7 @@ export default VirtualizedListExample;
 
 ### `data`
 
-默认的获取器函数假设它是一个数组（Array<{key: string}>），但是你能重写 getItem, getItemCount, keyExtractor 来处理任何类型的可索引数据。
+默认的`getItem`函数假设它是一个数组（`Array<{key: string}>`），但是你能重写`getItem`, `getItemCount` 和 `keyExtractor` 来处理任何类型的可索引数据。
 
 | 类型 | 必需 |
 | ---- | ---- |
@@ -105,7 +105,7 @@ export default VirtualizedListExample;
 
 ### `getItem`
 
-```jsx
+```tsx
 (data: any, index: number) => object;
 ```
 
@@ -119,7 +119,7 @@ export default VirtualizedListExample;
 
 ### `getItemCount`
 
-```jsx
+```tsx
 (data: any) => number;
 ```
 
@@ -153,7 +153,7 @@ export default VirtualizedListExample;
 
 ### `getItemLayout`
 
-```jsx
+```tsx
 (
     data: any,
     index: number,
@@ -280,8 +280,8 @@ Styling for internal View for ListHeaderComponent
 
 ### `onRefresh`
 
-```jsx
-() => void
+```tsx
+() => void;
 ```
 
 如果设置了此选项，则会在列表头部添加一个标准的 RefreshControl 控件，以便实现“下拉刷新”的功能。同时你需要正确设置 refreshing 属性。
@@ -294,12 +294,12 @@ Styling for internal View for ListHeaderComponent
 
 ### `onScrollToIndexFailed`
 
-```jsx
+```tsx
 (info: {
-    index: number,
-    highestMeasuredFrameIndex: number,
-    averageItemLength: number,
-  }) => void
+  index: number,
+  highestMeasuredFrameIndex: number,
+  averageItemLength: number,
+}) => void;
 ```
 
 用来处理滚动到尚未渲染的索引导致滚动失败时的回调。推荐的做法是自己计算偏移量，然后滚动到相应位置，或者滚动到更远的距离当更多的子元素已经渲染后再进行尝试。
@@ -310,20 +310,33 @@ Styling for internal View for ListHeaderComponent
 
 ---
 
+### `onStartReached`
+
+当滚动位置距离列表的逻辑起始点在`onStartReachedThreshold`范围内时调用一次。
+
+| 类型                                          |
+| --------------------------------------------- |
+| `(info: {distanceFromStart: number}) => void` |
+
+---
+
+### `onStartReachedThreshold`
+
+从内容开始到列表前沿（以可见长度单位计算）必须有多远，才能触发`onStartReached`回调。因此，当内容的起始点位于列表可见长度的一半之内时，值为 0.5 将会触发`onStartReached`。
+
+| 类型   | 默认值 |
+| ------ | ------ |
+| number | `2`    |
+
+---
+
 ### `onViewableItemsChanged`
 
-```jsx
-(info: {
-    viewableItems: array,
-    changed: array,
-  }) => void
-```
+当行的可见性发生变化时调用，根据`viewabilityConfig`属性定义。
 
-当列表中行的可见性发生变化时，就会调用这个函数。可见性设置见 viewabilityConfig。
-
-| 类型     | 必需 |
-| -------- | ---- |
-| function | 否   |
+| 类型                                                                                                  |
+| ----------------------------------------------------------------------------------------------------- |
+| `md (callback: {changed: [ViewToken](viewtoken)[], viewableItems: [ViewToken](viewtoken)[]}) => void` |
 
 ---
 
@@ -363,7 +376,7 @@ Styling for internal View for ListHeaderComponent
 
 ### `renderScrollComponent`
 
-```jsx
+```tsx
 (props: object) => element;
 ```
 
@@ -415,7 +428,7 @@ Styling for internal View for ListHeaderComponent
 
 ### `keyExtractor`
 
-```jsx
+```tsx
 (item: object, index: number) => string;
 ```
 
@@ -439,15 +452,11 @@ Styling for internal View for ListHeaderComponent
 
 ### `onEndReached`
 
-```jsx
-(info: {distanceFromEnd: number}) => void
-```
+当滚动位置距离列表逻辑末尾的`onEndReachedThreshold`之内时，调用一次。
 
-当列表被滚动到距离内容最底部不足 onEndReachedThreshold 的距离时调用。
-
-| 类型     | 必需 |
-| -------- | ---- |
-| function | 否   |
+| 类型                                        |
+| ------------------------------------------- |
+| `(info: {distanceFromEnd: number}) => void` |
 
 ---
 
@@ -511,7 +520,7 @@ Styling for internal View for ListHeaderComponent
 
 ### `scrollToEnd()`
 
-```jsx
+```tsx
 scrollToEnd(([params]: object));
 ```
 
@@ -523,7 +532,7 @@ Valid `params` consist of:
 
 ### `scrollToIndex()`
 
-```jsx
+```tsx
 scrollToIndex((params: object));
 ```
 
@@ -538,7 +547,7 @@ Valid `params` consist of:
 
 ### `scrollToItem()`
 
-```jsx
+```tsx
 scrollToItem((params: object));
 ```
 
@@ -552,7 +561,7 @@ Valid `params` consist of:
 
 ### `scrollToOffset()`
 
-```jsx
+```tsx
 scrollToOffset((params: object));
 ```
 
@@ -566,7 +575,7 @@ scrollToOffset((params: object));
 
 ### `recordInteraction()`
 
-```jsx
+```tsx
 recordInteraction();
 ```
 
@@ -574,7 +583,7 @@ recordInteraction();
 
 ### `flashScrollIndicators()`
 
-```jsx
+```tsx
 flashScrollIndicators();
 ```
 
@@ -582,7 +591,7 @@ flashScrollIndicators();
 
 ### `getScrollResponder()`
 
-```jsx
+```tsx
 getScrollResponder () => ?ScrollResponderType;
 ```
 
@@ -592,7 +601,7 @@ Provides a handle to the underlying scroll responder. Note that `this._scrollRef
 
 ### `getScrollableNode()`
 
-```jsx
+```tsx
 getScrollableNode () => ?number;
 ```
 
@@ -600,7 +609,7 @@ getScrollableNode () => ?number;
 
 ### `getScrollRef()`
 
-```jsx
+```tsx
 getScrollRef () => | ?React.ElementRef<typeof ScrollView>
     | ?React.ElementRef<typeof View>;
 ```
@@ -609,7 +618,7 @@ getScrollRef () => | ?React.ElementRef<typeof ScrollView>
 
 ### `setNativeProps()`
 
-```jsx
+```tsx
 setNativeProps((props: Object));
 ```
 
@@ -617,7 +626,7 @@ setNativeProps((props: Object));
 
 ### `getChildContext()`
 
-```jsx
+```tsx
 getChildContext () => Object;
 ```
 
@@ -636,6 +645,6 @@ The `Object` returned consist of:
 
 ### `hasMore()`
 
-```jsx
+```tsx
 hasMore () => boolean;
 ```

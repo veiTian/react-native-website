@@ -393,13 +393,11 @@ Used to locate this view from native code.
 
 ### `onLayout`
 
-在加载时或者布局变化以后调用，参数为如下的内容：
+在加载时或者布局变化以后调用。
 
-`{nativeEvent: {layout: {x, y, width, height}}}`
-
-| 类型     | 必需 |
-| -------- | ---- |
-| function | 否   |
+| Type                                                     |
+| -------------------------------------------------------- |
+| `md ({nativeEvent: [LayoutEvent](layoutevent)}) => void` |
 
 ---
 
@@ -407,46 +405,117 @@ Used to locate this view from native code.
 
 当文本被长按以后调用此回调函数。
 
-例如：`onLongPress={this.increaseSize}>`
-
-| 类型     | 必需 |
-| -------- | ---- |
-| function | 否   |
+| Type                                                   |
+| ------------------------------------------------------ |
+| `md ({nativeEvent: [PressEvent](pressevent)}) => void` |
 
 ---
 
 ### `onPress`
 
-当文本被点击以后调用此回调函数。
+在用户按下后调用的函数，在`onPressOut`触发之后被触发。
 
-例如：`onPress={() => console.log('1st')}`
+| Type                                                   |
+| ------------------------------------------------------ |
+| `md ({nativeEvent: [PressEvent](pressevent)}) => void` |
 
-| 类型     | 必需 |
-| -------- | ---- |
-| function | 否   |
+---
+
+### `onPressIn`
+
+在触摸开始时立即调用，早于`onPressOut`和`onPress`。
+
+| Type                                                   |
+| ------------------------------------------------------ |
+| `md ({nativeEvent: [PressEvent](pressevent)}) => void` |
+
+---
+
+### `onPressOut`
+
+当触摸释放时调用。
+
+| Type                                                   |
+| ------------------------------------------------------ |
+| `md ({nativeEvent: [PressEvent](pressevent)}) => void` |
+
+---
+
+### `onResponderGrant`
+
+| 类型                                                              |
+| ----------------------------------------------------------------- |
+| `md ({nativeEvent: [PressEvent](pressevent)}) => void ｜ boolean` |
+
+---
+
+### `onResponderMove`
+
+用户正在移动手指。
+
+| 类型                                                   |
+| ------------------------------------------------------ |
+| `md ({nativeEvent: [PressEvent](pressevent)}) => void` |
+
+---
+
+### `onResponderRelease`
+
+触摸结束时触发。
+
+| 类型                                                   |
+| ------------------------------------------------------ |
+| `md ({nativeEvent: [PressEvent](pressevent)}) => void` |
+
+---
+
+### `onResponderTerminate`
+
+响应器已从`View`中移除。在调用`onResponderTerminationRequest`后可能会被其他视图获取，或者可能在没有询问的情况下被操作系统获取（例如，在 iOS 上发生在控制中心/通知中心）。
+
+| 类型                                                   |
+| ------------------------------------------------------ |
+| `md ({nativeEvent: [PressEvent](pressevent)}) => void` |
+
+---
+
+### `onResponderTerminationRequest`
+
+其他某个`View`想要成为响应者，并请求该`View`释放其响应者身份。返回`true`允许释放。
+
+| 类型                                                      |
+| --------------------------------------------------------- |
+| `md ({nativeEvent: [PressEvent](pressevent)}) => boolean` |
+
+---
+
+### `onStartShouldSetResponderCapture`
+
+如果父级 `View` 希望阻止子级 `View` 在触摸开始时成为响应者，则应该具有此处理程序，它返回 `true`。
+
+| 类型                                                      |
+| --------------------------------------------------------- |
+| `md ({nativeEvent: [PressEvent](pressevent)}) => boolean` |
 
 ---
 
 ### `onTextLayout`
 
-Invoked on Text layout
+在文本布局更改时调用。
 
-| 类型                                        | Required |
-| ------------------------------------------- | -------- |
-| function: (event: TextLayoutEvent) => mixed | No       |
-
-- TextLayoutEvent - SyntheticEvent object that contains a key called `lines` with a value which is an array containing objects with the following properties
-  - { x: number, y: number, width: number, height: number, ascender: number, capHeight: number, descender: number, text: string, xHeight: number,}
+| 类型                                                 |
+| ---------------------------------------------------- |
+| ([`TextLayoutEvent`](text#textlayoutevent)) => mixed |
 
 ---
 
 ### `pressRetentionOffset`
 
-When the scroll view is disabled, this defines how far your touch may move off of the button, before deactivating the button. Once deactivated, try moving it back and you'll see that the button is once again reactivated! Move it back and forth several times while the scroll view is disabled. Ensure you pass in a constant to reduce memory allocations.
+当滚动视图被禁用时，这定义了您的触摸可以在按钮上移动多远，然后才会停用该按钮。一旦停用，请尝试将其移回，并且您会看到按钮再次被激活！在禁用滚动视图时来回移动它几次。确保传入一个常量以减少内存分配。
 
-| 类型                                                                 | 必需 |
-| -------------------------------------------------------------------- | ---- |
-| object: `{top: number, left: number, bottom: number, right: number}` | 否   |
+| Type                 |
+| -------------------- |
+| [Rect](rect), number |
 
 ---
 
