@@ -3,8 +3,6 @@ id: panresponder
 title: PanResponder
 ---
 
-import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
-
 `PanResponder`类可以将多点触摸操作协调成一个手势。它使得一个单点触摸可以接受更多的触摸操作，也可以用于识别简单的多点触摸手势。
 
 默认情况下`PanResponder`会通过`InteractionManager`来阻止长时间运行的 JS 事件打断当前的手势活动。
@@ -44,25 +42,27 @@ onPanResponderMove: (event, gestureState) => {}
 ### 基本用法
 
 ```jsx
-  componentWillMount: function() {
-    this._panResponder = PanResponder.create({
+const ExampleComponent = () => {
+  const panResponder = React.useRef(
+    PanResponder.create({
       // 要求成为响应者：
       onStartShouldSetPanResponder: (evt, gestureState) => true,
-      onStartShouldSetPanResponderCapture: (evt, gestureState) => true,
+      onStartShouldSetPanResponderCapture: (evt, gestureState) =>
+        true,
       onMoveShouldSetPanResponder: (evt, gestureState) => true,
-      onMoveShouldSetPanResponderCapture: (evt, gestureState) => true,
+      onMoveShouldSetPanResponderCapture: (evt, gestureState) =>
+        true,
 
       onPanResponderGrant: (evt, gestureState) => {
         // 开始手势操作。给用户一些视觉反馈，让他们知道发生了什么事情！
-
-        // gestureState.{x,y} 现在会被设置为0
+        // gestureState.d{x,y} 现在会被设置为0
       },
       onPanResponderMove: (evt, gestureState) => {
         // 最近一次的移动距离为gestureState.move{X,Y}
-
         // 从成为响应者开始时的累计手势移动距离为gestureState.d{x,y}
       },
-      onPanResponderTerminationRequest: (evt, gestureState) => true,
+      onPanResponderTerminationRequest: (evt, gestureState) =>
+        true,
       onPanResponderRelease: (evt, gestureState) => {
         // 用户放开了所有的触摸点，且此时视图已经成为了响应者。
         // 一般来说这意味着一个手势操作已经成功完成。
@@ -75,22 +75,16 @@ onPanResponderMove: (event, gestureState) => {}
         // 默认返回true。目前暂时只支持android。
         return true;
       },
-    });
-  },
+    }),
+  ).current;
 
-  render: function() {
-    return (
-      <View {...this._panResponder.panHandlers} />
-    );
-  },
+  return <View {...panResponder.panHandlers} />;
+};
 ```
 
 ## 示例
 
 `PanResponder` works with `Animated` API to help build complex gestures in the UI. The following example contains an animated `View` component which can be dragged freely across the screen
-
-<Tabs groupId="syntax" defaultValue={constants.defaultSyntax} values={constants.syntax}>
-<TabItem value="functional">
 
 ```SnackPlayer name=PanResponder
 import React, { useRef } from "react";
@@ -157,74 +151,6 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-</TabItem>
-<TabItem value="classical">
-
-```SnackPlayer name=PanResponder
-import React, { Component } from "react";
-import { Animated, View, StyleSheet, PanResponder, Text } from "react-native";
-
-class App extends Component {
-  pan = new Animated.ValueXY();
-  panResponder = PanResponder.create({
-    onMoveShouldSetPanResponder: () => true,
-    onPanResponderGrant: () => {
-      this.pan.setOffset({
-        x: this.pan.x._value,
-        y: this.pan.y._value
-      });
-    },
-    onPanResponderMove: Animated.event([
-      null,
-      { dx: this.pan.x, dy: this.pan.y }
-    ]),
-    onPanResponderRelease: () => {
-      this.pan.flattenOffset();
-    }
-  });
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.titleText}>Drag this box!</Text>
-        <Animated.View
-          style={{
-            transform: [{ translateX: this.pan.x }, { translateY: this.pan.y }]
-          }}
-          {...this.panResponder.panHandlers}
-        >
-          <View style={styles.box} />
-        </Animated.View>
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  titleText: {
-    fontSize: 14,
-    lineHeight: 24,
-    fontWeight: "bold"
-  },
-  box: {
-    height: 150,
-    width: 150,
-    backgroundColor: "blue",
-    borderRadius: 5
-  }
-});
-
-export default App;
-```
-
-</TabItem>
-</Tabs>
-
 还可以看看[官方示例 RNTester 中的 PanResponder](https://github.com/facebook/react-native/blob/master/packages/rn-tester/js/examples/PanResponder/PanResponderExample.js).
 
 ---
@@ -235,11 +161,17 @@ export default App;
 
 ### `create()`
 
-```jsx
-static create(config)
+```tsx
+static create(config: PanResponderCallbacks): PanResponderInstance;
 ```
 
-@param {object} 配置所有响应器回调的加强版本，不仅仅包括原本的`ResponderSyntheticEvent`，还包括`PanResponder`手势状态的回调。你只要简单的把`onResponder*`回调中的`Responder`替换为`PanResponder`。举例来说，这个`config<`对象可能看起来像这样：
+**参数:**
+
+| 名称                                                    | 类型 | 描述   |
+| ------------------------------------------------------- | ---- | ------ |
+| config <div className="label basic required">必需</div> | 对象 | 见下文 |
+
+`config`对象提供了所有响应器回调的加强版本，不仅仅包括原本的`ResponderSyntheticEvent`，还包括`PanResponder`手势状态的回调。你只要简单的把`onResponder*`回调中的`Responder`替换为`PanResponder`。举例来说，这个`config`对象可能看起来像这样：
 
 - `onMoveShouldSetPanResponder: (e, gestureState) => {...}`
 - `onMoveShouldSetPanResponderCapture: (e, gestureState) => {...}`
@@ -255,6 +187,6 @@ static create(config)
 - `onPanResponderTerminationRequest: (e, gestureState) => {...}`
 - `onShouldBlockNativeResponder: (e, gestureState) => {...}`
 
-通常来说，对那些有对应捕获事件的事件来说，我们在捕获阶段更新 gestureState 一次，然后在冒泡阶段直接使用即可。
+通常来说，对那些有对应捕获事件的事件来说，我们在捕获阶段更新`gestureState`一次，然后在冒泡阶段直接使用即可。
 
-注意 onStartShould\* 回调。他们只会在此节点冒泡/捕获的开始/结束事件中提供已经更新过的`gestureState`。一旦这个节点成为了事件的响应者，则所有的开始/结束事件都会被手势正确处理，并且`gestureState`也会被正确更新。(numberActiveTouches)有可能没有包含所有的触摸点，除非你就是触摸事件的响应者。
+注意 `onStartShould\*` 回调。他们只会在此节点冒泡/捕获的开始/结束事件中提供已经更新过的`gestureState`。一旦这个节点成为了事件的响应者，则所有的开始/结束事件都会被手势正确处理，并且`gestureState`也会被正确更新。(numberActiveTouches)有可能没有包含所有的触摸点，除非你就是触摸事件的响应者。
