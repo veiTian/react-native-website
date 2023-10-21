@@ -234,24 +234,23 @@ React Native 目前需要[Xcode](https://developer.apple.com/xcode/downloads/) 9
 
 <h4>CocoaPods</h4>
 
-[CocoaPods](https://cocoapods.org/)是用Ruby编写的包管理器。从0.60版本开始react native的iOS版本需要使用CocoaPods来管理依赖。你可以使用下面的命令来安装cocoapods。
+[CocoaPods](https://cocoapods.org/)是用 Ruby 编写的包管理器。从 0.60 版本开始 react native 的 iOS 版本需要使用 CocoaPods 来管理依赖。你可以使用下面的命令来安装 cocoapods。
 
-> 当然安装可能也不顺利，请尝试翻墙或寻找一些国内可用的镜像源。
-
+> 当然安装可能也不顺利，请尝试代理或寻找一些国内可用的镜像源。
 
 ```sh
 sudo gem install cocoapods
 ```
 
-或者可以使用brew来安装
+或者可以使用 brew 来安装
 
 ```sh
 brew install cocoapods
 ```
 
-> 另外目前最新版本似乎不能在ruby2.6版本以下安装，意味着如果你使用的macOS版本低于10.15 (Catalina) 则无法直接安装。可以尝试安装较旧一些的版本。如`sudo gem install cocoapods -v 1.8.4`，参考issue链接 <https://github.com/CocoaPods/CocoaPods/issues/9568>
+> 另外目前最新版本似乎不能在 ruby2.6 版本以下安装，意味着如果你使用的 macOS 版本低于 10.15 (Catalina) 则无法直接安装。可以尝试安装较旧一些的版本。如`sudo gem install cocoapods -v 1.8.4`，参考 issue 链接 <https://github.com/CocoaPods/CocoaPods/issues/9568>
 
-要了解更多信息，可以访问[CocoaPods的官网](https://guides.cocoapods.org/using/getting-started.html)。
+要了解更多信息，可以访问[CocoaPods 的官网](https://guides.cocoapods.org/using/getting-started.html)。
 
 <block class="native mac linux android" />
 
@@ -267,7 +266,7 @@ React Native 需要 Java Development Kit [JDK] 1.8（暂不支持 1.9 及更高�
 
 如果你之前没有接触过 Android 的开发环境，那么请做好心理准备，这一过程相当繁琐。请`万分仔细`地阅读下面的说明，严格对照文档进行配置操作。
 
-> 译注：请注意！！！国内用户`必须必须必须`有稳定的翻墙工具，否则在下载、安装、配置过程中会不断遭遇链接超时或断开，无法进行开发工作。某些翻墙工具可能只提供浏览器的代理功能，或只针对特定网站代理等等，请自行研究配置或更换其他软件。总之如果报错中出现有网址，那么 99% 就是无法正常翻墙。
+> 译注：请注意！！！国内用户`必须必须必须`有稳定的代理工具，否则在下载、安装、配置过程中会不断遭遇链接超时或断开，无法进行开发工作。某些代理工具可能只提供浏览器的代理功能，或只针对特定网站代理等等，请自行研究配置或更换其他软件。总之如果报错中出现有网址，那么 99% 就是无法正常代理。
 
 <block class="native mac windows linux android" />
 
@@ -314,7 +313,7 @@ Android Studio 默认会安装最新版本的 Android SDK。目前编译 React N
 
 > SDK Manager 还可以在 Android Studio 的"Preferences"菜单中找到。具体路径是**Appearance & Behavior** → **System Settings** → **Android SDK**。
 
-在 SDK Manager 中选择"SDK Platforms"选项卡，然后在右下角勾选"Show Package Details"。展开`Android 9 (Pie)`选项，确保勾选了下面这些组件（重申你必须使用稳定的翻墙工具，否则可能都看不到这个界面）：
+在 SDK Manager 中选择"SDK Platforms"选项卡，然后在右下角勾选"Show Package Details"。展开`Android 9 (Pie)`选项，确保勾选了下面这些组件（重申你必须使用稳定的代理工具，否则可能都看不到这个界面）：
 
 - `Android SDK Platform 28`
 - `Intel x86 Atom_64 System Image`（官方模拟器镜像文件，使用非官方模拟器不需要安装此组件）
@@ -505,7 +504,7 @@ cd AwesomeProject
 react-native run-android
 ```
 
-如果配置没有问题，你应该可以看到应用自动安装到设备上并开始运行。注意第一次运行时需要下载大量编译依赖，耗时可能数十分钟。此过程`严重依赖稳定的翻墙工具`，否则将频繁遭遇链接超时和断开，导致无法运行。
+如果配置没有问题，你应该可以看到应用自动安装到设备上并开始运行。注意第一次运行时需要下载大量编译依赖，耗时可能数十分钟。此过程`严重依赖稳定的代理工具`，否则将频繁遭遇链接超时和断开，导致无法运行。
 
 如果你的设备的 Android 版本低于 5.0，则可能在运行时看到红屏，请阅读[在设备上运行](running-on-device.md)这篇文档来按照步骤解决。
 

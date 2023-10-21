@@ -265,7 +265,7 @@ brew install git
 @powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
 ```
 
-> 一般来说，使用 Chocolatey 来安装软件的时候，需要以管理员的身份来运行命令提示符窗口。译注：chocolatey 的网站可能在国内访问困难，导致上述安装命令无法正常完成。请使用稳定的翻墙工具。
+> 一般来说，使用 Chocolatey 来安装软件的时候，需要以管理员的身份来运行命令提示符窗口。译注：chocolatey 的网站可能在国内访问困难，导致上述安装命令无法正常完成。请使用稳定的代理工具。
 > 如果你实在装不上这个工具，也不要紧。下面所需的 python2 和 nodejs 你可以分别单独去对应的官方网站下载安装即可。
 
 #### Python 2
@@ -578,7 +578,7 @@ choco install git
 
 #### Visual Studio Emulator for Android
 
-[Visual Studio Emulator for Android](https://www.visualstudio.com/zh-cn/features/msft-android-emulator-vs.aspx#中国 "简体中文")是利用了 Hyper-V 技术进行硬件加速的免费 android 模拟器。也是 Android Studio 自带的原装模拟器之外的一个很好的选择。而且你并不需要安装 Visual Studio。
+[Visual Studio Emulator for Android](https://www.visualstudio.com/zh-cn/features/msft-android-emulator-vs.aspx#中国 '简体中文')是利用了 Hyper-V 技术进行硬件加速的免费 android 模拟器。也是 Android Studio 自带的原装模拟器之外的一个很好的选择。而且你并不需要安装 Visual Studio。
 在用于 React Native 开发前，需要先在注册表中进行一些修改：
 
 1.  打开运行命令（按下 Windows+R 键）

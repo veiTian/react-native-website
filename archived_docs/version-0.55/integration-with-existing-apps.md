@@ -3,6 +3,7 @@ id: version-0.55-integration-with-existing-apps
 title: 集成到现有原生应用
 original_id: integration-with-existing-apps
 ---
+
 ##### 本文档贡献者：[sunnylqm](https://github.com/search?q=sunnylqm%40qq.com+in%3Aemail&type=Users)(100.00%)
 
 如果你正准备从头开始制作一个新的应用，那么 React Native 会是个非常好的选择。但如果你只想给现有的原生应用中添加一两个视图或是业务流程，React Native 也同样不在话下。只需简单几步，你就可以给原有应用加上新的基于 React Native 的特性、画面和视图等。
@@ -234,7 +235,7 @@ end
 $ pod install
 ```
 
-然后你应该可以看到类似下面的输出(译注：同样由于众所周知的网络原因，pod install 的过程在国内非常不顺利，请自行配备稳定的翻墙工具，或是尝试一些[镜像源](https://www.baidu.com/s?wd=cocoapods%20%E9%95%9C%E5%83%8F&oq=cocoapods%E9%95%9C%E5%83%8F))：
+然后你应该可以看到类似下面的输出(译注：同样由于众所周知的网络原因，pod install 的过程在国内非常不顺利，请自行配备稳定的代理工具，或是尝试一些[镜像源](https://www.baidu.com/s?wd=cocoapods%20%E9%95%9C%E5%83%8F&oq=cocoapods%E9%95%9C%E5%83%8F))：
 
 ```
 Analyzing dependencies
@@ -274,20 +275,22 @@ Pod installation complete! There are 3 dependencies from the Podfile and 1 total
 在`index.js`中添加你自己的组件。这里我们只是简单的添加一个`<Text>`组件，然后用一个带有样式的`<View>`组件把它包起来。
 
 ```jsx
-import React from "react";
-import { AppRegistry, StyleSheet, Text, View } from "react-native";
+import React from 'react';
+import {AppRegistry, StyleSheet, Text, View} from 'react-native';
 
 class RNHighScores extends React.Component {
   render() {
-    var contents = this.props["scores"].map(score => (
+    var contents = this.props['scores'].map(score => (
       <Text key={score.name}>
         {score.name}:{score.value}
-        {"\n"}
+        {'\n'}
       </Text>
     ));
     return (
       <View style={styles.container}>
-        <Text style={styles.highScoresTitle}>2048 High Scores!</Text>
+        <Text style={styles.highScoresTitle}>
+          2048 High Scores!
+        </Text>
         <Text style={styles.scores}>{contents}</Text>
       </View>
     );
@@ -297,24 +300,24 @@ class RNHighScores extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#FFFFFF"
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
   },
   highScoresTitle: {
     fontSize: 20,
-    textAlign: "center",
-    margin: 10
+    textAlign: 'center',
+    margin: 10,
   },
   scores: {
-    textAlign: "center",
-    color: "#333333",
-    marginBottom: 5
-  }
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
 });
 
 // 整体js模块的名称
-AppRegistry.registerComponent("RNHighScores", () => RNHighScores);
+AppRegistry.registerComponent('RNHighScores', () => RNHighScores);
 ```
 
 > `RNHighScores`是整体 js 模块（即你所有的 js 代码）的名称。你在 iOS 原生代码中添加 React Native 视图时会用到这个名称。
@@ -561,8 +564,8 @@ Now we will actually modify the native Android application to integrate React Na
 在`index.js`中添加你自己的组件。这里我们只是简单的添加一个`<Text>`组件，然后用一个带有样式的`<View>`组件把它包起来。
 
 ```jsx
-import React from "react";
-import { AppRegistry, StyleSheet, Text, View } from "react-native";
+import React from 'react';
+import {AppRegistry, StyleSheet, Text, View} from 'react-native';
 
 class HelloWorld extends React.Component {
   render() {
@@ -576,16 +579,19 @@ class HelloWorld extends React.Component {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center"
+    justifyContent: 'center',
   },
   hello: {
     fontSize: 20,
-    textAlign: "center",
-    margin: 10
-  }
+    textAlign: 'center',
+    margin: 10,
+  },
 });
 
-AppRegistry.registerComponent("MyReactNativeApp", () => HelloWorld);
+AppRegistry.registerComponent(
+  'MyReactNativeApp',
+  () => HelloWorld,
+);
 ```
 
 ##### 3. 配置权限以便开发中的红屏错误能正确显示

@@ -269,7 +269,7 @@ brew install git
 @powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
 ```
 
-> 一般来说，使用 Chocolatey 来安装软件的时候，需要以管理员的身份来运行命令提示符窗口。译注：chocolatey 的网站可能在国内访问困难，导致上述安装命令无法正常完成。请使用稳定的翻墙工具。
+> 一般来说，使用 Chocolatey 来安装软件的时候，需要以管理员的身份来运行命令提示符窗口。译注：chocolatey 的网站可能在国内访问困难，导致上述安装命令无法正常完成。请使用稳定的代理工具。
 > 如果你实在装不上这个工具，也不要紧。下面所需的 python2 和 nodejs 你可以分别单独去对应的官方网站下载安装即可。
 
 #### Python 2
@@ -584,7 +584,7 @@ choco install git
 
 #### Visual Studio Emulator for Android
 
-[Visual Studio Emulator for Android](https://www.visualstudio.com/zh-cn/features/msft-android-emulator-vs.aspx#中国 "简体中文")是利用了 Hyper-V 技术进行硬件加速的免费 android 模拟器。也是 Android Studio 自带的原装模拟器之外的一个很好的选择。而且你并不需要安装 Visual Studio。
+[Visual Studio Emulator for Android](https://www.visualstudio.com/zh-cn/features/msft-android-emulator-vs.aspx#中国 '简体中文')是利用了 Hyper-V 技术进行硬件加速的免费 android 模拟器。也是 Android Studio 自带的原装模拟器之外的一个很好的选择。而且你并不需要安装 Visual Studio。
 在用于 React Native 开发前，需要先在注册表中进行一些修改：
 
 1.  打开运行命令（按下 Windows+R 键）
@@ -601,7 +601,7 @@ choco install git
 
 </div><div markdown class="md-block mac ios">
 
-**注意**：init 命令默认会创建最新的版本，而目前最新的 0.45 及以上版本需要下载 boost 库编译。此库体积庞大，在国内即便翻墙也很难下载成功，导致很多人**无法正常运行 iOS 项目**，中文网在论坛中提供了这些库的[国内下载链接](http://bbs.reactnative.cn/topic/4301/)。如果你嫌麻烦，又没有对新版本的需求，那么可以暂时创建`0.44.3`的版本。
+**注意**：init 命令默认会创建最新的版本，而目前最新的 0.45 及以上版本需要下载 boost 库编译。此库体积庞大，在国内即便代理也很难下载成功，导致很多人**无法正常运行 iOS 项目**，中文网在论坛中提供了这些库的[国内下载链接](http://bbs.reactnative.cn/topic/4301/)。如果你嫌麻烦，又没有对新版本的需求，那么可以暂时创建`0.44.3`的版本。
 
 > 提示：你可以使用`--version`参数（注意是`两`个杠）创建指定版本的项目。例如`react-native init MyApp --version 0.44.3`。注意版本号必须精确到两个小数点。
 

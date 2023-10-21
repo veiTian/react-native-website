@@ -10,7 +10,7 @@ original_id: integration-with-existing-apps
 
 具体的步骤根据你所开发的目标平台不同而不同。
 
-> 译注：本文档可能更新不够及时，不能保证适用于最新版本，欢迎了解的朋友使用右上方的链接帮忙改进此文档。一个实用的建议是可以使用`react-native init NewProject`创建一个最新版本的纯RN项目，去参考其Podfile或是gradle等的配置，以它们为准。
+> 译注：本文档可能更新不够及时，不能保证适用于最新版本，欢迎了解的朋友使用右上方的链接帮忙改进此文档。一个实用的建议是可以使用`react-native init NewProject`创建一个最新版本的纯 RN 项目，去参考其 Podfile 或是 gradle 等的配置，以它们为准。
 
 <div class="toggler">
   <ul role="tablist" id="toggle-language">
@@ -163,7 +163,7 @@ React Native 框架整体是作为 node 模块安装到项目中的。下一步�
 $ pod init
 ```
 
-`Podfile`会创建在执行命令的目录中。你需要调整其内容以满足你的集成需求。调整后的`Podfile`的内容看起来类似下面这样（也可以用`react-native init 项目名`命令创建一个纯RN项目，然后去参考其ios目录中的Podfile文件）：
+`Podfile`会创建在执行命令的目录中。你需要调整其内容以满足你的集成需求。调整后的`Podfile`的内容看起来类似下面这样（也可以用`react-native init 项目名`命令创建一个纯 RN 项目，然后去参考其 ios 目录中的 Podfile 文件）：
 
 <block class="objc" />
 
@@ -251,7 +251,7 @@ end
 $ pod install
 ```
 
-然后你应该可以看到类似下面的输出(译注：同样由于众所周知的网络原因，pod install 的过程在国内非常不顺利，请自行配备稳定的翻墙工具，或是尝试一些[镜像源](https://www.baidu.com/s?wd=cocoapods%20%E9%95%9C%E5%83%8F&oq=cocoapods%E9%95%9C%E5%83%8F))：
+然后你应该可以看到类似下面的输出(译注：同样由于众所周知的网络原因，pod install 的过程在国内非常不顺利，请自行配备稳定的代理工具，或是尝试一些[镜像源](https://www.baidu.com/s?wd=cocoapods%20%E9%95%9C%E5%83%8F&oq=cocoapods%E9%95%9C%E5%83%8F))：
 
 ```
 Analyzing dependencies
@@ -296,7 +296,7 @@ import {AppRegistry, StyleSheet, Text, View} from 'react-native';
 
 class RNHighScores extends React.Component {
   render() {
-    var contents = this.props['scores'].map((score) => (
+    var contents = this.props['scores'].map(score => (
       <Text key={score.name}>
         {score.name}:{score.value}
         {'\n'}
@@ -304,7 +304,9 @@ class RNHighScores extends React.Component {
     ));
     return (
       <View style={styles.container}>
-        <Text style={styles.highScoresTitle}>2048 High Scores!</Text>
+        <Text style={styles.highScoresTitle}>
+          2048 High Scores!
+        </Text>
         <Text style={styles.scores}>{contents}</Text>
       </View>
     );
@@ -649,7 +651,10 @@ var styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('MyReactNativeApp', () => HelloWorld);
+AppRegistry.registerComponent(
+  'MyReactNativeApp',
+  () => HelloWorld,
+);
 ```
 
 ##### 3. 配置权限以便开发中的红屏错误能正确显示
