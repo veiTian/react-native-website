@@ -28,7 +28,7 @@ export default function TOC({ className, ...props }: Props): JSX.Element {
       <div
         className="wwads-cn wwads-vertical"
         data-id="58"
-        style={{ maxWidth: 200, marginTop: 20 }}
+        style={{ maxWidth: 227, marginTop: 20 }}
       ></div>{" "}
       <a
         href="https://ad-server.paperyy.com/link/1715543458129235969
