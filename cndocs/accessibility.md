@@ -124,79 +124,79 @@ iOS 和 Android 都提供了便于残障人士无障碍使用 App 的 API。此�
 
 ### `accessibilityRole`
 
-`accessibilityRole` communicates the purpose of a component to the user of an assistive technology.
+`accessibilityRole` 通知辅助技术用户组件的用途。
 
-`accessibilityRole` can be one of the following:
+`accessibilityRole` 可以是以下之一：
 
 - **adjustable** 元素具有可调整的特性（比如一个滑块）。
-- **alert** Used when an element contains important text to be presented to the user.
+- **alert** 当元素包含重要文本以供用户查看时使用。
 - **button** 具有按钮特性。
-- **checkbox** Used when an element represents a checkbox which can be checked, unchecked, or have mixed checked state.
-- **combobox** Used when an element represents a combo box, which allows the user to select among several choices.
+- **checkbox** 当元素表示可选中、未选中或混合选中状态的复选框时使用。
+- **combobox** 当元素表示组合框，允许用户在多个选项中进行选择时使用。
 - **header** 作为内容区域的头部（比如导航栏的标题）。
-- **image** 具有图片特性。可以和按钮或链接等连用。
-- **imagebutton** Used when the element should be treated as a button and is also an image.
-- **keyboardkey** 元素作为虚拟键盘的一个键使用。
+- **image** 具有图片特性。可以与按钮或链接等一起使用。
+- **imagebutton** 当元素应被视为按钮并且还是图像时使用。
+- **keyboardkey** 元素作为虚拟键盘的一个按键使用。
 - **link** 具有链接特性。
-- **menu** Used when the component is a menu of choices.
-- **menubar** Used when a component is a container of multiple menus.
-- **menuitem** Used to represent an item within a menu.
+- **menu** 当组件是一组选择菜单时使用。
+- **menubar** 当组件是多个菜单的容器时使用。
+- **menuitem** 用于表示菜单中的一个项目。
 - **none** 无特性元素。
-- **progressbar** Used to represent a component which indicates progress of a task.
-- **radio** Used to represent a radio button.
-- **radiogroup** Used to represent a group of radio buttons.
-- **scrollbar** Used to represent a scroll bar.
+- **progressbar** 用于表示任务进度的组件。
+- **radio** 用于表示单选按钮。
+- **radiogroup** 用于表示一组单选按钮。
+- **scrollbar** 用于表示滚动条。
 - **search** 用作搜索框的文本框。
-- **spinbutton** Used to represent a button which opens a list of choices.
+- **spinbutton** 用于表示打开选项列表的按钮。
 - **summary** 在 App 冷启动（指完全退出后台后再进入）时提供当前的简要总结信息的元素。比如当天气应用冷启动时，显示当前天气情况的元素就会被标记为**summary**。
-- **switch** Used to represent a switch which can be turned on and off.
-- **tab** Used to represent a tab.
-- **tablist** Used to represent a list of tabs.
-- **text** 具有不可修改的文本的特性。
-- **timer** Used to represent a timer.
-- **togglebutton** Used to represent a toggle button. Should be used with accessibilityState checked to indicate if the button is toggled on or off.
-- **toolbar** Used to represent a tool bar (a container of action buttons or components).
+- **switch** 用于表示可切换开关。
+- **tab** 用于表示选项卡。
+- **tablist** 用于表示选项卡列表。
+- **text** 具有不可编辑文本的特性。
+- **timer** 用于表示计时器。
+- **togglebutton** 用于表示切换按钮。应与辅助状态 accessibilityState checked 一起使用，指示按钮是否处于打开或关闭状态。
+- **toolbar** 用于表示工具栏（操作按钮或组件的容器）。
 
 ### 无障碍状态 `accessibilityState`
 
-Describes the current state of a component to the user of an assistive technology.
+向辅助技术的用户描述组件的当前状态。
 
-`accessibilityState` is an object. It contains the following fields:
+`accessibilityState` 是一个对象。它包含以下字段：
 
 | 名称     | 描述                                                                                                                                  | 类型               | 必需 |
 | -------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------ | ---- |
-| disabled | Indicates whether the element is disabled or not.                                                                                     | boolean            | 否   |
-| selected | Indicates whether a selectable element is currently selected or 否 t.                                                                 | boolean            | 否   |
-| checked  | Indicates the state of a checkable element. This field can either take a boolean or the "mixed" string to represent mixed checkboxes. | boolean or 'mixed' | 否   |
-| busy     | Indicates whether an element is currently busy or 否 t.                                                                               | boolean            | 否   |
-| expanded | Indicates whether an expandable element is currently expanded or collapsed.                                                           | boolean            | 否   |
+| disabled | 指示元素是否已禁用                                                                                    | boolean            | 否   |
+| selected | 指示可选择元素当前是否已选中。                                                                 | boolean            | 否   |
+| checked  | 指示可检查元素的状态。此字段可以采用布尔值或 "mixed" 字符串表示混合选择框。 | boolean or 'mixed' | 否   |
+| busy     | 指示元素当前是否忙碌。                                                                               | boolean            | 否   |
+| expanded | 指示可展开元素当前是否已展开或折叠。                                                           | boolean            | 否   |
 
-To use, set the `accessibilityState` to an object with a specific definition.
+要使用，请将 `accessibilityState` 设置为具有特定定义的对象。
 
 ### 无障碍值 `accessibilityValue`
 
-Represents the current value of a component. It can be a textual description of a component's value, or for range-based components, such as sliders and progress bars, it contains range information (minimum, current, and maximum).
+表示组件的当前值。它可以是组件值的文本描述，或者对于基于范围的组件，如滑块和进度条，它包含范围信息（最小值、当前值和最大值）。
 
-`accessibilityValue` is an object. It contains the following fields:
+`accessibilityValue` 是一个对象。它包含以下字段：
 
 | 名称 | 描述                                                                                           | 类型    | 必需                      |
 | ---- | ---------------------------------------------------------------------------------------------- | ------- | ------------------------- |
-| min  | The minimum value of this component's range.                                                   | integer | Required if `now` is set. |
-| max  | The maximum value of this component's range.                                                   | integer | Required if `now` is set. |
-| now  | The current value of this component's range.                                                   | integer | 否                        |
-| text | A textual description of this component's value. Will override `min`, `now`, and `max` if set. | string  | 否                        |
+| min  | 该组件范围的最小值。                                                   | integer | Required if `now` is set. |
+| max  | 该组件范围的最大值。                                                   | integer | Required if `now` is set. |
+| now  | 该组件范围的当前值。                                                | integer | 否                        |
+| text | 该组件值的文本描述。如果设置，将覆盖 `min`、`now` 和 `max`。 | string  | 否                        |
 
 ### `accessibilityViewIsModal` <div class="label ios">iOS</div>
 
-A Boolean value indicating whether VoiceOver should ignore the elements within views that are siblings of the receiver.
+一个布尔值，指示VoiceOver是否应忽略接收者的同级视图中的元素。
 
-For example, in a window that contains sibling views `A` and `B`, setting `accessibilityViewIsModal` to `true` on view `B` causes VoiceOver to ignore the elements in the view `A`. On the other hand, if view `B` contains a child view `C` and you set `accessibilityViewIsModal` to `true` on view `C`, VoiceOver does not ignore the elements in view `A`.
+例如，在包含同级视图`A`和`B`的窗口中，在视图`B`上将`accessibilityViewIsModal`设置为`true`会导致VoiceOver忽略视图`A`中的元素。另一方面，如果视图`B`包含子视图`C`，并且在视图`C`上将`accessibilityViewIsModal`设置为`true`，VoiceOver不会忽略视图`A`中的元素。
 
 ### `accessibilityElementsHidden` <div class="label ios">iOS</div>
 
-A Boolean value indicating whether the accessibility elements contained within this accessibility element are hidden.
+一个布尔值，指示此辅助功能元素内包含的辅助功能元素是否已隐藏。
 
-For example, in a window that contains sibling views `A` and `B`, setting `accessibilityElementsHidden` to `true` on view `B` causes VoiceOver to ignore the elements in the view `B`. This is similar to the Android property `importantForAccessibility="no-hide-descendants"`.
+例如，在包含兄弟视图 `A` 和 `B` 的窗口中，在视图 `B` 上将 `accessibilityElementsHidden` 设置为 `true` 会导致VoiceOver忽略视图 `B` 中的元素。这类似于Android属性 `importantForAccessibility="no-hide-descendants"`。
 
 ### 无障碍功能优先级 `importantForAccessibility` <div class="label android">Android</div>
 
@@ -235,7 +235,7 @@ For example, in a window that contains sibling views `A` and `B`, setting `acces
 
 ### `onAccessibilityEscape` <div class="label ios">iOS</div>
 
-Assign this property to a custom function which will be called when someone performs the "escape" gesture, which is a two finger Z shaped gesture. An escape function should move back hierarchically in the user interface. This can mean moving up or back in a navigation hierarchy or dismissing a modal user interface. If the selected element does not have an `onAccessibilityEscape` function, the system will attempt to traverse up the view hierarchy until it finds a view that does or bonk to indicate it was unable to find one.
+将此属性分配给一个自定义函数，该函数将在某人执行“逃脱”手势时被调用，这是一个双指Z形手势。逃脱函数应该在用户界面中向上或向后层次移动。这可能意味着在导航层次中向上移动或返回，或者关闭模态用户界面。如果所选元素没有“onAccessibilityEscape”函数，则系统将尝试沿视图层次向上遍历，直到找到一个具有此函数的视图，或者发出提示表示无法找到一个。
 
 ### 无障碍元素的点击事件 `onAccessibilityTap`
 
@@ -247,32 +247,32 @@ Assign this property to a custom function which will be called when someone perf
 
 ## 无障碍操作 Accessibility Actions
 
-Accessibility actions allow an assistive technology to programmatically invoke the actions of a component. In order to support accessibility actions, a component must do two things:
+辅助功能操作允许辅助技术以编程方式调用组件的操作。为了支持辅助功能操作，组件必须执行两项任务：
 
-- Define the list of actions it supports via the `accessibilityActions` property.
-- Implement an `onAccessibilityAction` function to handle action requests.
+- 通过 `accessibilityActions` 属性定义其支持的操作列表。
+- 实现一个 `onAccessibilityAction` 函数来处理操作请求。
 
-The `accessibilityActions` property should contain a list of action objects. Each action object should contain the following fields:
+`accessibilityActions` 属性应包含操作对象的列表。每个操作对象应包含以下字段：
 
 | 名称  | 类型   | Required |
 | ----- | ------ | -------- |
 | 名称  | string | Yes      |
 | label | string | No       |
 
-Actions either represent standard actions, such as clicking a button or adjusting a slider, or custom actions specific to a given component such as deleting an email message. The `name` field is required for both standard and custom actions, but `label` is optional for standard actions.
+操作可以表示标准操作，如点击按钮或调整滑块，或特定于给定组件的自定义操作，例如删除邮件消息。`name`字段对于标准操作和自定义操作都是必需的，但对于标准操作，`label`是可选的。
 
-When adding support for standard actions, `name` must be one of the following:
+在添加对标准操作的支持时，`name`必须是以下之一：
 
-- `'magicTap'` - iOS only - While VoiceOver focus is on or inside the component, the user double tapped with two fingers.
-- `'escape'` - iOS only - While VoiceOver focus is on or inside the component, the user performed a two finger scrub gesture (left, right, left).
-- `'activate'` - Activate the component. Typically this should perform the same action as when the user touches or clicks the component when not using an assistive technology. This is generated when a screen reader user double taps the component.
-- `'increment'` - Increment an adjustable component. On iOS, VoiceOver generates this action when the component has a role of `'adjustable'` and the user places focus on it and swipes upward. On Android, TalkBack generates this action when the user places accessibility focus on the component and presses the volume up button.
-- `'decrement'` - Decrement an adjustable component. On iOS, VoiceOver generates this action when the component has a role of `'adjustable'` and the user places focus on it and swipes downward. On Android, TalkBack generates this action when the user places accessibility focus on the component and presses the volume down button.
-- `'longpress'` - Android only - This action is generated when the user places accessibility focus on the component and double tap and holds one finger on the screen. Typically, this should perform the same action as when the user holds down one finger on the component while not using an assistive technology.
+- `'magicTap'` - 仅适用于iOS - 当VoiceOver焦点位于组件上或内部时，用户用两个手指双击。
+- `'escape'` - 仅适用于iOS - 当VoiceOver焦点位于组件上或内部时，用户执行双指刷动手势（左，右，左）。
+- `'activate'` - 激活组件。通常情况下，当屏幕阅读器用户双击组件时，应执行与用户触摸或单击组件时相同的操作。
+- `'increment'` - 增加可调整组件的值。在iOS上，当组件具有`'adjustable'`角色并且用户将焦点放在组件上并向上滑动时，VoiceOver会生成此操作。在Android上，当用户将可访问性焦点放在组件上并按音量增加按钮时，TalkBack会生成此操作。
+- `'decrement'` - 减少可调整组件的值。在iOS上，当组件具有`'adjustable'`角色并且用户将焦点放在组件上并向下滑动时，VoiceOver会生成此操作。在Android上，当用户将可访问性焦点放在组件上并按音量减小按钮时，TalkBack会生成此操作。
+- `'longpress'` - 仅适用于Android - 当用户将可访问性焦点放在组件上并双击并长按屏幕上的一个手指时，会生成此操作。通常情况下，这应执行与用户在不使用辅助技术时按住组件上的一个手指时相同的操作。
 
-The `label` field is optional for standard actions, and is often unused by assistive technologies. For custom actions, it is a localized string containing a description of the action to be presented to the user.
+`label`字段对于标准操作是可选的，通常不被辅助技术使用。对于自定义操作，它是一个包含要呈现给用户的操作描述的本地化字符串。
 
-To handle action requests, a component must implement an `onAccessibilityAction` function. The only argument to this function is an event containing the name of the action to perform. The below example from RNTester shows how to create a component which defines and handles several custom actions.
+要处理操作请求，组件必须实现一个`onAccessibilityAction`函数。此函数的唯一参数是包含要执行的操作名称的事件。以下示例来自RNTester，展示了如何创建一个定义和处理多个自定义操作的组件。
 
 ```jsx
 <View
@@ -319,20 +319,20 @@ if (Platform.OS === 'android') {
 
 在上面这个例子里我们创建了一个自定义的单选框（CustomRadioButton），并且使其具有了和原生单选框一样的无障碍功能。具体来说，也就是 TalkBack 可以正确地通知用户当前选项的变更了。
 
-## Testing TalkBack Support <div class="label android">Android</div>
+## 测试 TalkBack 支持 <div class="label android">Android</div>
 
-To enable TalkBack, go to the Settings app on your Android device or emulator. Tap Accessibility, then TalkBack. Toggle the "Use service" switch to enable or disable it.
+要启用 TalkBack，请转到您的 Android 设备或模拟器上的设置应用程序。点击“辅助功能”，然后选择TalkBack。切换“使用服务”开关以启用或禁用它。
 
-P.S. Android emulator doesn’t have TalkBack by default. To install it:
+附注：默认情况下，Android 模拟器不具备 TalkBack 功能。若要安装它：
 
-1. Download TalkBack file here: https://google-talkback.en.uptodown.com/android
-2. Drag the downloaded `.apk` file into the emulator
+1. 在此处下载 TalkBack 文件：https://google-talkback.en.uptodown.com/android
+2. 将下载的`.apk`文件拖入模拟器中
 
-You can use the volume key shortcut to toggle TalkBack. To turn on the volume key shortcut, go to the Settings app, then Accessibility. At the top, turn on Volume key shortcut.
+您可以使用音量键快捷方式来切换 TalkBack。要启用音量键快捷方式，请转到设置应用程序，然后选择“辅助功能”。在顶部，打开音量键快捷方式。
 
-To use the volume key shortcut, press both volume keys for 3 seconds to start an accessibility tool.
+要使用音量键快捷方式，请同时按住两个音量键3秒，以启动辅助工具。
 
-Additionally, if you prefer, you can toggle TalkBack via command line with:
+另外，如果您愿意，您可以通过命令行来切换 TalkBack：
 
 ```
 # disable
@@ -349,6 +349,6 @@ adb shell settings put secure enabled_accessibility_services com.google.android.
 
 在辅助选项的最底部，有一个“辅助选项快捷键”，开启之后可以通过点击三次 Home 按钮来快速关闭或打开 VoiceOver 工具。
 
-## Additional Resources
+## 更多资料
 
 - [Making React Native Apps Accessible](https://engineering.fb.com/ios/making-react-native-apps-accessible/)
