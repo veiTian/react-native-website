@@ -17,7 +17,7 @@
 
 <script src="//snack.expo.dev/embed.js" defer="defer"></script>
 <script src="//cdn.wwads.cn/js/makemoney.js" defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.e82c387d.css">
-<script src="/assets/js/runtime~main.800fa6db.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.432886e1.js" defer="defer"></script>
 <script src="/assets/js/main.040f02eb.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -127,10 +127,9 @@
 <div class="language-jsx codeBlockContainer_mQmQ theme-code-block" style="--prism-color:#FFFFFF;--prism-background-color:#282C34"><div class="codeBlockContent_D5yF"><pre tabindex="0" class="prism-code language-jsx codeBlock_RMoD thin-scrollbar"><code class="codeBlockLines_AclH"><span class="token-line" style="color:#FFFFFF"><span class="token plain">cd </span><span class="token maybe-class-name">AwesomeProject</span><span class="token plain"></span><br></span><span class="token-line" style="color:#FFFFFF"><span class="token plain">yarn android</span><br></span><span class="token-line" style="color:#FFFFFF"><span class="token plain"># 或者</span><br></span><span class="token-line" style="color:#FFFFFF"><span class="token plain">yarn react</span><span class="token operator" style="color:#fc929e">-</span><span class="token plain">native run</span><span class="token operator" style="color:#fc929e">-</span><span class="token plain">android</span><br></span></code></pre><div class="buttonGroup_aaMX"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_z5j7" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_FoOz"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_L0B6"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <p>此命令会对项目的原生部分进行编译，同时在另外一个命令行中启动<code>Metro</code>服务对 js 代码进行实时打包处理（类似 webpack）。<code>Metro</code>服务也可以使用<code>yarn start</code>命令单独启动。</p>
 <p>如果配置没有问题，你应该可以看到应用自动安装到设备上并开始运行。注意第一次运行时需要下载大量编译依赖，耗时可能数十分钟。此过程<code>严重依赖稳定的代理软件</code>，否则将频繁遭遇链接超时和断开，导致无法运行。</p>
-<p>也可以尝试阿里云提供的<a href="https://help.aliyun.com/document_detail/102512.html?spm=a2c40.aliyun_maven_repo.0.0.361865e90r2x4b" target="_blank" rel="noopener noreferrer">maven 镜像</a>，将<code>android/build.gradle</code>中的<code>mavenCentral()</code>和<code>google()</code>分别替换为<code>maven { url &#x27;https://maven.aliyun.com/repository/central&#x27; }</code>和<code>maven { url &#x27;https://maven.aliyun.com/repository/google&#x27; }</code>（注意可能有多处需要替换）。</p>
 <p><code>npx react-native run-android</code>只是运行应用的方式之一。你也可以在 Android Studio 中直接运行应用。</p>
 <blockquote>
-<p>译注：建议在<code>run-android</code>成功后再尝试使用 Android Studio 启动。请不要轻易点击 Android Studio 中可能弹出的建议更新项目中某依赖项的建议，否则可能导致无法运行  。</p>
+<p>译注：建议在<code>run-android</code>成功后再尝试使用 Android Studio 启动。请不要轻易点击 Android Studio 中可能弹出的建议更新项目中某依赖项的建议，否则可能导致无法运行。</p>
 </blockquote>
 <blockquote>
 <p>如果你无法正常运行，遇到奇奇怪怪的红屏错误，先回头<code>仔细对照文档检查</code>，然后可以看看<a href="https://github.com/reactnativecn/react-native-website/issues" target="_blank" rel="noopener noreferrer">问题讨论区</a>。不同时期不同版本可能会碰到不同的问题，我们会在论坛中及时解答更新。但请注意<strong><em>千万不要</em></strong>执行 bundle 命令，那样会导致代码完全无法刷新。</p>
@@ -166,14 +165,14 @@
 <div class="language-jsx codeBlockContainer_mQmQ theme-code-block" style="--prism-color:#FFFFFF;--prism-background-color:#282C34"><div class="codeBlockContent_D5yF"><pre tabindex="0" class="prism-code language-jsx codeBlock_RMoD thin-scrollbar"><code class="codeBlockLines_AclH"><span class="token-line" style="color:#FFFFFF"><span class="token plain">npm install </span><span class="token operator" style="color:#fc929e">-</span><span class="token plain">g yarn</span><br></span></code></pre><div class="buttonGroup_aaMX"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_z5j7" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_FoOz"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_L0B6"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <p>安装完 yarn 之后就可以用 yarn 代替 npm 了，例如用<code>yarn</code>代替<code>npm install</code>命令，用<code>yarn add 某第三方库名</code>代替<code>npm install 某第三方库名</code>。</p>
 <h3 class="anchor anchorWithStickyNavbar_JmGV" id="xcode">Xcode<a href="#xcode" class="hash-link" aria-label="标题的直接链接" title="标题的直接链接">​</a></h3>
-<p>React Native 目前需要<a href="https://developer.apple.com/xcode/downloads/" target="_blank" rel="noopener noreferrer">Xcode</a> 12 或更高版本。你可以通过 App Store 或是到<a href="https://developer.apple.com/xcode/downloads/" target="_blank" rel="noopener noreferrer">Apple 开发者官网</a>上下载。这一步骤会同时安装 Xcode IDE、Xcode 的命令行工具和 iOS 模拟器。</p>
+<p>React Native 目前需要<a href="https://developer.apple.com/xcode/downloads/" target="_blank" rel="noopener noreferrer">Xcode</a> 12 或更高版本。你可以通过 App Store 或是到<a href="https://developer.apple.com/xcode/downloads/" target="_blank" rel="noopener noreferrer">Apple 开发者官网</a>上下载。这一步骤会同时安装 Xcode IDE、Xcode 的命令行  工具和 iOS 模拟器。</p>
 <h4 class="anchor anchorWithStickyNavbar_JmGV" id="xcode-的命令行工具">Xcode 的命令行工具<a href="#xcode-的命令行工具" class="hash-link" aria-label="标题的直接链接" title="标题的直接链接">​</a></h4>
 <p>启动 Xcode，并在<code>Xcode | Preferences | Locations</code>菜单中检查一下是否装有某个版本的<code>Command Line Tools</code>。Xcode 的命令行工具中包含一些必须的工具，比如<code>git</code>等。</p>
 <p><img loading="lazy" alt="Xcode Command Line Tools" src="/assets/images/GettingStartedXcodeCommandLineTools-8259be8d3ab8575bec2b71988163c850.png" width="1724" height="1158" class="img_SS3x"></p>
 <h4 class="anchor anchorWithStickyNavbar_JmGV" id="在-xcode-中安装-ios-模拟器">在 Xcode 中安装 iOS 模拟器<a href="#在-xcode-中安装-ios-模拟器" class="hash-link" aria-label="标题的直接链接" title="标题的直接链接">​</a></h4>
 <p>安装模拟器只需打开 <strong>Xcode &gt; Preferences...</strong> 菜单，然后选择 <strong>Components</strong> 选项，即可看到各种可供安装的不同的 iOS 版本的模拟器。</p>
 <h4 class="anchor anchorWithStickyNavbar_JmGV" id="cocoapods">CocoaPods<a href="#cocoapods" class="hash-link" aria-label="标题的直接链接" title="标题的直接链接">​</a></h4>
-<p><a href="https://cocoapods.org/" target="_blank" rel="noopener noreferrer">CocoaPods</a>是用 Ruby 编写的包管理器（可以理解为针对 iOS 的 npm）  。从 0.60 版本开始 react native 的 iOS 版本需要使用 CocoaPods 来管理依赖。你可以使用下面的命令来安装 CocoaPods。CocoaPods 的版本需要 1.10 以上。</p>
+<p><a href="https://cocoapods.org/" target="_blank" rel="noopener noreferrer">CocoaPods</a>是用 Ruby 编写的包管理器（可以理解为针对 iOS 的 npm）。从 0.60 版本开始 react native 的 iOS 版本需要使用 CocoaPods 来管理依赖。你可以使用下面的命令来安装 CocoaPods。CocoaPods 的版本需要 1.10 以上。</p>
 <blockquote>
 <p>当然安装可能也不顺利，请使用代理软件。</p>
 </blockquote>
@@ -196,17 +195,17 @@
 </blockquote>
 <p>如果你是想把 React Native 集成到现有的原生项目中，则步骤完全不同，请参考<a href="/docs/next/integration-with-existing-apps">集成到现有原生应用</a>。</p>
 <h3 class="anchor anchorWithStickyNavbar_JmGV" id="可选参数-指定版本或项目模板">[可选参数] 指定版本或项目模板<a href="#可选参数-指定版本或项目模板" class="hash-link" aria-label="标题的直接链接" title="标题的直接链接">​</a></h3>
-<p>你可以使用<code>--version</code>参数（注意是<code>两</code>个杠）创建指定版本的项目。注意版本号必须精确到两个小数点。</p>
+<p>你可以使用<code>--version</code>参数（注意是<code>两</code>个杠  ）创建指定版本的项目。注意版本号必须精确到两个小数点。</p>
 <div class="language-shell codeBlockContainer_mQmQ theme-code-block" style="--prism-color:#FFFFFF;--prism-background-color:#282C34"><div class="codeBlockContent_D5yF"><pre tabindex="0" class="prism-code language-shell codeBlock_RMoD thin-scrollbar"><code class="codeBlockLines_AclH"><span class="token-line" style="color:#FFFFFF"><span class="token plain">npx react-native@X.XX.X init AwesomeProject --version X.XX.X</span><br></span></code></pre><div class="buttonGroup_aaMX"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_z5j7" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_FoOz"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_L0B6"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <p>还可以使用<code>--template</code>来使用一些社区提供的模板。</p>
 <h3 class="anchor anchorWithStickyNavbar_JmGV" id="可选文件-xcode-的环境配置文件">[可选文件] Xcode 的环境配置文件<a href="#可选文件-xcode-的环境配置文件" class="hash-link" aria-label="标题的直接链接" title="标题的直接链接">​</a></h3>
-<p>从 React Native 版本 0.69  开始，可以使用模板提供的 <code>.xcode.env</code> 文件来配置 Xcode 环境。</p>
+<p>从 React Native 版本 0.69 开始，可以使用模板提供的 <code>.xcode.env</code> 文件来配置 Xcode 环境。</p>
 <p><code>.xcode.env</code> 文件中包含一个环境变量示例，用于在 <code>NODE_BINARY</code> 变量中导出 <code>node</code> 执行文件的路径。这是将构建基础结构与<code>node</code>系统版本解耦的<strong>推荐做法</strong>。如果与默认值不同，则应使用您自己的路径或您自己的<code>node</code>版本管理器来自定义此变量。</p>
 <p>此外，您还可以在构建脚本阶段中添加任何其他环境变量并导入 <code>.xcode.env</code> 文件。如果您需要运行需要特定环境的脚本，这也是将构建阶段与特定环境解耦的<strong>推荐做法</strong>。</p>
 <h2 class="anchor anchorWithStickyNavbar_JmGV" id="编译并运行-react-native-应用">编译并运行 React Native 应用<a href="#编译并运行-react-native-应用" class="hash-link" aria-label="标题的直接链接" title="标题的直接链接">​</a></h2>
 <p>在你的项目目录中运行<code>yarn ios</code>或者<code>yarn react-native run-ios</code>：</p>
 <div class="language-sh codeBlockContainer_mQmQ theme-code-block" style="--prism-color:#FFFFFF;--prism-background-color:#282C34"><div class="codeBlockContent_D5yF"><pre tabindex="0" class="prism-code language-sh codeBlock_RMoD thin-scrollbar"><code class="codeBlockLines_AclH"><span class="token-line" style="color:#FFFFFF"><span class="token plain">cd AwesomeProject</span><br></span><span class="token-line" style="color:#FFFFFF"><span class="token plain">yarn ios</span><br></span><span class="token-line" style="color:#FFFFFF"><span class="token plain"># 或者</span><br></span><span class="token-line" style="color:#FFFFFF"><span class="token plain">yarn react-native run-ios</span><br></span></code></pre><div class="buttonGroup_aaMX"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_z5j7" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_FoOz"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_L0B6"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<p>此命令会对项目的原生部分进行编译，同时在另外一个命令行中启动<code>Metro</code>服务对 js 代码进行实时打包处理（类似 webpack）。<code>Metro</code>服务也可以使用<code>yarn start</code>命令单独启动。</p>
+<p>此命令会对项目的原生部分进行编译，同时在另外一个命令行中启动<code>Metro</code>服务对 js 代码进行实时打包处  理（类似 webpack）。<code>Metro</code>服务也可以使用<code>yarn start</code>命令单独启动。</p>
 <blockquote>
 <p>提示：如果此命令无法正常运行，请使用 Xcode 运行来查看具体错误（run-ios 的报错没有任何具体信息）。注意 0.60 版本之后的主项目文件是<code>.xcworkspace</code>，不是<code>.xcodeproj</code>！</p>
 </blockquote>
@@ -219,7 +218,7 @@
 </blockquote>
 <h3 class="anchor anchorWithStickyNavbar_JmGV" id="在真机上运行">在真机上运行<a href="#在真机上运行" class="hash-link" aria-label="标题的直接链接" title="标题的直接链接">​</a></h3>
 <p>上面的命令会自动在 iOS 模拟器上运行应用，如果你想在真机上运行，则请阅读<a href="/docs/next/running-on-device">在设备上运行</a>这篇文档。</p>
-<h3 class="anchor anchorWithStickyNavbar_JmGV" id="修改项目">修改项目<a href="#修改项目" class="hash-link" aria-label="标题的直接链接" title="标题的直接链接">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_JmGV" id="修改项目">修改项目<a href="#修改项目" class="hash-link" aria-label=" 标题的直接链接" title="标题的直接链接">​</a></h3>
 <p>现在你已经成功运行了项目，我们可以开始尝试动手改一改了：</p>
 <ul>
 <li>使用你喜欢的编辑器打开<code>App.js</code>并随便改上几行。</li>
@@ -243,7 +242,7 @@
 <p>注意：不要使用 cnpm！cnpm 安装的模块路径比较奇怪，packager 不能正常识别！</p>
 </blockquote>
 <p>React Native 需要 Java Development Kit [JDK] 11。你可以在命令行中输入
-<code>javac -version</code>（请注意是 javac，不是 java）  来查看你当前安装的 JDK 版本。如果版本不合要求，则可以去<a href="https://adoptium.net/?variant=openjdk11&amp;jvmVariant=hotspot" target="_blank" rel="noopener noreferrer">Temurin</a>或<a href="https://www.oracle.com/java/technologies/downloads/#java11" target="_blank" rel="noopener noreferrer">Oracle JDK</a>上下载(后者下载需注册登录)。</p>
+<code>javac -version</code>（请注意是 javac，不是 java）来查看你当前安装的 JDK 版本。如果版本不合要求，则可以去<a href="https://adoptium.net/?variant=openjdk11&amp;jvmVariant=hotspot" target="_blank" rel="noopener noreferrer">Temurin</a>或<a href="https://www.oracle.com/java/technologies/downloads/#java11" target="_blank" rel="noopener noreferrer">Oracle JDK</a>上下载(后者下载需注册登录)。</p>
 <blockquote>
 <p>低于 0.67 版本的 React Native 需要 JDK 1.8 版本（官方也称 8 版本）。</p>
 </blockquote>
@@ -331,10 +330,9 @@
 <div class="language-jsx codeBlockContainer_mQmQ theme-code-block" style="--prism-color:#FFFFFF;--prism-background-color:#282C34"><div class="codeBlockContent_D5yF"><pre tabindex="0" class="prism-code language-jsx codeBlock_RMoD thin-scrollbar"><code class="codeBlockLines_AclH"><span class="token-line" style="color:#FFFFFF"><span class="token plain">cd </span><span class="token maybe-class-name">AwesomeProject</span><span class="token plain"></span><br></span><span class="token-line" style="color:#FFFFFF"><span class="token plain">yarn android</span><br></span><span class="token-line" style="color:#FFFFFF"><span class="token plain"># 或者</span><br></span><span class="token-line" style="color:#FFFFFF"><span class="token plain">yarn react</span><span class="token operator" style="color:#fc929e">-</span><span class="token plain">native run</span><span class="token operator" style="color:#fc929e">-</span><span class="token plain">android</span><br></span></code></pre><div class="buttonGroup_aaMX"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_z5j7" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_FoOz"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_L0B6"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <p>此命令会对项目的原生部分进行编译，同时在另外一个命令行中启动<code>Metro</code>服务对 js 代码进行实时打包处理（类似 webpack）。<code>Metro</code>服务也可以使用<code>yarn start</code>命令单独启动。</p>
 <p>如果配置没有问题，你应该可以看到应用自动安装到设备上并开始运行。注意第一次运行时需要下载大量编译依赖，耗时可能数十分钟。此过程<code>严重依赖稳定的代理软件</code>，否则将频繁遭遇链接超时和断开，导致无法运行。</p>
-<p>也可以尝试阿里云提供的<a href="https://help.aliyun.com/document_detail/102512.html?spm=a2c40.aliyun_maven_repo.0.0.361865e90r2x4b" target="_blank" rel="noopener noreferrer">maven 镜像</a>，将<code>android/build.gradle</code>中的<code>mavenCentral()</code>和<code>google()</code>分别替换为<code>maven { url &#x27;https://maven.aliyun.com/repository/central&#x27; }</code>和<code>maven { url &#x27;https://maven.aliyun.com/repository/google&#x27; }</code>（注意可能有多处需要替换）。</p>
 <p><code>npx react-native run-android</code>只是运行应用的方式之一。你也可以在 Android Studio 中直接运行应用。</p>
 <blockquote>
-<p>译注：建议在<code>run-android</code>成功后再尝试使用 Android Studio 启动。请不要轻易点击 Android Studio 中可能弹出的建议更新项目中某依赖项的建议，否则可能导致无法运行  。</p>
+<p>译注：建议在<code>run-android</code>成功后再尝试使用 Android Studio 启动。请不要轻易点击 Android Studio 中可能弹出的建议更新项目中某依赖项的建议，否则可能导致无法运行。</p>
 </blockquote>
 <blockquote>
 <p>如果你无法正常运行，遇到奇奇怪怪的红屏错误，先回头<code>仔细对照文档检查</code>，然后可以看看<a href="https://github.com/reactnativecn/react-native-website/issues" target="_blank" rel="noopener noreferrer">问题讨论区</a>。不同时期不同版本可能会碰到不同的问题，我们会在论坛中及时解答更新。但请注意<strong><em>千万不要</em></strong>执行 bundle 命令，那样会导致代码完全无法刷新。</p>
@@ -366,7 +364,7 @@
 </blockquote>
 <div class="language-jsx codeBlockContainer_mQmQ theme-code-block" style="--prism-color:#FFFFFF;--prism-background-color:#282C34"><div class="codeBlockContent_D5yF"><pre tabindex="0" class="prism-code language-jsx codeBlock_RMoD thin-scrollbar"><code class="codeBlockLines_AclH"><span class="token-line" style="color:#FFFFFF"><span class="token plain"># 使用nrm工具切换淘宝源</span><br></span><span class="token-line" style="color:#FFFFFF"><span class="token plain">npx nrm use taobao</span><br></span><span class="token-line" style="color:#FFFFFF"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#FFFFFF"><span class="token plain"># 如果之后需要切换回官方源可使用</span><br></span><span class="token-line" style="color:#FFFFFF"><span class="token plain">npx nrm use npm</span><br></span></code></pre><div class="buttonGroup_aaMX"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_z5j7" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_FoOz"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_L0B6"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_JmGV" id="yarn">Yarn<a href="#yarn" class="hash-link" aria-label="标题的直接链接" title="标题的直接链接">​</a></h3>
-<p><a href="http://yarnpkg.com" target="_blank" rel="noopener noreferrer">Yarn</a>是 Facebook 提供的替代 npm 的工具  ，可以加速 node 模块的下载。</p>
+<p><a href="http://yarnpkg.com" target="_blank" rel="noopener noreferrer">Yarn</a>是 Facebook 提供的替代 npm 的工具，可以加速 node 模块的下载。</p>
 <div class="language-jsx codeBlockContainer_mQmQ theme-code-block" style="--prism-color:#FFFFFF;--prism-background-color:#282C34"><div class="codeBlockContent_D5yF"><pre tabindex="0" class="prism-code language-jsx codeBlock_RMoD thin-scrollbar"><code class="codeBlockLines_AclH"><span class="token-line" style="color:#FFFFFF"><span class="token plain">npm install </span><span class="token operator" style="color:#fc929e">-</span><span class="token plain">g yarn</span><br></span></code></pre><div class="buttonGroup_aaMX"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_z5j7" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_FoOz"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_L0B6"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <p>安装完 yarn 之后就可以用 yarn 代替 npm 了，例如用<code>yarn</code>代替<code>npm install</code>命令，用<code>yarn add 某第三方库名</code>代替<code>npm install 某第三方库名</code>。</p>
 <h3 class="anchor anchorWithStickyNavbar_JmGV" id="watchman">Watchman<a href="#watchman" class="hash-link" aria-label="标题的直接链接" title="标题的直接链接">​</a></h3>
@@ -394,7 +392,7 @@
 </ul>
 <p>然后点击&quot;Next&quot;来安装选中的组件。</p>
 <blockquote>
-<p>如果选择框是灰的，你也可以先跳过，稍后再来安装这些组件。</p>
+<p>如果选择框 是灰的，你也可以先跳过，稍后再来安装这些组件。</p>
 </blockquote>
 <p>安装完成后，看到欢迎界面时，就可以进行下面的操作了。</p>
 <h4 class="anchor anchorWithStickyNavbar_JmGV" id="2-安装-android-sdk">2. 安装 Android SDK<a href="#2-安装-android-sdk" class="hash-link" aria-label="标题的直接链接" title="标题的直接链接">​</a></h4>
@@ -450,13 +448,12 @@
 <div class="language-jsx codeBlockContainer_mQmQ theme-code-block" style="--prism-color:#FFFFFF;--prism-background-color:#282C34"><div class="codeBlockContent_D5yF"><pre tabindex="0" class="prism-code language-jsx codeBlock_RMoD thin-scrollbar"><code class="codeBlockLines_AclH"><span class="token-line" style="color:#FFFFFF"><span class="token plain">cd </span><span class="token maybe-class-name">AwesomeProject</span><span class="token plain"></span><br></span><span class="token-line" style="color:#FFFFFF"><span class="token plain">yarn android</span><br></span><span class="token-line" style="color:#FFFFFF"><span class="token plain"># 或者</span><br></span><span class="token-line" style="color:#FFFFFF"><span class="token plain">yarn react</span><span class="token operator" style="color:#fc929e">-</span><span class="token plain">native run</span><span class="token operator" style="color:#fc929e">-</span><span class="token plain">android</span><br></span></code></pre><div class="buttonGroup_aaMX"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_z5j7" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_FoOz"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_L0B6"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <p>此命令会对项目的原生部分进行编译，同时在另外一个命令行中启动<code>Metro</code>服务对 js 代码进行实时打包处理（类似 webpack）。<code>Metro</code>服务也可以使用<code>yarn start</code>命令单独启动。</p>
 <p>如果配置没有问题，你应该可以看到应用自动安装到设备上并开始运行。注意第一次运行时需要下载大量编译依赖，耗时可能数十分钟。此过程<code>严重依赖稳定的代理软件</code>，否则将频繁遭遇链接超时和断开，导致无法运行。</p>
-<p>也可以尝试阿里云提供的<a href="https://help.aliyun.com/document_detail/102512.html?spm=a2c40.aliyun_maven_repo.0.0.361865e90r2x4b" target="_blank" rel="noopener noreferrer">maven 镜像</a>，将<code>android/build.gradle</code>中的<code>mavenCentral()</code>和<code>google()</code>分别替换为<code>maven { url &#x27;https://maven.aliyun.com/repository/central&#x27; }</code>和<code>maven { url &#x27;https://maven.aliyun.com/repository/google&#x27; }</code>（注意可能有多处需要替换）。</p>
 <p><code>npx react-native run-android</code>只是运行应用的方式之一。你也可以在 Android Studio 中直接运行应用。</p>
 <blockquote>
 <p>译注：建议在<code>run-android</code>成功后再尝试使用 Android Studio 启动。请不要轻易点击 Android Studio 中可能弹出的建议更新项目中某依赖项的建议，否则可能导致无法运行。</p>
 </blockquote>
 <blockquote>
-<p>如果你无法正常运行，遇到奇奇怪怪的红屏错误，先回头<code>仔细对照文档检查</code>，然后可以看看<a href="https://github.com/reactnativecn/react-native-website/issues" target="_blank" rel="noopener noreferrer">问题讨论区</a>。不同时期不同版本可能会碰到不同的问题，我们会在论坛中及时解答更新。但请注意<strong><em>千万不要</em></strong>执行 bundle 命令，那样会导致代码完全无法刷新。</p>
+<p>如果你无法正常运行，遇到奇奇怪怪  的红屏错误，先回头<code>仔细对照文档检查</code>，然后可以看看<a href="https://github.com/reactnativecn/react-native-website/issues" target="_blank" rel="noopener noreferrer">问题讨论区</a>。不同时期不同版本可能会碰到不同的问题，我们会在论坛中及时解答更新。但请注意<strong><em>千万不要</em></strong>执行 bundle 命令，那样会导致代码完全无法刷新。</p>
 </blockquote>
 <h3 class="anchor anchorWithStickyNavbar_JmGV" id="修改项目">修改项目<a href="#修改项目" class="hash-link" aria-label="标题的直接链接" title="标题的直接链接">​</a></h3>
 <p>现在你已经成功运行了项目，我们可以开始尝试动手改一改了：</p>
@@ -473,7 +470,7 @@
 <p>苹果公司目前只允许在 Mac 电脑上开发 iOS 应用。如果你没有 Mac 电脑，那么只能考虑使用<code>沙盒环境</code>，或者先开发 Android 应用了。</p>
 </blockquote></div></div></div></div></div></div></div></div></div></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="theme-doc-footer-edit-meta-row row"><div class="col"><a href="https://github.com/reactnativecn/react-native-website/blob/production/cnwebsite/../cndocs/getting-started.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_bHB7" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>改进此文档</a></div><div class="col lastUpdated_pbO5"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="文档分页导航"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/next/more-resources"><div class="pagination-nav__sublabel">上一页</div><div class="pagination-nav__label">其他参考资源</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/next/integration-with-existing-apps"><div class="pagination-nav__sublabel">下一页</div><div class="pagination-nav__label">集成到现有原生应用</div></a></nav></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">React Native 中文网 © 2023 武汉青罗网络科技有限公司
       <a style="margin-left:10px" href="http://beian.miit.gov.cn/">鄂ICP备20002031号-3</a>
-      <img style="width:25px" src="//img.alicdn.com/tfs/TB1..50QpXXXXX7XpXXXXXXXXXX-40-40.png" alt="鄂公网安备 42011202001821号">
+      <img style="width:25px" src="//img.alicdn.com/tfs/TB1..50QpXXXXX7XpXXXXXXXXXX-40-40.png" alt="鄂  公网安备 42011202001821号">
       <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42011202001821">鄂公网安备 42011202001821号</a>
       </div></div></div></footer></div>
 </body>
