@@ -16,7 +16,7 @@ brew install node
 brew install watchman
 ```
 
-If you have already installed Node on your system, make sure it is Node 16 or newer.
+If you have already installed Node on your system, make sure it is Node 18 or newer.
 
 [Watchman](https://facebook.github.io/watchman) is a tool by Facebook for watching changes in the filesystem. It is highly recommended you install it for better performance.
 
@@ -35,6 +35,8 @@ You will also need to install the Xcode Command Line Tools. Open Xcode, then cho
 #### Installing an iOS Simulator in Xcode
 
 To install a simulator, open **Xcode > Settings... (or Preferences...)** and select the **Platforms (or Components)** tab. Select a simulator with the corresponding version of iOS you wish to use.
+
+If you are using Xcode version 14.0 or greater than to install a simulator, open **Xcode > Settings > Platforms** tab, then click "+" icon and select **iOS…** option.
 
 #### CocoaPods
 
