@@ -9,7 +9,7 @@ While you can use any editor of your choice to develop your app, you will need t
 
 <h3 id="jdk">Node, JDK</h3>
 
-We recommend installing Node via [Chocolatey](https://chocolatey.org), a popular package manager for Windows.
+We recommend installing Node via [Chocolatey](https://chocolatey.org/install), a popular package manager for Windows.
 
 It is recommended to use an LTS version of Node. If you want to be able to switch between different versions, you might want to install Node via [nvm-windows](https://github.com/coreybutler/nvm-windows), a Node version manager for Windows.
 
@@ -157,7 +157,7 @@ Click "Next" then "Finish" to create your AVD. At this point you should be able 
 
 <h3>Step 1: Start Metro</h3>
 
-[**Metro**](https://facebook.github.io/metro/) is the JavaScript build tool for React Native. To start the Metro development server, run the following from your project folder:
+[**Metro**](https://metrobundler.dev/) is the JavaScript build tool for React Native. To start the Metro development server, run the following from your project folder:
 
 <Tabs groupId="package-manager" queryString defaultValue={constants.defaultPackageManager} values={constants.packageManagers}>
 <TabItem value="npm">
