@@ -7,27 +7,27 @@ import NewArchitectureWarning from './\_markdown-new-architecture-warning.mdx';
 
 <NewArchitectureWarning/>
 
-# Getting Started with the New Architecture
+# 入门新架构
 
-This migration guide is designed for React Native **library authors** and **application developers**. It outlines the steps you need to follow to roll out the new Architecture, composed by the **new NativeModule system (TurboModule) and the new Renderer (Fabric)** to your **Android** and **iOS** libraries and apps.
+此迁移指南旨在为React Native的**库作者**和**应用程序开发者**提供。它概述了您需要遵循的步骤，以在您的**Android**和**iOS**库和应用中使用由**新的NativeModule系统（TurboModule）和新的渲染器（Fabric）**组成的新架构。
 
-## Table of Contents
+## 目录
 
-The guide is divided into five sections:
+本指南分为五个部分：
 
-- **Supporting the New Architecture in your Library**
-  - [Prerequisites for Supporting the New Architecture in JavaScript](new-architecture-library-intro)
-  - Enabling the New Architecture in your Library
+- **在第三方库中支持新架构**
+  - [在JavaScript中支持新架构的预备工作](new-architecture-library-intro)
+  - 在库中启用新架构
     - [Android](new-architecture-library-android)
     - [iOS](new-architecture-library-ios)
-- **Supporting the New Architecture in your App**
-  - [Prerequisites for Supporting the New Architecture in your App](new-architecture-app-intro)
-  - Enabling the New NativeModule System (TurboModule) in your App
+- **在应用中支持新架构**
+  - [在应用中支持新架构的预备工作](new-architecture-app-intro)
+  - 在应用中启用新的NativeModule系统（TurboModule）
     - [Android](new-architecture-app-modules-android)
     - [iOS](new-architecture-app-modules-ios)
-  - Enabling the New Renderer (Fabric) in your App
+  - 在应用中启用新的渲染器（Fabric）
     - [Android](new-architecture-app-renderer-android)
     - [iOS](new-architecture-app-renderer-ios)
-- [**React 18 & React Native**](react-18-and-react-native)
-- [**Troubleshooting**](new-architecture-troubleshooting)
-- [**Appendix**](new-architecture-appendix)
+- [**React 18和React Native**](react-18-and-react-native)
+- [**故障排除**](new-architecture-troubleshooting)
+- [**附录**](new-architecture-appendix)
