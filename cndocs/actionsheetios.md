@@ -56,23 +56,27 @@ export default App;
 
 ### `showActionSheetWithOptions()`
 
-```jsx
-static showActionSheetWithOptions(options, callback)
+```tsx
+static showActionSheetWithOptions: (
+  options: ActionSheetIOSOptions,
+  callback: (buttonIndex: number) => void,
+);
 ```
 
 在 iOS 设备上显示一个 ActionSheet 弹出框，其中`options`参数为一个对象，其属性必须包含以下一项或多项：
 
-- `options` （字符串数组） - 一组按钮的文字（必选）
-- `cancelButtonIndex` （整型） - 取消性质的按钮在`options`中的位置（索引）
-- `destructiveButtonIndex` （整型） - 删除性质的按钮在`options`中的位置（索引）
-- `title` （字符串） - 弹出框顶部的标题
-- `message` （字符串） - 弹出框顶部标题下方的信息
-- `anchor` (number) - the node to which the action sheet should be anchored (used for iPad)
-- `tintColor` (字符串) - 指定删除性质的按钮的文字的[颜色](colors.md)
-- `disabledButtonIndices` (array of numbers) - a list of button indices which should be disabled
-- `userInterfaceStyle` (string) - the interface style used for the action sheet, can be set to `light` or `dark`, otherwise the default system style will be used
-
-'callback'函数则仅接受一个参数，即所点击按钮的索引。
+- `options`（字符串数组） - 按钮标题列表（必需）
+- `cancelButtonIndex`（整数） - `options` 中取消按钮的索引
+- `cancelButtonTintColor`（字符串） - 用于改变取消按钮文本颜色的颜色（[颜色](colors)）
+- `destructiveButtonIndex`（整数或整数数组） - `options` 中破坏性按钮的索引
+- `title`（字符串） - 显示在操作表上方的标题
+- `message`（字符串） - 显示在标题下方的消息
+- `anchor`（数字） - 操作表应锚定的节点（用于 iPad）
+- `tintColor`（字符串） - 用于非破坏性按钮标题的颜色（[颜色](colors)）
+- `disabledButtonIndices`（数字数组） - 应禁用的按钮索引列表
+- `userInterfaceStyle`（字符串） - 用于操作表的界面样式，可以设置为 `light` 或 `dark`，否则将使用默认的系统样式
+  
+`callback`函数则仅接受一个参数，即所点击按钮的索引。
 
 一个例子：
 
@@ -89,10 +93,24 @@ if (buttonIndex === 1) { /* 当接收到的索引为1，即点击了删除按钮
 
 ---
 
+### `dismissActionSheet()`
+
+```tsx
+static dismissActionSheet();
+```
+
+关闭当前显示的最顶层 ActionSheet。如果当前没有 ActionSheet，则会显示警告。
+
+---
+
 ### `showShareActionSheetWithOptions()`
 
-```jsx
-static showShareActionSheetWithOptions(options, failureCallback, successCallback)
+```tsx
+static showShareActionSheetWithOptions: (
+  options: ShareActionSheetIOSOptions,
+  failureCallback: (error: Error) => void,
+  successCallback: (success: boolean, method: string) => void,
+);
 ```
 
 在 iOS 设备上显示一个分享弹出框，其中`options`参数为一个对象，其属性包含以下几项（必须至少有 message 或 url）:
@@ -104,9 +122,9 @@ static showShareActionSheetWithOptions(options, failureCallback, successCallback
 
 注：如果`url`指向本地文件，或者是一个 base64 编码的 url，则会直接读取并分享相应的文件。你可以用这样的方式来分享图片、视频以及 PDF 文件等。If `url` points to a remote file or address it must conform to URL format as described in [RFC 2396](https://www.ietf.org/rfc/rfc2396.txt). For example, a web URL without a proper protocol (HTTP/HTTPS) will not be shared.
 
-'failureCallback'函数仅接受一个错误对象参数。此对象中仅包含一个可选的`stack`属性，类型为字符串。
+`failureCallback`函数仅接受一个错误对象参数。此对象中仅包含一个可选的`stack`属性，类型为字符串。
 
-'successCallback'函数接受两个参数：
+`successCallback`函数接受两个参数：
 
 - 表示成功与否的布尔值
 - 成功的话返回一个表示分享方式的字符串
