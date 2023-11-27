@@ -848,9 +848,9 @@ export default AlignContentLayout;
 
 ## Flex Wrap
 
-`flexWrap`属性用于设置容器的换行方式，它控制了当子元素超出容器在主轴上的尺寸时会发生什么。默认情况下，子元素被强制放置在一行中（这可能会使元素缩小）。如果允许换行，则项目将根据需要沿主轴分为多行。
+`flexWrap`属性用于设置容器的换行方式，它控制了当子元素超出容器在主轴上的尺寸时要如何处理。默认情况下，子元素被强制放置在一行中（这可能会使元素被挤压）。如果允许换行，则项目将根据需要沿主轴分为多行。
 
-在换行时，可以使用`alignContent`来指定如何将这些行放置在容器中。详细信息请参阅[此处](https://yogalayout.com/docs/flex-wrap)。
+在换行时，可以使用`alignContent`来设置这些行在容器中的排列方式。详细信息请参阅[此处](https://yogalayout.com/docs/flex-wrap)。
 
 ```SnackPlayer name=Flex%20Wrap
 import React, { useState } from "react";
