@@ -172,7 +172,7 @@ protected List<ReactPackage> getPackages() {
  * 2. int duration: The duration of the toast. May be ToastExample.SHORT or
  *    ToastExample.LONG
  */
-import {NativeModules} from 'react-native';
+import { NativeModules } from 'react-native';
 // 下一句中的ToastExample即对应上文
 // public String getName()中返回的字符串
 export default NativeModules.ToastExample;
@@ -226,12 +226,12 @@ public class UIManagerModule extends ReactContextBaseJavaModule {
 UIManager.measureLayout(
   100,
   100,
-  msg => {
+  (msg) => {
     console.log(msg);
   },
   (x, y, width, height) => {
     console.log(x + ':' + y + ':' + width + ':' + height);
-  },
+  }
 );
 ```
 
@@ -285,11 +285,11 @@ public class UIManagerModule extends ReactContextBaseJavaModule {
 ```jsx
 async function measureLayout() {
   try {
-    const {relativeX, relativeY, width, height} =
+    const { relativeX, relativeY, width, height } =
       await UIManager.measureLayout(100, 100);
 
     console.log(
-      relativeX + ':' + relativeY + ':' + width + ':' + height,
+      relativeX + ':' + relativeY + ':' + width + ':' + height
     );
   } catch (e) {
     console.error(e);

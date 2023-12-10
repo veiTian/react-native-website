@@ -91,7 +91,7 @@ export default App;
 
 ## 在 React Navigation 中使用
 
-如果您正在使用 React Navigation 在不同的屏幕之间导航，您可以按照他们的指南[自定义 Android 返回按钮行为](https://reactnavigation.org/docs/custom-android-back-button-handling/)。
+如果您正在使用React Navigation在不同的屏幕之间导航，您可以按照他们的指南[自定义Android返回按钮行为](https://reactnavigation.org/docs/custom-android-back-button-handling/)。
 
 ## Backhandler Hook
 

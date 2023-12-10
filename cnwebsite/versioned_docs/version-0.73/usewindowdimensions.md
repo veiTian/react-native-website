@@ -4,7 +4,7 @@ title: useWindowDimensions
 ---
 
 ```jsx
-import {useWindowDimensions} from 'react-native';
+import { useWindowDimensions } from 'react-native';
 ```
 
 `useWindowDimensions`会在屏幕尺寸变化时自动更新获取到的设备`width`和`height`值。使用方法如下：

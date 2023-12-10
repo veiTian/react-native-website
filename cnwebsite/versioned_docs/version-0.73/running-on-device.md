@@ -55,7 +55,7 @@ emulator-5554 offline   # Google emulator
 $ npx react-native run-android
 ```
 
-> 如果你收到"bridge configuration isn't available"错误，请参阅[使用 adb reverse](running-on-device.md#android-50-及以上使用-adb-reverse-命令-1)。
+> 如果你收到"bridge configuration isn't available"错误，请参阅[使用adb reverse](running-on-device.md#android-50-及以上使用-adb-reverse-命令-1)。
 
 > 提示：你还可以运行`npx react-native run-android --variant=release`来安装 release 版的应用。当然你需要[先配置好签名](signed-apk-android)，且此时无法再开启开发者菜单。注意在 debug 和 release 版本间来回切换安装时可能会报错签名不匹配，此时需要先卸载前一个版本再尝试安装。
 
@@ -132,7 +132,7 @@ emulator-5554 offline   # Google emulator
 $ npx react-native run-android
 ```
 
-> 如果你收到"bridge configuration isn't available"错误，请参阅[使用 adb reverse](running-on-device.md#android-50-及以上使用-adb-reverse-命令-1)。
+> 如果你收到"bridge configuration isn't available"错误，请参阅[使用adb reverse](running-on-device.md#android-50-及以上使用-adb-reverse-命令-1)。
 
 > 提示：你还可以运行`npx react-native run-android --variant=release`来安装 release 版的应用。当然你需要[先配置好签名](signed-apk-android)，且此时无法再开启开发者菜单。注意在 debug 和 release 版本间来回切换安装时可能会报错签名不匹配，此时需要先卸载前一个版本再尝试安装。
 
@@ -209,7 +209,7 @@ emulator-5554 offline   # Google emulator
 $ npx react-native run-android
 ```
 
-> 如果你收到"bridge configuration isn't available"错误，请参阅[使用 adb reverse](running-on-device.md#android-50-及以上使用-adb-reverse-命令-1)。
+> 如果你收到"bridge configuration isn't available"错误，请参阅[使用adb reverse](running-on-device.md#android-50-及以上使用-adb-reverse-命令-1)。
 
 > 提示：你还可以运行`npx react-native run-android --variant=release`来安装 release 版的应用。当然你需要[先配置好签名](signed-apk-android)，且此时无法再开启开发者菜单。注意在 debug 和 release 版本间来回切换安装时可能会报错签名不匹配，此时需要先卸载前一个版本再尝试安装。
 

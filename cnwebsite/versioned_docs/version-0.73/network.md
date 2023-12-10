@@ -26,12 +26,12 @@ fetch('https://mywebsite.com/endpoint/', {
   method: 'POST',
   headers: {
     Accept: 'application/json',
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/json'
   },
   body: JSON.stringify({
     firstParam: 'yourValue',
-    secondParam: 'yourOtherValue',
-  }),
+    secondParam: 'yourOtherValue'
+  })
 });
 ```
 
@@ -41,9 +41,9 @@ fetch('https://mywebsite.com/endpoint/', {
 fetch('https://mywebsite.com/endpoint/', {
   method: 'POST',
   headers: {
-    'Content-Type': 'application/x-www-form-urlencoded',
+    'Content-Type': 'application/x-www-form-urlencoded'
   },
-  body: 'key1=value1&key2=value2',
+  body: 'key1=value1&key2=value2'
 });
 ```
 
@@ -60,13 +60,13 @@ fetch('https://mywebsite.com/endpoint/', {
 ```jsx
 function getMoviesFromApiAsync() {
   return fetch(
-    'https://facebook.github.io/react-native/movies.json',
+    'https://facebook.github.io/react-native/movies.json'
   )
-    .then(response => response.json())
-    .then(responseJson => {
+    .then((response) => response.json())
+    .then((responseJson) => {
       return responseJson.movies;
     })
-    .catch(error => {
+    .catch((error) => {
       console.error(error);
     });
 }
@@ -80,7 +80,7 @@ async function getMoviesFromApi() {
   try {
     // 注意这里的await语句，其所在的函数必须有async关键字声明
     let response = await fetch(
-      'https://facebook.github.io/react-native/movies.json',
+      'https://facebook.github.io/react-native/movies.json'
     );
     let responseJson = await response.json();
     return responseJson.movies;
@@ -189,7 +189,7 @@ React Native 中已经内置了[XMLHttpRequest API](https://developer.mozilla.or
 
 ```jsx
 const request = new XMLHttpRequest();
-request.onreadystatechange = e => {
+request.onreadystatechange = (e) => {
   if (request.readyState !== 4) {
     return;
   }
@@ -219,17 +219,17 @@ ws.onopen = () => {
   ws.send('something'); // send a message
 };
 
-ws.onmessage = e => {
+ws.onmessage = (e) => {
   // a message was received
   console.log(e.data);
 };
 
-ws.onerror = e => {
+ws.onerror = (e) => {
   // an error occurred
   console.log(e.message);
 };
 
-ws.onclose = e => {
+ws.onclose = (e) => {
   // connection closed
   console.log(e.code, e.reason);
 };

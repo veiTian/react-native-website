@@ -6,7 +6,7 @@ title: Appearance
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
 ```jsx
-import {Appearance} from 'react-native';
+import { Appearance } from 'react-native';
 ```
 
 `Appearance` 模块提供了关于用户外观偏好的信息，例如他们喜欢的颜色方案（明亮或暗黑）。
@@ -17,7 +17,7 @@ import {Appearance} from 'react-native';
 
 <TabItem value="web">
 
-> `Appearance` API 的灵感来自 W3C 的[媒体查询草案](https://drafts.csswg.org/mediaqueries-5/)。颜色方案偏好是基于[`prefers-color-scheme` CSS 媒体特性](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme)。
+> `Appearance` API的灵感来自 W3C 的[媒体查询草案](https://drafts.csswg.org/mediaqueries-5/)。颜色方案偏好是基于[`prefers-color-scheme` CSS媒体特性](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme)。
 
 </TabItem>
 <TabItem value="android">
@@ -43,7 +43,7 @@ if (colorScheme === 'dark') {
 }
 ```
 
-尽管颜色方案可以立即使用，但这可能会发生变化（例如，在日出或日落时计划更改颜色方案）。任何依赖于用户首选颜色方案的渲染逻辑或样式都应该在每次渲染时调用此函数，而不是缓存值。例如，您可以使用[`useColorScheme`](usecolorscheme) React 钩子，因为它提供并订阅了颜色方案更新，或者您可以使用内联样式而不是在`StyleSheet`中设置值。
+尽管颜色方案可以立即使用，但这可能会发生变化（例如，在日出或日落时计划更改颜色方案）。任何依赖于用户首选颜色方案的渲染逻辑或样式都应该在每次渲染时调用此函数，而不是缓存值。例如，您可以使用[`useColorScheme`](usecolorscheme) React钩子，因为它提供并订阅了颜色方案更新，或者您可以使用内联样式而不是在`StyleSheet`中设置值。
 
 ---
 
@@ -100,3 +100,4 @@ static addChangeListener(
 ```
 
 添加一个事件处理程序，当外观首选项发生变化时触发。
+

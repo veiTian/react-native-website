@@ -124,11 +124,11 @@ static registerComponent(
 
 **参数:**
 
-| 名称                                                               | 类型              |
-| ------------------------------------------------------------------ | ----------------- |
+| 名称                                                                   | 类型              |
+| ---------------------------------------------------------------------- | ----------------- |
 | appKey <div className="label basic required">必填</div>            | string            |
 | componentProvider <div className="label basic required">必填</div> | ComponentProvider |
-| section                                                            | boolean           |
+| section                                                                | boolean           |
 
 ---
 

@@ -80,9 +80,9 @@ iOS 和 Android 都提供了便于残障人士无障碍使用 App 的 API。此�
 </TouchableOpacity>
 ```
 
-在上面这个例子里，iOS 的 VoiceOver 会在标签后读取提示，如果用户在设备的 VoiceOver 设置中启用了提示。有关 accessibilityHint 指南的更多信息，请阅读[iOS 开发者文档](https://developer.apple.com/documentation/objectivec/nsobject/1615093-accessibilityhint)。
+在上面这个例子里，iOS 的 VoiceOver 会在标签后读取提示，如果用户在设备的VoiceOver设置中启用了提示。有关accessibilityHint指南的更多信息，请阅读[iOS开发者文档](https://developer.apple.com/documentation/objectivec/nsobject/1615093-accessibilityhint)。
 
-在上面这个例子里，Android 的 Talkback 将在标签后读取提示。目前，Android 上无法关闭提示。
+在上面这个例子里，Android 的 Talkback将在标签后读取提示。目前，Android 上无法关闭提示。
 
 ### `accessibilityLanguage` <div class="label ios">iOS</div>
 
@@ -163,13 +163,13 @@ iOS 和 Android 都提供了便于残障人士无障碍使用 App 的 API。此�
 
 `accessibilityState` 是一个对象。它包含以下字段：
 
-| 名称     | 描述                                                                        | 类型               | 必需 |
-| -------- | --------------------------------------------------------------------------- | ------------------ | ---- |
-| disabled | 指示元素是否已禁用                                                          | boolean            | 否   |
-| selected | 指示可选择元素当前是否已选中。                                              | boolean            | 否   |
+| 名称     | 描述                                                                                                                                  | 类型               | 必需 |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------ | ---- |
+| disabled | 指示元素是否已禁用                                                                                    | boolean            | 否   |
+| selected | 指示可选择元素当前是否已选中。                                                                 | boolean            | 否   |
 | checked  | 指示可检查元素的状态。此字段可以采用布尔值或 "mixed" 字符串表示混合选择框。 | boolean or 'mixed' | 否   |
-| busy     | 指示元素当前是否忙碌。                                                      | boolean            | 否   |
-| expanded | 指示可展开元素当前是否已展开或折叠。                                        | boolean            | 否   |
+| busy     | 指示元素当前是否忙碌。                                                                               | boolean            | 否   |
+| expanded | 指示可展开元素当前是否已展开或折叠。                                                           | boolean            | 否   |
 
 要使用，请将 `accessibilityState` 设置为具有特定定义的对象。
 
@@ -179,24 +179,24 @@ iOS 和 Android 都提供了便于残障人士无障碍使用 App 的 API。此�
 
 `accessibilityValue` 是一个对象。它包含以下字段：
 
-| 名称 | 描述                                                         | 类型    | 必需                      |
-| ---- | ------------------------------------------------------------ | ------- | ------------------------- |
-| min  | 该组件范围的最小值。                                         | integer | Required if `now` is set. |
-| max  | 该组件范围的最大值。                                         | integer | Required if `now` is set. |
-| now  | 该组件范围的当前值。                                         | integer | 否                        |
+| 名称 | 描述                                                                                           | 类型    | 必需                      |
+| ---- | ---------------------------------------------------------------------------------------------- | ------- | ------------------------- |
+| min  | 该组件范围的最小值。                                                   | integer | Required if `now` is set. |
+| max  | 该组件范围的最大值。                                                   | integer | Required if `now` is set. |
+| now  | 该组件范围的当前值。                                                | integer | 否                        |
 | text | 该组件值的文本描述。如果设置，将覆盖 `min`、`now` 和 `max`。 | string  | 否                        |
 
 ### `accessibilityViewIsModal` <div class="label ios">iOS</div>
 
-一个布尔值，指示 VoiceOver 是否应忽略接收者的同级视图中的元素。
+一个布尔值，指示VoiceOver是否应忽略接收者的同级视图中的元素。
 
-例如，在包含同级视图`A`和`B`的窗口中，在视图`B`上将`accessibilityViewIsModal`设置为`true`会导致 VoiceOver 忽略视图`A`中的元素。另一方面，如果视图`B`包含子视图`C`，并且在视图`C`上将`accessibilityViewIsModal`设置为`true`，VoiceOver 不会忽略视图`A`中的元素。
+例如，在包含同级视图`A`和`B`的窗口中，在视图`B`上将`accessibilityViewIsModal`设置为`true`会导致VoiceOver忽略视图`A`中的元素。另一方面，如果视图`B`包含子视图`C`，并且在视图`C`上将`accessibilityViewIsModal`设置为`true`，VoiceOver不会忽略视图`A`中的元素。
 
 ### `accessibilityElementsHidden` <div class="label ios">iOS</div>
 
 一个布尔值，指示此辅助功能元素内包含的辅助功能元素是否已隐藏。
 
-例如，在包含兄弟视图 `A` 和 `B` 的窗口中，在视图 `B` 上将 `accessibilityElementsHidden` 设置为 `true` 会导致 VoiceOver 忽略视图 `B` 中的元素。这类似于 Android 属性 `importantForAccessibility="no-hide-descendants"`。
+例如，在包含兄弟视图 `A` 和 `B` 的窗口中，在视图 `B` 上将 `accessibilityElementsHidden` 设置为 `true` 会导致VoiceOver忽略视图 `B` 中的元素。这类似于Android属性 `importantForAccessibility="no-hide-descendants"`。
 
 ### 无障碍功能优先级 `importantForAccessibility` <div class="label android">Android</div>
 
@@ -211,7 +211,7 @@ iOS 和 Android 都提供了便于残障人士无障碍使用 App 的 API。此�
       top: 10,
       right: 10,
       height: 100,
-      backgroundColor: 'green',
+      backgroundColor: 'green'
     }}
     importantForAccessibility="yes">
     <Text> First layout </Text>
@@ -223,7 +223,7 @@ iOS 和 Android 都提供了便于残障人士无障碍使用 App 的 API。此�
       top: 10,
       right: 10,
       height: 100,
-      backgroundColor: 'yellow',
+      backgroundColor: 'yellow'
     }}
     importantForAccessibility="no-hide-descendant">
     <Text> Second layout </Text>
@@ -235,7 +235,7 @@ iOS 和 Android 都提供了便于残障人士无障碍使用 App 的 API。此�
 
 ### `onAccessibilityEscape` <div class="label ios">iOS</div>
 
-将此属性分配给一个自定义函数，该函数将在某人执行“逃脱”手势时被调用，这是一个双指 Z 形手势。逃脱函数应该在用户界面中向上或向后层次移动。这可能意味着在导航层次中向上移动或返回，或者关闭模态用户界面。如果所选元素没有“onAccessibilityEscape”函数，则系统将尝试沿视图层次向上遍历，直到找到一个具有此函数的视图，或者发出提示表示无法找到一个。
+将此属性分配给一个自定义函数，该函数将在某人执行“逃脱”手势时被调用，这是一个双指Z形手势。逃脱函数应该在用户界面中向上或向后层次移动。这可能意味着在导航层次中向上移动或返回，或者关闭模态用户界面。如果所选元素没有“onAccessibilityEscape”函数，则系统将尝试沿视图层次向上遍历，直到找到一个具有此函数的视图，或者发出提示表示无法找到一个。
 
 ### 无障碍元素的点击事件 `onAccessibilityTap`
 
@@ -263,26 +263,26 @@ iOS 和 Android 都提供了便于残障人士无障碍使用 App 的 API。此�
 
 在添加对标准操作的支持时，`name`必须是以下之一：
 
-- `'magicTap'` - 仅适用于 iOS - 当 VoiceOver 焦点位于组件上或内部时，用户用两个手指双击。
-- `'escape'` - 仅适用于 iOS - 当 VoiceOver 焦点位于组件上或内部时，用户执行双指刷动手势（左，右，左）。
+- `'magicTap'` - 仅适用于iOS - 当VoiceOver焦点位于组件上或内部时，用户用两个手指双击。
+- `'escape'` - 仅适用于iOS - 当VoiceOver焦点位于组件上或内部时，用户执行双指刷动手势（左，右，左）。
 - `'activate'` - 激活组件。通常情况下，当屏幕阅读器用户双击组件时，应执行与用户触摸或单击组件时相同的操作。
-- `'increment'` - 增加可调整组件的值。在 iOS 上，当组件具有`'adjustable'`角色并且用户将焦点放在组件上并向上滑动时，VoiceOver 会生成此操作。在 Android 上，当用户将可访问性焦点放在组件上并按音量增加按钮时，TalkBack 会生成此操作。
-- `'decrement'` - 减少可调整组件的值。在 iOS 上，当组件具有`'adjustable'`角色并且用户将焦点放在组件上并向下滑动时，VoiceOver 会生成此操作。在 Android 上，当用户将可访问性焦点放在组件上并按音量减小按钮时，TalkBack 会生成此操作。
-- `'longpress'` - 仅适用于 Android - 当用户将可访问性焦点放在组件上并双击并长按屏幕上的一个手指时，会生成此操作。通常情况下，这应执行与用户在不使用辅助技术时按住组件上的一个手指时相同的操作。
+- `'increment'` - 增加可调整组件的值。在iOS上，当组件具有`'adjustable'`角色并且用户将焦点放在组件上并向上滑动时，VoiceOver会生成此操作。在Android上，当用户将可访问性焦点放在组件上并按音量增加按钮时，TalkBack会生成此操作。
+- `'decrement'` - 减少可调整组件的值。在iOS上，当组件具有`'adjustable'`角色并且用户将焦点放在组件上并向下滑动时，VoiceOver会生成此操作。在Android上，当用户将可访问性焦点放在组件上并按音量减小按钮时，TalkBack会生成此操作。
+- `'longpress'` - 仅适用于Android - 当用户将可访问性焦点放在组件上并双击并长按屏幕上的一个手指时，会生成此操作。通常情况下，这应执行与用户在不使用辅助技术时按住组件上的一个手指时相同的操作。
 
 `label`字段对于标准操作是可选的，通常不被辅助技术使用。对于自定义操作，它是一个包含要呈现给用户的操作描述的本地化字符串。
 
-要处理操作请求，组件必须实现一个`onAccessibilityAction`函数。此函数的唯一参数是包含要执行的操作名称的事件。以下示例来自 RNTester，展示了如何创建一个定义和处理多个自定义操作的组件。
+要处理操作请求，组件必须实现一个`onAccessibilityAction`函数。此函数的唯一参数是包含要执行的操作名称的事件。以下示例来自RNTester，展示了如何创建一个定义和处理多个自定义操作的组件。
 
 ```jsx
 <View
   accessible={true}
   accessibilityActions={[
-    {name: 'cut', label: 'cut'},
-    {name: 'copy', label: 'copy'},
-    {name: 'paste', label: 'paste'},
+    { name: 'cut', label: 'cut' },
+    { name: 'copy', label: 'copy' },
+    { name: 'paste', label: 'paste' }
   ]}
-  onAccessibilityAction={event => {
+  onAccessibilityAction={(event) => {
     switch (event.nativeEvent.actionName) {
       case 'cut':
         Alert.alert('Alert', 'cut action success');
@@ -321,7 +321,7 @@ if (Platform.OS === 'android') {
 
 ## 测试 TalkBack 支持 <div class="label android">Android</div>
 
-要启用 TalkBack，请转到您的 Android 设备或模拟器上的设置应用程序。点击“辅助功能”，然后选择 TalkBack。切换“使用服务”开关以启用或禁用它。
+要启用 TalkBack，请转到您的 Android 设备或模拟器上的设置应用程序。点击“辅助功能”，然后选择TalkBack。切换“使用服务”开关以启用或禁用它。
 
 附注：默认情况下，Android 模拟器不具备 TalkBack 功能。若要安装它：
 
@@ -330,7 +330,7 @@ if (Platform.OS === 'android') {
 
 您可以使用音量键快捷方式来切换 TalkBack。要启用音量键快捷方式，请转到设置应用程序，然后选择“辅助功能”。在顶部，打开音量键快捷方式。
 
-要使用音量键快捷方式，请同时按住两个音量键 3 秒，以启动辅助工具。
+要使用音量键快捷方式，请同时按住两个音量键3秒，以启动辅助工具。
 
 另外，如果您愿意，您可以通过命令行来切换 TalkBack：
 

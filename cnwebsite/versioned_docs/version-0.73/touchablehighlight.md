@@ -16,7 +16,7 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import con
 ```jsx
 function MyComponent(props) {
   return (
-    <View {...props} style={{flex: 1, backgroundColor: '#fff'}}>
+    <View {...props} style={{ flex: 1, backgroundColor: '#fff' }}>
       <Text>My Component</Text>
     </View>
   );

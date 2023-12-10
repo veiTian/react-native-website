@@ -5,7 +5,7 @@ title: DynamicColorIOS
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-`DynamicColorIOS`函数是专门针对 iOS 平台的颜色类型。
+`DynamicColorIOS`函数是专门针对iOS平台的颜色类型。
 
 ```tsx
 DynamicColorIOS({
@@ -33,7 +33,7 @@ DynamicColorIOS({
 </TabItem>
 <TabItem value="ios">
 
-> `DynamicColorIOS`函数类似于 iOS 原生方法[`UIColor colorWithDynamicProvider:`](https://developer.apple.com/documentation/uikit/uicolor/3238040-colorwithdynamicprovider)。
+> `DynamicColorIOS`函数类似于iOS原生方法[`UIColor colorWithDynamicProvider:`](https://developer.apple.com/documentation/uikit/uicolor/3238040-colorwithdynamicprovider)。
 
 </TabItem>
 </Tabs>

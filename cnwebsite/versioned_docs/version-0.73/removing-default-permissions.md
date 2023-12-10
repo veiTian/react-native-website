@@ -55,4 +55,5 @@ That's it. We did not remove the `INTERNET` permission as pretty much all apps u
 
 ## 提示
 
-If your App is free to use in the App-Store and there is no "In-App-Purchase" possible in your App, you also can remove: - android.vending.CHECK_LICENSE
+If your App is free to use in the App-Store and there is no "In-App-Purchase" possible in your App, you also can remove: 
+    - android.vending.CHECK_LICENSE

@@ -75,7 +75,7 @@ static showActionSheetWithOptions: (
 - `tintColor`（字符串） - 用于非破坏性按钮标题的颜色（[颜色](colors)）
 - `disabledButtonIndices`（数字数组） - 应禁用的按钮索引列表
 - `userInterfaceStyle`（字符串） - 用于操作表的界面样式，可以设置为 `light` 或 `dark`，否则将使用默认的系统样式
-
+  
 `callback`函数则仅接受一个参数，即所点击按钮的索引。
 
 一个例子：

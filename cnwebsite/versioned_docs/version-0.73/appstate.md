@@ -102,7 +102,8 @@ static addEventListener(
 ): NativeEventSubscription;
 ```
 
-设置一个函数，每当 AppState 上发生指定的事件类型时将被调用。`eventType` 的有效值为[上面列出的事件](#events)。返回 `EventSubscription`。
+设置一个函数，每当AppState上发生指定的事件类型时将被调用。`eventType` 的有效值为[上面列出的事件](#events)。返回 `EventSubscription`。
+
 
 ## 属性
 

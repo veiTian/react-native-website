@@ -69,11 +69,11 @@ RCT_EXPORT_METHOD(addEvent:(NSString *)name location:(NSString *)location)
 现在从 Javascript 里可以这样调用这个方法：
 
 ```jsx
-import {NativeModules} from 'react-native';
+import { NativeModules } from 'react-native';
 const CalendarManager = NativeModules.CalendarManager;
 CalendarManager.addEvent(
   'Birthday Party',
-  '4 Privet Drive, Surrey',
+  '4 Privet Drive, Surrey'
 );
 ```
 
@@ -129,7 +129,7 @@ RCT_EXPORT_METHOD(addEvent:(NSString *)name location:(NSString *)location date:(
 CalendarManager.addEvent(
   'Birthday Party',
   '4 Privet Drive, Surrey',
-  date.getTime(),
+  date.getTime()
 ); // 把日期以unix时间戳形式传递
 ```
 
@@ -139,7 +139,7 @@ CalendarManager.addEvent(
 CalendarManager.addEvent(
   'Birthday Party',
   '4 Privet Drive, Surrey',
-  date.toISOString(),
+  date.toISOString()
 ); // 把日期以ISO-8601的字符串形式传递
 ```
 
@@ -164,7 +164,7 @@ RCT_EXPORT_METHOD(addEvent:(NSString *)name details:(NSDictionary *)details)
 CalendarManager.addEvent('Birthday Party', {
   location: '4 Privet Drive, Surrey',
   time: date.getTime(),
-  description: '...',
+  description: '...'
 });
 ```
 
@@ -195,7 +195,7 @@ CalendarManager.findEvents((error, events) => {
   if (error) {
     console.error(error);
   } else {
-    this.setState({events: events});
+    this.setState({ events: events });
   }
 });
 ```
@@ -234,7 +234,7 @@ async function updateEvents() {
   try {
     const events = await CalendarManager.findEvents();
 
-    this.setState({events});
+    this.setState({ events });
   } catch (e) {
     console.error(e);
   }

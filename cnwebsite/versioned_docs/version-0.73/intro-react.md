@@ -41,7 +41,7 @@ export default Cat;
 
 ```jsx
 import React from 'react';
-import {Text} from 'react-native';
+import { Text } from 'react-native';
 ```
 
 然后一个简单的函数就可以作为一个组件：
@@ -91,7 +91,7 @@ export default Cat;
 你还需要从 React 中引入`Component`：
 
 ```jsx
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 ```
 
 定义组件首先要继承(extends)自`Component`：
@@ -356,13 +356,13 @@ export default Cafe;
 首先要从 react 中引入`useState`：
 
 ```jsx
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 ```
 
 然后可以通过在函数内调用`useState`来为组件声明状态。在本示例中 `useState` 创建了一个 `isHungry` 状态变量：
 
 ```jsx
-const Cat = props => {
+const Cat = (props) => {
   const [isHungry, setIsHungry] = useState(true);
   // ...
 };
@@ -461,14 +461,14 @@ export default  Cafe;
 再次强调，对于 class 组件始终要记得从 React 中引入`Component`：
 
 ```jsx
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 ```
 
 在 class 组件中， state 以对象的形式存放：
 
 ```jsx
 export class Cat extends Component {
-  state = {isHungry: true};
+  state = { isHungry: true };
   //..
 }
 ```
@@ -487,7 +487,7 @@ export class Cat extends Component {
 ```jsx
 <Button
   onPress={() => {
-    this.setState({isHungry: false});
+    this.setState({ isHungry: false });
   }}
 />
 ```

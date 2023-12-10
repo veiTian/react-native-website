@@ -98,7 +98,7 @@ RCT_EXPORT_VIEW_PROPERTY(zoomEnabled, BOOL)
 
 ```jsx
 // MyApp.js
-<MapView zoomEnabled={false} style={{flex: 1}} />
+<MapView zoomEnabled={false} style={{ flex: 1 }} />
 ```
 
 但这样并不能很好的说明这个组件的用法——用户要想知道我们的组件有哪些属性可以用，以及可以取什么样的值，他不得不一路翻到 Objective-C 的代码。要解决这个问题，我们可以创建一个封装组件，并且通过`PropTypes`来说明这个组件的接口。
@@ -107,7 +107,7 @@ RCT_EXPORT_VIEW_PROPERTY(zoomEnabled, BOOL)
 // MapView.js
 import PropTypes from 'prop-types';
 import React from 'react';
-import {requireNativeComponent} from 'react-native';
+import { requireNativeComponent } from 'react-native';
 
 class MapView extends React.Component {
   render() {
@@ -120,7 +120,7 @@ MapView.propTypes = {
    * A Boolean value that determines whether the user may use pinch
    * gestures to zoom in and out of the map.
    */
-  zoomEnabled: PropTypes.bool,
+  zoomEnabled: PropTypes.bool
 };
 
 const RNTMap = requireNativeComponent('RNTMap', MapView);
@@ -246,7 +246,7 @@ render() {
 
 ```jsx
 const RCTSwitch = requireNativeComponent('RCTSwitch', Switch, {
-  nativeOnly: {onChange: true},
+  nativeOnly: { onChange: true }
 });
 ```
 
@@ -423,7 +423,7 @@ class MyNativeView extends React.Component<> {
       ReactNative.findNodeHandle(this),
       UIManager.getViewManagerConfig('RNCMyNativeView').Commands
         .callNativeMethod,
-      [],
+      []
     );
   };
   render() {

@@ -42,3 +42,4 @@ import NewArchitectureWarning from '../\_markdown-new-architecture-warning.mdx';
 关于新架构的技术概述，请看[架构标签](/architecture/overview)。
 
 关于新的 Fabric 渲染器的更多信息，请看[Fabric 部分](/architecture/fabric-renderer)。
+

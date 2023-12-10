@@ -148,9 +148,9 @@ export default App;
 
 ### `accessibilityLanguage` <div class="label ios">iOS</div>
 
-一个指示屏幕阅读器在用户与元素交互时应使用哪种语言的值。它应遵循[BCP 47 规范](https://www.rfc-editor.org/info/bcp47)。
+一个指示屏幕阅读器在用户与元素交互时应使用哪种语言的值。它应遵循[BCP 47规范](https://www.rfc-editor.org/info/bcp47)。
 
-有关更多信息，请参阅[iOS `accessibilityLanguage`文档](<[***/nsobject/1615192-accessibilitylanguage](https://developer.apple.com/documentation/objectivec/nsobject/1615192-accessibilitylanguage)>)。
+有关更多信息，请参阅[iOS `accessibilityLanguage`文档]([***/nsobject/1615192-accessibilitylanguage](https://developer.apple.com/documentation/objectivec/nsobject/1615192-accessibilitylanguage))。
 
 | Type   |
 | ------ |
@@ -165,8 +165,8 @@ export default App;
 有关更多信息，请参阅[无障碍指南](accessibility.md#accessibility-actions)。
 
 | Type  | 必需 |
-| ----- | ---- |
-| array | No   |
+| ----- | -------- |
+| array | No       |
 
 ---
 
@@ -177,8 +177,8 @@ export default App;
 有关更多信息，请参阅[可访问性指南](accessibility.md#accessibility-actions)。
 
 | Type     | 必需 |
-| -------- | ---- |
-| function | No   |
+| -------- | -------- |
+| function | No       |
 
 ---
 

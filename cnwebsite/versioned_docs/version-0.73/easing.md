@@ -13,18 +13,18 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import con
 
 `Easing`模块通过以下几个方法提供了几种预置的动画：
 
-- [`back`](easing.md#back) 提供了一个简单的动画，物体在向前移动之前稍微往后退
-- [`bounce`](easing.md#bounce) 提供了一个弹跳的动画效果
-- [`ease`](easing.md#ease) 提供了一个简单的惯性动画效果
-- [`elastic`](easing.md#elastic) 提供了一个简单的弹簧交互效果
+* [`back`](easing.md#back) 提供了一个简单的动画，物体在向前移动之前稍微往后退
+* [`bounce`](easing.md#bounce) 提供了一个弹跳的动画效果
+* [`ease`](easing.md#ease) 提供了一个简单的惯性动画效果
+* [`elastic`](easing.md#elastic) 提供了一个简单的弹簧交互效果
 
 ### 查看标准函数
 
 目前提供了三种标准缓动函数：
 
-- [`linear`](easing.md#linear)
-- [`quad`](easing.md#quad)
-- [`cubic`](easing.md#cubic)
+* [`linear`](easing.md#linear)
+* [`quad`](easing.md#quad)
+* [`cubic`](easing.md#cubic)
 
 [`poly`](easing.md#poly) 函数可用于实现四次方、五次方和其他更高阶的函数。
 
@@ -32,16 +32,16 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import con
 
 此外还通过以下几个方法提供了几种数学函数：
 
-- [`bezier`](easing.md#bezier) 提供了一个三次贝塞尔曲线
-- [`circle`](easing.md#circle) 提供了一个圆形函数
-- [`sin`](easing.md#sin) 提供了一个正弦函数
-- [`exp`](easing.md#exp) 提供了一个指数函数
+* [`bezier`](easing.md#bezier) 提供了一个三次贝塞尔曲线
+* [`circle`](easing.md#circle) 提供了一个圆形函数
+* [`sin`](easing.md#sin) 提供了一个正弦函数
+* [`exp`](easing.md#exp) 提供了一个指数函数
 
 以下辅助函数用于修改其他缓动函数。
 
-- [`in`](easing.md#in) 正向运行缓动函数
-- [`inOut`](easing.md#inout) 使任何缓动函数对称化
-- [`out`](easing.md#out) 反向运行缓动函数
+* [`in`](easing.md#in) 正向运行缓动函数
+* [`inOut`](easing.md#inout) 使任何缓动函数对称化
+* [`out`](easing.md#out) 反向运行缓动函数
 
 ## 示例
 
@@ -371,7 +371,7 @@ export default App;
 static step0(n: number);
 ```
 
-一个步进函数，对于任何正数的`n`返回 1。
+一个步进函数，对于任何正数的`n`返回1。
 
 ---
 
@@ -381,7 +381,7 @@ static step0(n: number);
 static step1(n: number);
 ```
 
-一个步进函数，如果`n`大于或等于 1，则返回 1。
+一个步进函数，如果`n`大于或等于1，则返回1。
 
 ---
 
@@ -402,7 +402,6 @@ http://cubic-bezier.com/#0,0,1,1
 ```tsx
 static ease(t: number);
 ```
-
 使任何缓动函数成为对称的。缓动函数将在持续时间的前半部分向前运行，然后在剩余时间内向后运行。
 
 http://cubic-bezier.com/#.42,0,1,1
@@ -411,7 +410,7 @@ http://cubic-bezier.com/#.42,0,1,1
 
 ### `quad()`
 
-默认的弹性为 1，会稍微超过一次。0 的弹性不会超过，而大于 1 的弹性将会超过 N 次。
+默认的弹性为1，会稍微超过一次。0的弹性不会超过，而大于1的弹性将会超过N次。
 
 http://easings.net/#easeInElastic
 
@@ -445,7 +444,7 @@ http://easings.net/#easeInBounce
 static bezier(x1: number, y1: number, x2: number, y2: number);
 ```
 
-提供了一个三次贝塞尔曲线，相当于 CSS Transitions 中的`transition-timing-function`。
+提供了一个三次贝塞尔曲线，相当于CSS Transitions中的`transition-timing-function`。
 
 可以在 http://cubic-bezier.com/ 找到一个有用的工具来可视化三次贝塞尔曲线。
 
@@ -456,25 +455,21 @@ static bezier(x1: number, y1: number, x2: number, y2: number);
 ```tsx
 static in(easing: number);
 ```
-
 以正向运行缓动函数。
 
 ---
 
 ### `out()`
-
 ```tsx
 static out(easing: number);
 ```
-
 以反向运行缓动函数。
-
+ 
 ---
+ 
+ ###  `inOut()` 
 
-###  `inOut()`
-
-```tsx
-static inOut (easing：number);
-```
-
+ ``` tsx 
+ static inOut (easing：number);  
+ ```
 使任何缓动函数对称。 缓动函数将在持续时间的前半部分正向运行，然后在剩余时间内反向运行。

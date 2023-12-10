@@ -114,7 +114,7 @@ public class ReactImageManager extends SimpleViewManager<ReactImageView> {
 ```jsx
 // ImageView.js
 
-import {requireNativeComponent} from 'react-native';
+import { requireNativeComponent } from 'react-native';
 
 /**
  * Composes `View`.
@@ -386,7 +386,7 @@ public class MyPackage implements ReactPackage {
 I. `MyViewManager.jsx`
 
 ```jsx
-import {requireNativeComponent} from 'react-native';
+import { requireNativeComponent } from 'react-native';
 export const MyViewManager =
   requireNativeComponent('MyViewManager');
 ```

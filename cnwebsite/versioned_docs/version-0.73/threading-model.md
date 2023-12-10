@@ -53,8 +53,12 @@ React Native 渲染器是线程安全的。从更高的视角看，在框架内�
 
 ![Threading model use case five](https://reactnative.dev/docs/assets/Architecture/threading-model/case-5.jpg)
 
+
+
 ### C++ 状态更新
 
 更新来自 UI 线程，并会跳过渲染步骤。更多细节请参考 React Native 渲染器状态更新。
 
 ![Threading model use case six](https://reactnative.dev/docs/assets/Architecture/threading-model/case-6.jpg)
+
+

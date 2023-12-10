@@ -55,9 +55,9 @@ JavaScript 线程的性能在开发模式下是很糟糕的。这是不可避免
 
 ### `ListView` 首次渲染缓慢或者由于列表很大导致滑动很慢
 
-用新的[`FlatList`](flatlist)或者[`SectionList`](sectionlist)组件替代。除了简化了 API，这些新的列表组件在性能方面都有了极大的提升, 其中最主要的一个是无论列表有多少行，它的内存使用都是常数级的。
+用新的[`FlatList`](flatlist)或者[`SectionList`](sectionlist)组件替代。除了简化了API，这些新的列表组件在性能方面都有了极大的提升, 其中最主要的一个是无论列表有多少行，它的内存使用都是常数级的。
 
-如果你的[`FlatList`](flatlist)渲染得很慢, 请确保你使用了[`getItemLayout`](flatlist.md#getitemlayout)，它通过跳过对 items 的处理来优化你的渲染速度。
+如果你的[`FlatList`](flatlist)渲染得很慢, 请确保你使用了[`getItemLayout`](flatlist.md#getitemlayout)，它通过跳过对items的处理来优化你的渲染速度。
 
 ### 在重绘一个几乎没有什么变化的页面时，JS 帧率严重降低
 
@@ -95,3 +95,4 @@ handleOnPress() {
   });
 }
 ```
+

@@ -27,7 +27,7 @@ title: 其他参考资源
 
 [Yoga](https://yogalayout.com/)是一个独立的布局引擎。它并不局限于 React Native，高度优化的开源布局引擎能让产品工程师为多个平台快速构建布局。该引擎在设计时考虑了速度、大小和易用性。
 
-[Bugsnag](https://www.bugsnag.com/), [Microsoft App Center](https://appcenter.ms/), 以及[Sentry](https://sentry.io/welcome/)都为 React 和 React Native 应用程序提供了出色的崩溃和错误监控服务。通过这些服务，你可以实时主动监控应用程序上发生的崩溃和问题，以便快速修复它们并改善用户体验。
+[Bugsnag](https://www.bugsnag.com/), [Microsoft App Center](https://appcenter.ms/), 以及[Sentry](https://sentry.io/welcome/)都为 React 和  React Native 应用程序提供了出色的崩溃和错误监控服务。通过这些服务，你可以实时主动监控应用程序上发生的崩溃和问题，以便快速修复它们并改善用户体验。
 
 ## React Native 的交流社区
 
@@ -37,6 +37,6 @@ React Native 社区 Facebook[群组](https://www.facebook.com/groups/react.nativ
 
 React[推特账户](https://twitter.com/reactjs)涵盖 React 和 React Native。关注 React Native[推特账户](https://twitter.com/reactnative)和[博客](https://reactnative.dev/blog)，聚焦 React Native 的当下。
 
-世界各地有很多 React Native[聚会](http://www.meetup.com/topics/react-native/)。在 React 聚会中通常也有 React Native 内容。
+世界各地有很多React Native[聚会](http://www.meetup.com/topics/react-native/)。在 React 聚会中通常也有 React Native 内容。
 
 有时我们会有 React 会议。我们发布了[React.js Conf 2017](https://www.youtube.com/playlist?list=PLb0IAmt7-GS3fZ46IGFirdqKTIxlws7e0)和[React.js Conf 2016](https://www.youtube.com/playlist?list=PLb0IAmt7-GS0M8Q95RIc2lOM6nc77q1IY)的视频，未来我们可能还会举办更多会议，敬请关注。您还可以在[此处](http://www.awesome-react-native.com/#conferences)找到专门的 React Native 会议列表。

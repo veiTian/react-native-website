@@ -3,7 +3,7 @@ id: out-of-tree-platforms
 title: 多平台支持
 ---
 
-React Native 不仅适用于 Android 和 iOS - 还有社区支持的项目将其应用于其他平台，例如：
+React Native不仅适用于 Android 和 iOS - 还有社区支持的项目将其应用于其他平台，例如：
 
 - [React Native Windows](https://github.com/Microsoft/react-native-windows) - React Native 支持 Microsoft Universal Windows Platform (UWP) 和 Windows Presentation Foundation (WPF)
 - [React Native DOM](https://github.com/vincentriemer/react-native-dom) - 一个实验性的、全面的 React Native 到 web 的端口。（不要与[React Native Web](https://github.com/necolas/react-native-web)混淆，两者目标不同）
