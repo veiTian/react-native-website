@@ -20,9 +20,19 @@ title: FlatList
 
 ## 示例
 
-```SnackPlayer name=flatlist-simple
+<Tabs groupId="language" queryString defaultValue={constants.dewfaultSnackLanguage} values={constants.snackLanguages}>
+<TabItem value="javascript">
+
+```SnackPlayer name=flatlist-simple&ext=js
 import React from 'react';
-import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar } from 'react-native';
+import {
+  SafeAreaView,
+  View,
+  FlatList,
+  StyleSheet,
+  Text,
+  StatusBar,
+} from 'react-native';
 
 const DATA = [
   {
@@ -39,29 +49,23 @@ const DATA = [
   },
 ];
 
-const Item = ({ title }) => {
-  return (
-    <View style={styles.item}>
-      <Text style={styles.title}>{title}</Text>
-    </View>
-  );
-}
+const Item = ({title}) => (
+  <View style={styles.item}>
+    <Text style={styles.title}>{title}</Text>
+  </View>
+);
 
 const App = () => {
-  const renderItem = ({ item }) => (
-    <Item title={item.title} />
-  );
-
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
         data={DATA}
-        renderItem={renderItem}
+        renderItem={({item}) => <Item title={item.title} />}
         keyExtractor={item => item.id}
       />
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -82,50 +86,133 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-To render multiple columns, use the [`numColumns`](flatlist.md#numcolumns) prop. Using this approach instead of a `flexWrap` layout can prevent conflicts with the item height logic.
+</TabItem>
+<TabItem value="typescript">
 
-下面是一个较复杂的例子，其中演示了如何利用`PureComponent`来进一步优化性能和减少 bug 产生的可能（以下这段文字需要你深刻理解 shouldComponentUpdate 的机制，以及 Component 和 PureComponent 的不同，所以如果不了解就先跳过吧）。
+```SnackPlayer name=flatlist-simple&ext=tsx
+import React from 'react';
+import {
+  SafeAreaView,
+  View,
+  FlatList,
+  StyleSheet,
+  Text,
+  StatusBar,
+} from 'react-native';
+
+const DATA = [
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: 'First Item',
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    title: 'Second Item',
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Third Item',
+  },
+];
+
+type ItemProps = {title: string};
+
+const Item = ({title}: ItemProps) => (
+  <View style={styles.item}>
+    <Text style={styles.title}>{title}</Text>
+  </View>
+);
+
+const App = () => {
+  return (
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={DATA}
+        renderItem={({item}) => <Item title={item.title} />}
+        keyExtractor={item => item.id}
+      />
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: StatusBar.currentHeight || 0,
+  },
+  item: {
+    backgroundColor: '#f9c2ff',
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+  },
+  title: {
+    fontSize: 32,
+  },
+});
+
+export default App;
+```
+
+</TabItem>
+</Tabs>
+
+要呈现多列，请使用 [`numColumns`](flatlist.md#numcolumns) 属性。使用这种方法而不是 `flexWrap` 布局可以防止与项目高度逻辑发生冲突。
+
+下面是一个较复杂的例子，其中演示了如何利用`PureComponent`来进一步优化性能和减少 bug 产生的可能（以下这段文字需要你深刻理解 `shouldComponentUpdate`, `memo` 的机制，以及 `Component` 和 `PureComponent` 的不同，如果不了解就先跳过吧）。
 
 - 对于`MyListItem`组件来说，其`onPressItem`属性使用箭头函数而非 bind 的方式进行绑定，使其不会在每次列表重新 render 时生成一个新的函数，从而保证了 props 的不变性（当然前提是 `id`、`selected`和`title`也没变），不会触发自身无谓的重新 render。换句话说，如果你是用 bind 来绑定`onPressItem`，每次都会生成一个新的函数，导致 props 在`===`比较时返回 false，从而触发自身的一次不必要的重新 render。
 - 给`FlatList`指定`extraData={this.state}`属性，是为了保证`state.selected`变化时，能够正确触发`FlatList`的更新。如果不指定此属性，则`FlatList`不会触发更新，因为它是一个`PureComponent`，其 props 在`===`比较中没有变化则不会触发更新。
 - `keyExtractor`属性指定使用 id 作为列表每一项的 key。
 
-```SnackPlayer name=flatlist-selectable
-import React, { useState } from "react";
-import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
+<Tabs groupId="language" queryString defaultValue={constants.dewfaultSnackLanguage} values={constants.snackLanguages}>
+<TabItem value="javascript">
+
+```SnackPlayer name=flatlist-selectable&ext=js
+import React, {useState} from 'react';
+import {
+  FlatList,
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 
 const DATA = [
   {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    title: "First Item",
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: 'First Item',
   },
   {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    title: "Second Item",
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    title: 'Second Item',
   },
   {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
-    title: "Third Item",
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Third Item',
   },
 ];
 
-const Item = ({ item, onPress, style }) => (
-  <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
-    <Text style={styles.title}>{item.title}</Text>
+const Item = ({item, onPress, backgroundColor, textColor}) => (
+  <TouchableOpacity onPress={onPress} style={[styles.item, {backgroundColor}]}>
+    <Text style={[styles.title, {color: textColor}]}>{item.title}</Text>
   </TouchableOpacity>
 );
 
 const App = () => {
-  const [selectedId, setSelectedId] = useState(null);
+  const [selectedId, setSelectedId] = useState();
 
-  const renderItem = ({ item }) => {
-    const backgroundColor = item.id === selectedId ? "#6e3b6e" : "#f9c2ff";
+  const renderItem = ({item}) => {
+    const backgroundColor = item.id === selectedId ? '#6e3b6e' : '#f9c2ff';
+    const color = item.id === selectedId ? 'white' : 'black';
 
     return (
       <Item
         item={item}
         onPress={() => setSelectedId(item.id)}
-        style={{ backgroundColor }}
+        backgroundColor={backgroundColor}
+        textColor={color}
       />
     );
   };
@@ -135,7 +222,7 @@ const App = () => {
       <FlatList
         data={DATA}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={item => item.id}
         extraData={selectedId}
       />
     </SafeAreaView>
@@ -160,6 +247,103 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
+</TabItem>
+<TabItem value="typescript">
+
+```SnackPlayer name=flatlist-selectable&ext=tsx
+import React, {useState} from 'react';
+import {
+  FlatList,
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
+
+type ItemData = {
+  id: string;
+  title: string;
+};
+
+const DATA: ItemData[] = [
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: 'First Item',
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    title: 'Second Item',
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Third Item',
+  },
+];
+
+type ItemProps = {
+  item: ItemData;
+  onPress: () => void;
+  backgroundColor: string;
+  textColor: string;
+};
+
+const Item = ({item, onPress, backgroundColor, textColor}: ItemProps) => (
+  <TouchableOpacity onPress={onPress} style={[styles.item, {backgroundColor}]}>
+    <Text style={[styles.title, {color: textColor}]}>{item.title}</Text>
+  </TouchableOpacity>
+);
+
+const App = () => {
+  const [selectedId, setSelectedId] = useState<string>();
+
+  const renderItem = ({item}: {item: ItemData}) => {
+    const backgroundColor = item.id === selectedId ? '#6e3b6e' : '#f9c2ff';
+    const color = item.id === selectedId ? 'white' : 'black';
+
+    return (
+      <Item
+        item={item}
+        onPress={() => setSelectedId(item.id)}
+        backgroundColor={backgroundColor}
+        textColor={color}
+      />
+    );
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={DATA}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+        extraData={selectedId}
+      />
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: StatusBar.currentHeight || 0,
+  },
+  item: {
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+  },
+  title: {
+    fontSize: 32,
+  },
+});
+
+export default App;
+```
+
+</TabItem>
+</Tabs>
+
 本组件实质是基于[`<VirtualizedList>`](virtualizedlist.md)组件的封装，继承了其所有 props（也包括所有[`<ScrollView>`](scrollview.md))的 props），但在本文档中没有列出。此外还有下面这些需要注意的事项：
 
 - 当某行滑出渲染区域之外后，其内部状态将不会保留。请确保你在行组件以外的地方保留了数据。
@@ -181,30 +365,38 @@ export default App;
 
 ### <div class="label required basic">必需</div> **`renderItem`**
 
-```jsx
-renderItem({item, index, separators});
+```tsx
+renderItem({
+  item: ItemT,
+  index: number,
+  separators: {
+    highlight: () => void;
+    unhighlight: () => void;
+    updateProps: (select: 'leading' | 'trailing', newProps: any) => void;
+  }
+}): JSX.Element;
 ```
 
-从`data`中挨个取出数据并渲染到列表中。
+从`data`中获取一个项目并将其渲染到列表中。
 
-Provides additional metadata like `index` if you need it, as well as a more generic `separators.updateProps` function which let you set whatever props you want to change the rendering of either the leading separator or trailing separator in case the more common `highlight` and `unhighlight` (which set the `highlighted: boolean` prop) are insufficient for your use case.
+如果需要，提供附加的元数据，如`index`，以及一个更通用的`separators.updateProps`函数，该函数允许您设置要更改前导分隔符或尾随分隔符的渲染的任何属性，以防常见的`highlight`和`unhighlight`（设置`highlighted: boolean`属性）对您的用例不足够。
 
-| 类型     |
+| 类型      |
 | -------- |
-| function |
+| 函数      |
 
-- `item` (Object): The item from `data` being rendered.
-- `index` (number): The index corresponding to this item in the `data` array.
-- `separators` (Object)
-  - `highlight` (Function)
-  - `unhighlight` (Function)
-  - `updateProps` (Function)
-    - `select` (enum('leading', 'trailing'))
-    - `newProps` (Object)
+- `item`（对象）：要渲染的来自`data`的项目。
+- `index`（数字）：在`data`数组中对应于此项目的索引。
+- `separators`（对象）
+  - `highlight`（函数）
+  - `unhighlight`（函数）
+  - `updateProps`（函数）
+    - `select`（枚举('leading', 'trailing')）
+    - `newProps`（对象）
 
-示例：
+示例用法：
 
-```jsx
+```tsx
 <FlatList
   ItemSeparatorComponent={
     Platform.OS !== 'android' &&
@@ -217,6 +409,7 @@ Provides additional metadata like `index` if you need it, as well as a more gene
   data={[{title: 'Title Text', key: 'item1'}]}
   renderItem={({item, index, separators}) => (
     <TouchableHighlight
+      key={item.key}
       onPress={() => this._onPress(item)}
       onShowUnderlay={separators.highlight}
       onHideUnderlay={separators.unhighlight}>
@@ -232,7 +425,7 @@ Provides additional metadata like `index` if you need it, as well as a more gene
 
 ### <div class="label required basic">必需</div> **`data`**
 
-为了简化起见，data 属性目前只支持普通数组。如果需要使用其他特殊数据结构，例如 immutable 数组，请直接使用更底层的[`VirtualizedList`](virtualizedlist.md)组件。
+为了简化起见，data 属性目前只支持普通数组或类数组。如果需要使用其他特殊数据结构，例如 immutable 数组，请直接使用更底层的[`VirtualizedList`](virtualizedlist.md)组件。
 
 | 类型  |
 | ----- |
@@ -242,11 +435,11 @@ Provides additional metadata like `index` if you need it, as well as a more gene
 
 ### `ItemSeparatorComponent`
 
-行与行之间的分隔线组件。不会出现在第一行之前和最后一行之后。 By default, `highlighted` and `leadingItem` props are provided. `renderItem` provides `separators.highlight`/`unhighlight` which will update the `highlighted` prop, but you can also add custom props with `separators.updateProps`.
+在每个项目之间进行渲染，但不在顶部或底部。默认情况下，提供`highlighted`和`leadingItem`属性。`renderItem`提供`separators.highlight`/`unhighlight`，将更新`highlighted`属性，但您还可以使用`separators.updateProps`添加自定义属性。可以是React组件（例如`SomeComponent`），也可以是React元素（例如`<SomeComponent />`）。
 
-| 类型      |
-| --------- |
-| component |
+| 类型                         |
+| ---------------------------- |
+| component, function, element |
 
 ---
 
