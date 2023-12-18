@@ -435,7 +435,7 @@ renderItem({
 
 ### `ItemSeparatorComponent`
 
-在每个项目之间进行渲染，但不在顶部或底部。默认情况下，提供`highlighted`和`leadingItem`属性。`renderItem`提供`separators.highlight`/`unhighlight`，将更新`highlighted`属性，但您还可以使用`separators.updateProps`添加自定义属性。可以是React组件（例如`SomeComponent`），也可以是React元素（例如`<SomeComponent />`）。
+在每个项目之间进行渲染，但不在顶部或底部。默认情况下，提供`highlighted`和`leadingItem`属性。`renderItem`提供`separators.highlight`/`unhighlight`，将更新`highlighted`属性，但您还可以使用`separators.updateProps`添加自定义属性。可以是 React 组件（例如`SomeComponent`），也可以是 React 元素（例如`<SomeComponent />`）。
 
 | 类型                         |
 | ---------------------------- |
@@ -445,7 +445,7 @@ renderItem({
 
 ### `ListEmptyComponent`
 
-列表为空时渲染该组件。可以是 React Component, 也可以是一个 render 函数，或者渲染好的 element。
+列表为空时渲染该组件。可以是 React 组件, 也可以是一个 render 函数，或者是 React 元素。
 
 | 类型                         |
 | ---------------------------- |
@@ -455,7 +455,7 @@ renderItem({
 
 ### `ListFooterComponent`
 
-尾部组件。可以是 React Component, 也可以是一个 render 函数，或者渲染好的 element。
+尾部组件。可以是 React 组件, 也可以是一个 render 函数，或者是 React 元素。
 
 | 类型                         |
 | ---------------------------- |
@@ -463,13 +463,33 @@ renderItem({
 
 ---
 
+### `ListFooterComponentStyle`
+
+`ListFooterComponent` 内部视图的样式。
+
+| 类型                            |
+| ------------------------------ |
+| [视图样式](view-style-props)    |
+
+---
+
 ### `ListHeaderComponent`
 
-头部组件。可以是 React Component, 也可以是一个 render 函数，或者渲染好的 element。
+头部组件。可以是 React 组件, 也可以是一个 render 函数，或者是 React 元素。
 
 | 类型                         |
 | ---------------------------- |
 | component, function, element |
+
+---
+
+### `ListHeaderComponentStyle`
+
+`ListHeaderComponent` 内部视图的样式。
+
+| 类型                           |
+| ------------------------------ |
+| [视图样式](view-style-props) |
 
 ---
 
@@ -495,7 +515,7 @@ renderItem({
 
 ### `getItemLayout`
 
-```jsx
+```tsx
 (data, index) => {length: number, offset: number, index: number}
 ```
 
@@ -634,7 +654,7 @@ renderItem({
 
 ---
 
-### `progressViewOffset` <div class="label android">Android</div>
+### `progressViewOffset`
 
 当需要在指定的偏移处显示加载指示器的时候，就可以设置这个值。
 
@@ -668,22 +688,22 @@ renderItem({
 
 ### `viewabilityConfig`
 
-请参考[`ViewabilityHelper.js`](https://github.com/facebook/react-native/blob/master/Libraries/Lists/ViewabilityHelper.js)的源码来了解具体的配置。
+请参考[`ViewabilityHelper.js`](https://github.com/facebook/react-native/blob/main/packages/react-native/Libraries/Lists/ViewabilityHelper.js)的源码来了解具体的配置。
 
 | 类型              |
 | ----------------- |
 | ViewabilityConfig |
 
-`viewabilityConfig` takes a type `ViewabilityConfig` an object with following properties
+`viewabilityConfig` 接受类型为 `ViewabilityConfig` 的对象，具有以下属性
 
-| 属性                             | 类型    |
-| -------------------------------- | ------- |
-| minimumViewTime                  | number  |
-| viewAreaCoveragePercentThreshold | number  |
-| itemVisiblePercentThreshold      | number  |
-| waitForInteraction               | boolean |
+| 属性                              | 类型    |
+| --------------------------------- | ------- |
+| minimumViewTime                   | number  |
+| viewAreaCoveragePercentThreshold  | number  |
+| itemVisiblePercentThreshold       | number  |
+| waitForInteraction                | boolean |
 
-At least one of the `viewAreaCoveragePercentThreshold` or `itemVisiblePercentThreshold` is required. This needs to be done in the `constructor` to avoid following error ([ref](https://github.com/facebook/react-native/issues/17408)):
+`viewAreaCoveragePercentThreshold` 或 `itemVisiblePercentThreshold` 至少需要其中之一。这需要在 `constructor` 中完成，以避免以下错误（[参考链接](https://github.com/facebook/react-native/issues/17408)）：
 
 ```
   Error: Changing viewabilityConfig on the fly is not supported
@@ -709,29 +729,29 @@ constructor (props) {
 
 #### minimumViewTime
 
-Minimum amount of time (in milliseconds) that an item must be physically viewable before the viewability callback will be fired. A high number means that scrolling through content without stopping will not mark the content as viewable.
+在物品被视为可见之前，物品必须在视觉回调触发之前实际可视的最短时间（以毫秒为单位）。较高的数字意味着滚动内容而不停下不会将内容标记为可见。
 
 #### viewAreaCoveragePercentThreshold
 
-Percent of viewport that must be covered for a partially occluded item to count as "viewable", 0-100. Fully visible items are always considered viewable. A value of 0 means that a single pixel in the viewport makes the item viewable, and a value of 100 means that an item must be either entirely visible or cover the entire viewport to count as viewable.
+视口的百分比，必须覆盖部分遮挡的物品才能算作“可见”，范围为0-100。始终将完全可见的物品视为可见。值为0意味着视口中的单个像素使物品可见，而值为100意味着物品必须完全可见或覆盖整个视口才能算作可见。
 
 #### itemVisiblePercentThreshold
 
-Similar to `viewAreaCoveragePercentThreshold`, but considers the percent of the item that is visible, rather than the fraction of the viewable area it covers.
+与 `viewAreaCoveragePercentThreshold` 类似，但考虑的是物品可见的百分比，而不是它覆盖的可视区域的分数。
 
 #### waitForInteraction
 
-Nothing is considered viewable until the user scrolls or `recordInteraction` is called after render.
+在用户滚动或在渲染后调用 `recordInteraction` 之前，不认为任何内容是可见的。
 
 ---
 
 ### `viewabilityConfigCallbackPairs`
 
-List of `ViewabilityConfig`/`onViewableItemsChanged` pairs. A specific `onViewableItemsChanged` will be called when its corresponding `ViewabilityConfig`'s conditions are met. 请参考[`ViewabilityHelper.js`](https://github.com/facebook/react-native/blob/master/Libraries/Lists/ViewabilityHelper.js)的源码来了解具体的配置。
+`ViewabilityConfig`/`onViewableItemsChanged` 对的列表。当满足其相应的 `ViewabilityConfig` 条件时，将调用特定的 `onViewableItemsChanged`。有关流程类型和进一步文档，请参阅 `ViewabilityHelper.js`。
 
-| 类型                                   |
-| -------------------------------------- | --- |
-| array of ViewabilityConfigCallbackPair | 否  |
+| 类型                                      |
+| --------------------------------------- |
+| `ViewabilityConfigCallbackPair` 数组 |
 
 ## 方法
 
@@ -749,16 +769,21 @@ scrollToEnd([params]);
 | ------ | ------ |
 | params | object |
 
-Valid `params` keys are:
+有效的 `params` 键包括：
 
-- 'animated' (boolean) - Whether the list should do an animation while scrolling. Defaults to `true`.
+- 'animated'（布尔值）- 列表在滚动时是否应执行动画。默认为 `true`。
 
 ---
 
 ### `scrollToIndex()`
 
-```jsx
-scrollToIndex(params);
+```tsx
+scrollToIndex: (params: {
+  index: number;
+  animated?: boolean;
+  viewOffset?: number;
+  viewPosition?: number;
+});
 ```
 
 将位于指定位置的元素滚动到可视区的指定位置，当`viewPosition` 为 0 时将它滚动到屏幕顶部，为 1 时将它滚动到屏幕底部，为 0.5 时将它滚动到屏幕中央。
@@ -771,22 +796,26 @@ scrollToIndex(params);
 | ----------------------------------------------------------- | ------ |
 | params <div className="label basic required">Required</div> | object |
 
-Valid `params` keys are:
+有效的 `params` 键包括：
 
-- 'animated' (boolean) - Whether the list should do an animation while scrolling. Defaults to `true`.
-- 'index' (number) - The index to scroll to. Required.
-- 'viewOffset' (number) - A fixed number of pixels to offset the final target position.
-- 'viewPosition' (number) - A value of `0` places the item specified by index at the top, `1` at the bottom, and `0.5` centered in the middle.
+- 'animated'（布尔值） - 列表在滚动时是否应执行动画。默认为 `true`。
+- 'index'（数字） - 要滚动到的索引。必填项。
+- 'viewOffset'（数字） - 最终目标位置的固定像素偏移量。
+- 'viewPosition'（数字） - 值为 `0` 将索引指定的项放置在顶部，`1` 放置在底部，`0.5` 在中间居中。
 
 ---
 
 ### `scrollToItem()`
 
-```jsx
-scrollToItem(params);
+```tsx
+scrollToItem(params: {
+  animated?: ?boolean,
+  item: Item,
+  viewPosition?: number,
+});
 ```
 
-这个方法会顺序遍历元素。尽可能使用`scrollToIndex`代替。
+这个方法会顺序遍历元素。请尽可能使用`scrollToIndex`代替。
 
 > 注意：如果不设置`getItemLayout`属性的话，无法跳转到当前渲染区域以外的位置。
 
@@ -796,18 +825,21 @@ scrollToItem(params);
 | ----------------------------------------------------------- | ------ |
 | params <div className="label basic required">Required</div> | object |
 
-Valid `params` keys are:
+有效的 `params` 键包括：
 
-- 'animated' (boolean) - Whether the list should do an animation while scrolling. Defaults to `true`.
-- 'item' (object) - The item to scroll to. Required.
-- 'viewPosition' (number)
+- 'animated'（布尔值）- 列表在滚动时是否应执行动画。默认为 `true`。
+- 'item'（对象）- 要滚动到的项目。必需。
+- 'viewPosition'（数字）
 
 ---
 
 ### `scrollToOffset()`
 
-```jsx
-scrollToOffset(params);
+```tsx
+scrollToOffset(params: {
+  offset: number;
+  animated?: boolean;
+});
 ```
 
 滚动列表到指定的偏移（以像素为单位），等同于`ScrollView`的`scrollTo`方法。
@@ -818,20 +850,10 @@ scrollToOffset(params);
 | ----------------------------------------------------------- | ------ |
 | params <div className="label basic required">Required</div> | object |
 
-Valid `params` keys are:
+有效的 `params` 键包括：
 
-- 'offset' (number) - The offset to scroll to. In case of `horizontal` being true, the offset is the x-value, in any other case the offset is the y-value. Required.
-- 'animated' (boolean) - Whether the list should do an animation while scrolling. Defaults to `true`.
-
----
-
-### `recordInteraction()`
-
-```jsx
-recordInteraction();
-```
-
-主动通知列表发生了一个事件，以使列表重新计算可视区域。比如说当`waitForInteractions`为 true 并且用户没有滚动列表时。一般在用户点击了列表项或发生了导航动作时调用。
+- 'offset'（数字）- 要滚动到的偏移量。如果 `horizontal` 为 true，则偏移量为 x 值；在其他任何情况下，偏移量为 y 值。必填。
+- 'animated'（布尔值）- 列表在滚动时是否应执行动画。默认为 `true`。
 
 ---
 
@@ -847,28 +869,28 @@ flashScrollIndicators();
 
 ### `getNativeScrollRef()`
 
-```jsx
-getNativeScrollRef();
+```tsx
+getNativeScrollRef(): React.ElementRef<typeof ScrollViewComponent>;
 ```
 
-Provides a reference to the underlying scroll component
+提供对底层滚动组件的 ref 引用。
 
 ---
 
 ### `getScrollResponder()`
 
-```jsx
-getScrollResponder();
+```tsx
+getScrollResponder(): ScrollResponderMixin;
 ```
 
-Provides a handle to the underlying scroll responder.
+提供对底层滚动响应器的引用。
 
 ---
 
 ### `getScrollableNode()`
 
-```jsx
-getScrollableNode();
+```tsx
+getScrollableNode(): any;
 ```
 
-Provides a handle to the underlying scroll node.
+提供对底层滚动节点的引用。
