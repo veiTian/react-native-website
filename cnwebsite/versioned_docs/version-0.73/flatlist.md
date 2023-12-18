@@ -20,9 +20,19 @@ title: FlatList
 
 ## 示例
 
-```SnackPlayer name=flatlist-simple
+<Tabs groupId="language" queryString defaultValue={constants.dewfaultSnackLanguage} values={constants.snackLanguages}>
+<TabItem value="javascript">
+
+```SnackPlayer name=flatlist-simple&ext=js
 import React from 'react';
-import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar } from 'react-native';
+import {
+  SafeAreaView,
+  View,
+  FlatList,
+  StyleSheet,
+  Text,
+  StatusBar,
+} from 'react-native';
 
 const DATA = [
   {
@@ -39,29 +49,23 @@ const DATA = [
   },
 ];
 
-const Item = ({ title }) => {
-  return (
-    <View style={styles.item}>
-      <Text style={styles.title}>{title}</Text>
-    </View>
-  );
-}
+const Item = ({title}) => (
+  <View style={styles.item}>
+    <Text style={styles.title}>{title}</Text>
+  </View>
+);
 
 const App = () => {
-  const renderItem = ({ item }) => (
-    <Item title={item.title} />
-  );
-
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
         data={DATA}
-        renderItem={renderItem}
+        renderItem={({item}) => <Item title={item.title} />}
         keyExtractor={item => item.id}
       />
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -82,50 +86,133 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
-To render multiple columns, use the [`numColumns`](flatlist.md#numcolumns) prop. Using this approach instead of a `flexWrap` layout can prevent conflicts with the item height logic.
+</TabItem>
+<TabItem value="typescript">
 
-下面是一个较复杂的例子，其中演示了如何利用`PureComponent`来进一步优化性能和减少 bug 产生的可能（以下这段文字需要你深刻理解 shouldComponentUpdate 的机制，以及 Component 和 PureComponent 的不同，所以如果不了解就先跳过吧）。
+```SnackPlayer name=flatlist-simple&ext=tsx
+import React from 'react';
+import {
+  SafeAreaView,
+  View,
+  FlatList,
+  StyleSheet,
+  Text,
+  StatusBar,
+} from 'react-native';
+
+const DATA = [
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: 'First Item',
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    title: 'Second Item',
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Third Item',
+  },
+];
+
+type ItemProps = {title: string};
+
+const Item = ({title}: ItemProps) => (
+  <View style={styles.item}>
+    <Text style={styles.title}>{title}</Text>
+  </View>
+);
+
+const App = () => {
+  return (
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={DATA}
+        renderItem={({item}) => <Item title={item.title} />}
+        keyExtractor={item => item.id}
+      />
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: StatusBar.currentHeight || 0,
+  },
+  item: {
+    backgroundColor: '#f9c2ff',
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+  },
+  title: {
+    fontSize: 32,
+  },
+});
+
+export default App;
+```
+
+</TabItem>
+</Tabs>
+
+要呈现多列，请使用 [`numColumns`](flatlist.md#numcolumns) 属性。使用这种方法而不是 `flexWrap` 布局可以防止与项目高度逻辑发生冲突。
+
+下面是一个较复杂的例子，其中演示了如何利用`PureComponent`来进一步优化性能和减少 bug 产生的可能（以下这段文字需要你深刻理解 `shouldComponentUpdate`, `memo` 的机制，以及 `Component` 和 `PureComponent` 的不同，如果不了解就先跳过吧）。
 
 - 对于`MyListItem`组件来说，其`onPressItem`属性使用箭头函数而非 bind 的方式进行绑定，使其不会在每次列表重新 render 时生成一个新的函数，从而保证了 props 的不变性（当然前提是 `id`、`selected`和`title`也没变），不会触发自身无谓的重新 render。换句话说，如果你是用 bind 来绑定`onPressItem`，每次都会生成一个新的函数，导致 props 在`===`比较时返回 false，从而触发自身的一次不必要的重新 render。
 - 给`FlatList`指定`extraData={this.state}`属性，是为了保证`state.selected`变化时，能够正确触发`FlatList`的更新。如果不指定此属性，则`FlatList`不会触发更新，因为它是一个`PureComponent`，其 props 在`===`比较中没有变化则不会触发更新。
 - `keyExtractor`属性指定使用 id 作为列表每一项的 key。
 
-```SnackPlayer name=flatlist-selectable
-import React, { useState } from "react";
-import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity } from "react-native";
+<Tabs groupId="language" queryString defaultValue={constants.dewfaultSnackLanguage} values={constants.snackLanguages}>
+<TabItem value="javascript">
+
+```SnackPlayer name=flatlist-selectable&ext=js
+import React, {useState} from 'react';
+import {
+  FlatList,
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 
 const DATA = [
   {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    title: "First Item",
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: 'First Item',
   },
   {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    title: "Second Item",
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    title: 'Second Item',
   },
   {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
-    title: "Third Item",
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Third Item',
   },
 ];
 
-const Item = ({ item, onPress, style }) => (
-  <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
-    <Text style={styles.title}>{item.title}</Text>
+const Item = ({item, onPress, backgroundColor, textColor}) => (
+  <TouchableOpacity onPress={onPress} style={[styles.item, {backgroundColor}]}>
+    <Text style={[styles.title, {color: textColor}]}>{item.title}</Text>
   </TouchableOpacity>
 );
 
 const App = () => {
-  const [selectedId, setSelectedId] = useState(null);
+  const [selectedId, setSelectedId] = useState();
 
-  const renderItem = ({ item }) => {
-    const backgroundColor = item.id === selectedId ? "#6e3b6e" : "#f9c2ff";
+  const renderItem = ({item}) => {
+    const backgroundColor = item.id === selectedId ? '#6e3b6e' : '#f9c2ff';
+    const color = item.id === selectedId ? 'white' : 'black';
 
     return (
       <Item
         item={item}
         onPress={() => setSelectedId(item.id)}
-        style={{ backgroundColor }}
+        backgroundColor={backgroundColor}
+        textColor={color}
       />
     );
   };
@@ -135,7 +222,7 @@ const App = () => {
       <FlatList
         data={DATA}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={item => item.id}
         extraData={selectedId}
       />
     </SafeAreaView>
@@ -160,6 +247,103 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
+</TabItem>
+<TabItem value="typescript">
+
+```SnackPlayer name=flatlist-selectable&ext=tsx
+import React, {useState} from 'react';
+import {
+  FlatList,
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
+
+type ItemData = {
+  id: string;
+  title: string;
+};
+
+const DATA: ItemData[] = [
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: 'First Item',
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    title: 'Second Item',
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Third Item',
+  },
+];
+
+type ItemProps = {
+  item: ItemData;
+  onPress: () => void;
+  backgroundColor: string;
+  textColor: string;
+};
+
+const Item = ({item, onPress, backgroundColor, textColor}: ItemProps) => (
+  <TouchableOpacity onPress={onPress} style={[styles.item, {backgroundColor}]}>
+    <Text style={[styles.title, {color: textColor}]}>{item.title}</Text>
+  </TouchableOpacity>
+);
+
+const App = () => {
+  const [selectedId, setSelectedId] = useState<string>();
+
+  const renderItem = ({item}: {item: ItemData}) => {
+    const backgroundColor = item.id === selectedId ? '#6e3b6e' : '#f9c2ff';
+    const color = item.id === selectedId ? 'white' : 'black';
+
+    return (
+      <Item
+        item={item}
+        onPress={() => setSelectedId(item.id)}
+        backgroundColor={backgroundColor}
+        textColor={color}
+      />
+    );
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={DATA}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+        extraData={selectedId}
+      />
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: StatusBar.currentHeight || 0,
+  },
+  item: {
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+  },
+  title: {
+    fontSize: 32,
+  },
+});
+
+export default App;
+```
+
+</TabItem>
+</Tabs>
+
 本组件实质是基于[`<VirtualizedList>`](virtualizedlist.md)组件的封装，继承了其所有 props（也包括所有[`<ScrollView>`](scrollview.md))的 props），但在本文档中没有列出。此外还有下面这些需要注意的事项：
 
 - 当某行滑出渲染区域之外后，其内部状态将不会保留。请确保你在行组件以外的地方保留了数据。
@@ -181,30 +365,38 @@ export default App;
 
 ### <div class="label required basic">必需</div> **`renderItem`**
 
-```jsx
-renderItem({item, index, separators});
+```tsx
+renderItem({
+  item: ItemT,
+  index: number,
+  separators: {
+    highlight: () => void;
+    unhighlight: () => void;
+    updateProps: (select: 'leading' | 'trailing', newProps: any) => void;
+  }
+}): JSX.Element;
 ```
 
-从`data`中挨个取出数据并渲染到列表中。
+从`data`中获取一个项目并将其渲染到列表中。
 
-Provides additional metadata like `index` if you need it, as well as a more generic `separators.updateProps` function which let you set whatever props you want to change the rendering of either the leading separator or trailing separator in case the more common `highlight` and `unhighlight` (which set the `highlighted: boolean` prop) are insufficient for your use case.
+如果需要，提供附加的元数据，如`index`，以及一个更通用的`separators.updateProps`函数，该函数允许您设置要更改前导分隔符或尾随分隔符的渲染的任何属性，以防常见的`highlight`和`unhighlight`（设置`highlighted: boolean`属性）对您的用例不足够。
 
-| 类型     |
+| 类型      |
 | -------- |
-| function |
+| 函数      |
 
-- `item` (Object): The item from `data` being rendered.
-- `index` (number): The index corresponding to this item in the `data` array.
-- `separators` (Object)
-  - `highlight` (Function)
-  - `unhighlight` (Function)
-  - `updateProps` (Function)
-    - `select` (enum('leading', 'trailing'))
-    - `newProps` (Object)
+- `item`（对象）：要渲染的来自`data`的项目。
+- `index`（数字）：在`data`数组中对应于此项目的索引。
+- `separators`（对象）
+  - `highlight`（函数）
+  - `unhighlight`（函数）
+  - `updateProps`（函数）
+    - `select`（枚举('leading', 'trailing')）
+    - `newProps`（对象）
 
-示例：
+示例用法：
 
-```jsx
+```tsx
 <FlatList
   ItemSeparatorComponent={
     Platform.OS !== 'android' &&
@@ -217,6 +409,7 @@ Provides additional metadata like `index` if you need it, as well as a more gene
   data={[{title: 'Title Text', key: 'item1'}]}
   renderItem={({item, index, separators}) => (
     <TouchableHighlight
+      key={item.key}
       onPress={() => this._onPress(item)}
       onShowUnderlay={separators.highlight}
       onHideUnderlay={separators.unhighlight}>
@@ -232,7 +425,7 @@ Provides additional metadata like `index` if you need it, as well as a more gene
 
 ### <div class="label required basic">必需</div> **`data`**
 
-为了简化起见，data 属性目前只支持普通数组。如果需要使用其他特殊数据结构，例如 immutable 数组，请直接使用更底层的[`VirtualizedList`](virtualizedlist.md)组件。
+为了简化起见，data 属性目前只支持普通数组或类数组。如果需要使用其他特殊数据结构，例如 immutable 数组，请直接使用更底层的[`VirtualizedList`](virtualizedlist.md)组件。
 
 | 类型  |
 | ----- |
@@ -242,17 +435,17 @@ Provides additional metadata like `index` if you need it, as well as a more gene
 
 ### `ItemSeparatorComponent`
 
-行与行之间的分隔线组件。不会出现在第一行之前和最后一行之后。 By default, `highlighted` and `leadingItem` props are provided. `renderItem` provides `separators.highlight`/`unhighlight` which will update the `highlighted` prop, but you can also add custom props with `separators.updateProps`.
+在每个项目之间进行渲染，但不在顶部或底部。默认情况下，提供`highlighted`和`leadingItem`属性。`renderItem`提供`separators.highlight`/`unhighlight`，将更新`highlighted`属性，但您还可以使用`separators.updateProps`添加自定义属性。可以是 React 组件（例如`SomeComponent`），也可以是 React 元素（例如`<SomeComponent />`）。
 
-| 类型      |
-| --------- |
-| component |
+| 类型                         |
+| ---------------------------- |
+| component, function, element |
 
 ---
 
 ### `ListEmptyComponent`
 
-列表为空时渲染该组件。可以是 React Component, 也可以是一个 render 函数，或者渲染好的 element。
+列表为空时渲染该组件。可以是 React 组件, 也可以是一个 render 函数，或者是 React 元素。
 
 | 类型                         |
 | ---------------------------- |
@@ -262,7 +455,7 @@ Provides additional metadata like `index` if you need it, as well as a more gene
 
 ### `ListFooterComponent`
 
-尾部组件。可以是 React Component, 也可以是一个 render 函数，或者渲染好的 element。
+尾部组件。可以是 React 组件, 也可以是一个 render 函数，或者是 React 元素。
 
 | 类型                         |
 | ---------------------------- |
@@ -270,13 +463,33 @@ Provides additional metadata like `index` if you need it, as well as a more gene
 
 ---
 
+### `ListFooterComponentStyle`
+
+`ListFooterComponent` 内部视图的样式。
+
+| 类型                            |
+| ------------------------------ |
+| [视图样式](view-style-props)    |
+
+---
+
 ### `ListHeaderComponent`
 
-头部组件。可以是 React Component, 也可以是一个 render 函数，或者渲染好的 element。
+头部组件。可以是 React 组件, 也可以是一个 render 函数，或者是 React 元素。
 
 | 类型                         |
 | ---------------------------- |
 | component, function, element |
+
+---
+
+### `ListHeaderComponentStyle`
+
+`ListHeaderComponent` 内部视图的样式。
+
+| 类型                           |
+| ------------------------------ |
+| [视图样式](view-style-props) |
 
 ---
 
@@ -302,7 +515,7 @@ Provides additional metadata like `index` if you need it, as well as a more gene
 
 ### `getItemLayout`
 
-```jsx
+```tsx
 (data, index) => {length: number, offset: number, index: number}
 ```
 
@@ -441,7 +654,7 @@ Provides additional metadata like `index` if you need it, as well as a more gene
 
 ---
 
-### `progressViewOffset` <div class="label android">Android</div>
+### `progressViewOffset`
 
 当需要在指定的偏移处显示加载指示器的时候，就可以设置这个值。
 
@@ -475,22 +688,22 @@ Provides additional metadata like `index` if you need it, as well as a more gene
 
 ### `viewabilityConfig`
 
-请参考[`ViewabilityHelper.js`](https://github.com/facebook/react-native/blob/master/Libraries/Lists/ViewabilityHelper.js)的源码来了解具体的配置。
+请参考[`ViewabilityHelper.js`](https://github.com/facebook/react-native/blob/main/packages/react-native/Libraries/Lists/ViewabilityHelper.js)的源码来了解具体的配置。
 
 | 类型              |
 | ----------------- |
 | ViewabilityConfig |
 
-`viewabilityConfig` takes a type `ViewabilityConfig` an object with following properties
+`viewabilityConfig` 接受类型为 `ViewabilityConfig` 的对象，具有以下属性
 
-| 属性                             | 类型    |
-| -------------------------------- | ------- |
-| minimumViewTime                  | number  |
-| viewAreaCoveragePercentThreshold | number  |
-| itemVisiblePercentThreshold      | number  |
-| waitForInteraction               | boolean |
+| 属性                              | 类型    |
+| --------------------------------- | ------- |
+| minimumViewTime                   | number  |
+| viewAreaCoveragePercentThreshold  | number  |
+| itemVisiblePercentThreshold       | number  |
+| waitForInteraction                | boolean |
 
-At least one of the `viewAreaCoveragePercentThreshold` or `itemVisiblePercentThreshold` is required. This needs to be done in the `constructor` to avoid following error ([ref](https://github.com/facebook/react-native/issues/17408)):
+`viewAreaCoveragePercentThreshold` 或 `itemVisiblePercentThreshold` 至少需要其中之一。这需要在 `constructor` 中完成，以避免以下错误（[参考链接](https://github.com/facebook/react-native/issues/17408)）：
 
 ```
   Error: Changing viewabilityConfig on the fly is not supported
@@ -516,29 +729,29 @@ constructor (props) {
 
 #### minimumViewTime
 
-Minimum amount of time (in milliseconds) that an item must be physically viewable before the viewability callback will be fired. A high number means that scrolling through content without stopping will not mark the content as viewable.
+在物品被视为可见之前，物品必须在视觉回调触发之前实际可视的最短时间（以毫秒为单位）。较高的数字意味着滚动内容而不停下不会将内容标记为可见。
 
 #### viewAreaCoveragePercentThreshold
 
-Percent of viewport that must be covered for a partially occluded item to count as "viewable", 0-100. Fully visible items are always considered viewable. A value of 0 means that a single pixel in the viewport makes the item viewable, and a value of 100 means that an item must be either entirely visible or cover the entire viewport to count as viewable.
+视口的百分比，必须覆盖部分遮挡的物品才能算作“可见”，范围为0-100。始终将完全可见的物品视为可见。值为0意味着视口中的单个像素使物品可见，而值为100意味着物品必须完全可见或覆盖整个视口才能算作可见。
 
 #### itemVisiblePercentThreshold
 
-Similar to `viewAreaCoveragePercentThreshold`, but considers the percent of the item that is visible, rather than the fraction of the viewable area it covers.
+与 `viewAreaCoveragePercentThreshold` 类似，但考虑的是物品可见的百分比，而不是它覆盖的可视区域的分数。
 
 #### waitForInteraction
 
-Nothing is considered viewable until the user scrolls or `recordInteraction` is called after render.
+在用户滚动或在渲染后调用 `recordInteraction` 之前，不认为任何内容是可见的。
 
 ---
 
 ### `viewabilityConfigCallbackPairs`
 
-List of `ViewabilityConfig`/`onViewableItemsChanged` pairs. A specific `onViewableItemsChanged` will be called when its corresponding `ViewabilityConfig`'s conditions are met. 请参考[`ViewabilityHelper.js`](https://github.com/facebook/react-native/blob/master/Libraries/Lists/ViewabilityHelper.js)的源码来了解具体的配置。
+`ViewabilityConfig`/`onViewableItemsChanged` 对的列表。当满足其相应的 `ViewabilityConfig` 条件时，将调用特定的 `onViewableItemsChanged`。有关流程类型和进一步文档，请参阅 `ViewabilityHelper.js`。
 
-| 类型                                   |
-| -------------------------------------- | --- |
-| array of ViewabilityConfigCallbackPair | 否  |
+| 类型                                      |
+| --------------------------------------- |
+| `ViewabilityConfigCallbackPair` 数组 |
 
 ## 方法
 
@@ -556,16 +769,21 @@ scrollToEnd([params]);
 | ------ | ------ |
 | params | object |
 
-Valid `params` keys are:
+有效的 `params` 键包括：
 
-- 'animated' (boolean) - Whether the list should do an animation while scrolling. Defaults to `true`.
+- 'animated'（布尔值）- 列表在滚动时是否应执行动画。默认为 `true`。
 
 ---
 
 ### `scrollToIndex()`
 
-```jsx
-scrollToIndex(params);
+```tsx
+scrollToIndex: (params: {
+  index: number;
+  animated?: boolean;
+  viewOffset?: number;
+  viewPosition?: number;
+});
 ```
 
 将位于指定位置的元素滚动到可视区的指定位置，当`viewPosition` 为 0 时将它滚动到屏幕顶部，为 1 时将它滚动到屏幕底部，为 0.5 时将它滚动到屏幕中央。
@@ -578,22 +796,26 @@ scrollToIndex(params);
 | ----------------------------------------------------------- | ------ |
 | params <div className="label basic required">Required</div> | object |
 
-Valid `params` keys are:
+有效的 `params` 键包括：
 
-- 'animated' (boolean) - Whether the list should do an animation while scrolling. Defaults to `true`.
-- 'index' (number) - The index to scroll to. Required.
-- 'viewOffset' (number) - A fixed number of pixels to offset the final target position.
-- 'viewPosition' (number) - A value of `0` places the item specified by index at the top, `1` at the bottom, and `0.5` centered in the middle.
+- 'animated'（布尔值） - 列表在滚动时是否应执行动画。默认为 `true`。
+- 'index'（数字） - 要滚动到的索引。必填项。
+- 'viewOffset'（数字） - 最终目标位置的固定像素偏移量。
+- 'viewPosition'（数字） - 值为 `0` 将索引指定的项放置在顶部，`1` 放置在底部，`0.5` 在中间居中。
 
 ---
 
 ### `scrollToItem()`
 
-```jsx
-scrollToItem(params);
+```tsx
+scrollToItem(params: {
+  animated?: ?boolean,
+  item: Item,
+  viewPosition?: number,
+});
 ```
 
-这个方法会顺序遍历元素。尽可能使用`scrollToIndex`代替。
+这个方法会顺序遍历元素。请尽可能使用`scrollToIndex`代替。
 
 > 注意：如果不设置`getItemLayout`属性的话，无法跳转到当前渲染区域以外的位置。
 
@@ -603,18 +825,21 @@ scrollToItem(params);
 | ----------------------------------------------------------- | ------ |
 | params <div className="label basic required">Required</div> | object |
 
-Valid `params` keys are:
+有效的 `params` 键包括：
 
-- 'animated' (boolean) - Whether the list should do an animation while scrolling. Defaults to `true`.
-- 'item' (object) - The item to scroll to. Required.
-- 'viewPosition' (number)
+- 'animated'（布尔值）- 列表在滚动时是否应执行动画。默认为 `true`。
+- 'item'（对象）- 要滚动到的项目。必需。
+- 'viewPosition'（数字）
 
 ---
 
 ### `scrollToOffset()`
 
-```jsx
-scrollToOffset(params);
+```tsx
+scrollToOffset(params: {
+  offset: number;
+  animated?: boolean;
+});
 ```
 
 滚动列表到指定的偏移（以像素为单位），等同于`ScrollView`的`scrollTo`方法。
@@ -625,20 +850,10 @@ scrollToOffset(params);
 | ----------------------------------------------------------- | ------ |
 | params <div className="label basic required">Required</div> | object |
 
-Valid `params` keys are:
+有效的 `params` 键包括：
 
-- 'offset' (number) - The offset to scroll to. In case of `horizontal` being true, the offset is the x-value, in any other case the offset is the y-value. Required.
-- 'animated' (boolean) - Whether the list should do an animation while scrolling. Defaults to `true`.
-
----
-
-### `recordInteraction()`
-
-```jsx
-recordInteraction();
-```
-
-主动通知列表发生了一个事件，以使列表重新计算可视区域。比如说当`waitForInteractions`为 true 并且用户没有滚动列表时。一般在用户点击了列表项或发生了导航动作时调用。
+- 'offset'（数字）- 要滚动到的偏移量。如果 `horizontal` 为 true，则偏移量为 x 值；在其他任何情况下，偏移量为 y 值。必填。
+- 'animated'（布尔值）- 列表在滚动时是否应执行动画。默认为 `true`。
 
 ---
 
@@ -654,28 +869,28 @@ flashScrollIndicators();
 
 ### `getNativeScrollRef()`
 
-```jsx
-getNativeScrollRef();
+```tsx
+getNativeScrollRef(): React.ElementRef<typeof ScrollViewComponent>;
 ```
 
-Provides a reference to the underlying scroll component
+提供对底层滚动组件的 ref 引用。
 
 ---
 
 ### `getScrollResponder()`
 
-```jsx
-getScrollResponder();
+```tsx
+getScrollResponder(): ScrollResponderMixin;
 ```
 
-Provides a handle to the underlying scroll responder.
+提供对底层滚动响应器的引用。
 
 ---
 
 ### `getScrollableNode()`
 
-```jsx
-getScrollableNode();
+```tsx
+getScrollableNode(): any;
 ```
 
-Provides a handle to the underlying scroll node.
+提供对底层滚动节点的引用。
