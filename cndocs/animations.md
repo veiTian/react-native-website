@@ -661,7 +661,7 @@ const styles = StyleSheet.create({
 
 ### 启用原生动画驱动
 
-`Animated`的 API 是可序列化的（即可转化为字符串表达以便通信或存储）。通过启用[原生驱动](http://facebook.github.io/react-native/blog/2017/02/14/using-native-driver-for-animated.html)，我们在启动动画前就把其所有配置信息都发送到原生端，利用原生代码在 UI 线程执行动画，而不用每一帧都在两端间来回沟通。如此一来，动画一开始就完全脱离了 JS 线程，因此此时即便 JS 线程被卡住，也不会影响到动画了。
+`Animated`的 API 是可序列化的（即可转化为字符串表达以便通信或存储）。通过启用原生驱动，我们在启动动画前就把其所有配置信息都发送到原生端，利用原生代码在 UI 线程执行动画，而不用每一帧都在两端间来回沟通。如此一来，动画一开始就完全脱离了 JS 线程，因此此时即便 JS 线程被卡住，也不会影响到动画了。
 
 在动画中启用原生驱动非常简单。只需在开始动画之前，在动画配置中加入一行`useNativeDriver: true`，如下所示：
 
@@ -819,4 +819,4 @@ const styles = StyleSheet.create({
 
 如果我们要更新的组件有一个非常深的内嵌结构，并且没有使用`shouldComponentUpdate`来优化，那么使用`setNativeProps`就将大有裨益。
 
-如果你发现你的动画丢帧（低于 60 帧每秒），可以尝试使用`setNativeProps`或者`shouldComponentUpdate`来优化它们。Or you could run the animations on the UI thread rather than the JavaScript thread [with the useNativeDriver option](http://facebook.github.io/react-native/blog/2017/02/14/using-native-driver-for-animated.html). 你还可以考虑将部分计算工作放在动画完成之后进行，这时可以使用[InteractionManager](interactionmanager)。你还可以使用应用内的开发者菜单中的“FPS Monitor”工具来监控应用的帧率。
+如果你发现你的动画丢帧（低于 60 帧每秒），可以尝试使用`setNativeProps`或者`shouldComponentUpdate`来优化它们。或者可以在 UI 线程上运行动画，而不是在 JavaScript 线程上使用 `useNativeDriver` 选项。你还可以考虑将部分计算工作放在动画完成之后进行，这时可以使用[InteractionManager](interactionmanager)。你还可以使用应用内的开发者菜单中的“FPS Monitor”工具来监控应用的帧率。
