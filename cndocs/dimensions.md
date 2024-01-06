@@ -26,104 +26,61 @@ const windowHeight = Dimensions.get('window').height;
 
 ## 示例
 
-<Tabs groupId="syntax" defaultValue={constants.defaultSyntax} values={constants.syntax}>
-<TabItem value="functional">
-
 ```SnackPlayer name=Dimensions
-import React, { useState, useEffect } from "react";
-import { View, StyleSheet, Text, Dimensions } from "react-native";
+import React, {useState, useEffect} from 'react';
+import {View, StyleSheet, Text, Dimensions} from 'react-native';
 
-const window = Dimensions.get("window");
-const screen = Dimensions.get("screen");
+const windowDimensions = Dimensions.get('window');
+const screenDimensions = Dimensions.get('screen');
 
 const App = () => {
-  const [dimensions, setDimensions] = useState({ window, screen });
-
-  const onChange = ({ window, screen }) => {
-    setDimensions({ window, screen });
-  };
+  const [dimensions, setDimensions] = useState({
+    window: windowDimensions,
+    screen: screenDimensions,
+  });
 
   useEffect(() => {
-    Dimensions.addEventListener("change", onChange);
-    return () => {
-      Dimensions.removeEventListener("change", onChange);
-    };
+    const subscription = Dimensions.addEventListener(
+      'change',
+      ({window, screen}) => {
+        setDimensions({window, screen});
+      },
+    );
+    return () => subscription?.remove();
   });
 
   return (
     <View style={styles.container}>
-      <Text>{`Window Dimensions: height - ${dimensions.window.height}, width - ${dimensions.window.width}`}</Text>
-      <Text>{`Screen Dimensions: height - ${dimensions.screen.height}, width - ${dimensions.screen.width}`}</Text>
+      <Text style={styles.header}>Window Dimensions</Text>
+      {Object.entries(dimensions.window).map(([key, value]) => (
+        <Text>
+          {key} - {value}
+        </Text>
+      ))}
+      <Text style={styles.header}>Screen Dimensions</Text>
+      {Object.entries(dimensions.screen).map(([key, value]) => (
+        <Text>
+          {key} - {value}
+        </Text>
+      ))}
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
-  }
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  header: {
+    fontSize: 16,
+    marginVertical: 10,
+  },
 });
 
 export default App;
 ```
-
-</TabItem>
-<TabItem value="classical">
-
-```SnackPlayer name=Dimensions
-import React, { Component } from "react";
-import { View, StyleSheet, Text, Dimensions } from "react-native";
-
-const window = Dimensions.get("window");
-const screen = Dimensions.get("screen");
-
-class App extends Component {
-  state = {
-    dimensions: {
-      window,
-      screen
-    }
-  };
-
-  onChange = ({ window, screen }) => {
-    this.setState({ dimensions: { window, screen } });
-  };
-
-  componentDidMount() {
-    Dimensions.addEventListener("change", this.onChange);
-  }
-
-  componentWillUnmount() {
-    Dimensions.removeEventListener("change", this.onChange);
-  }
-
-  render() {
-    const { dimensions } = this.state;
-
-    return (
-      <View style={styles.container}>
-        <Text>{`Window Dimensions: height - ${dimensions.window.height}, width - ${dimensions.window.width}`}</Text>
-        <Text>{`Screen Dimensions: height - ${dimensions.screen.height}, width - ${dimensions.screen.width}`}</Text>
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
-  }
-});
-
-export default App;
-```
-
-</TabItem>
-</Tabs>
 
 ---
 
@@ -133,84 +90,62 @@ export default App;
 
 ### `addEventListener()`
 
-```jsx
-static addEventListener(type, handler)
+```tsx
+static addEventListener(
+  type: 'change',
+  handler: ({
+    window,
+    screen,
+  }: DimensionsValue) => void,
+): EmitterSubscription;
 ```
 
 添加一个事件监听函数。目前支持的事件有：
 
-- `change`: Fires when a property within the `Dimensions` object changes. The argument to the event handler is an object with `window` and `screen` properties whose values are the same as the return values of `Dimensions.get('window')` and `Dimensions.get('screen')`, respectively.
-  - `window` - Size of the visible Application window
-  - `screen` - Size of the device's screen
+- `change`：在`Dimensions`对象内部的属性发生变化时触发。事件处理程序的参数是一个[`DimensionsValue`](#dimensionsvalue)类型的对象。
 
 ---
 
 ### `get()`
 
-```jsx
-static get(dim)
+```tsx
+static get(dim: 'window' | 'screen'): ScaledSize;
 ```
 
-初始的尺寸信息应该在`runApplication`之后被执行，这样才可以在任何其他的 require 被执行之前使用。不过在稍后可能还会更新。
+初始尺寸在调用 `runApplication` 之前设置，因此在运行任何其他 require 之前应该可用，但可能会在之后更新。
 
-示例： `const {height, width} = Dimensions.get('window');`
+示例：`const {height, width} = Dimensions.get('window');`
 
-**参数：**
+**参数:**
 
-| 名称                                                               | 类型   | 说明                                                                       |
+| 名称                                                               | 类型   | 描述                                                                              |
 | ------------------------------------------------------------------ | ------ | --------------------------------------------------------------------------------- |
-| dim <div className="label basic required two-lines">Required</div> | string | Name of dimension as defined when calling `set`. Returns value for the dimension. |
+| dim <div className="label basic required two-lines">必需</div>     | 字符串 | 调用 `set` 时定义的尺寸的名称。返回该尺寸的值。                                   |
 
-> For Android the `window` dimension will exclude the size used by the `status bar` (if not translucent) and `bottom navigation bar`
-
----
-
-### `removeEventListener()`
-
-```jsx
-static removeEventListener(type, handler)
-```
-
-> **Deprecated.** Use the `remove()` method on the event subscription returned by [`addEventListener()`](#addeventlistener).
+> 对于 Android，`window` 尺寸将不包括 `状态栏`（如果不透明）和 `底部导航栏` 占用的大小。
 
 ---
 
-### `set()`
-
-```jsx
-static set(dims)
-```
-
-This should only be called from native code by sending the `didUpdateDimensions` event.
-
-**参数：**
-
-| 名称                                                      | 类型   | 说明                               |
-| --------------------------------------------------------- | ------ | ----------------------------------------- |
-| dims <div className="label basic required">Required</div> | object | String-keyed object of dimensions to set. |
-
----
-
-## Type Definitions
+## 类型定义
 
 ### DimensionsValue
 
-**Properties:**
+**属性:**
 
-| Name   | Type                                        | Description                             |
-| ------ | ------------------------------------------- | --------------------------------------- |
-| window | [DisplayMetrics](dimensions#displaymetrics) | Size of the visible Application window. |
-| screen | [DisplayMetrics](dimensions#displaymetrics) | Size of the device's screen.            |
+| 名称    | 类型                                | 描述                                   |
+| ------ | ----------------------------------- | --------------------------------------- |
+| window | [ScaledSize](dimensions#scaledsize) | 可见应用窗口的大小。                  |
+| screen | [ScaledSize](dimensions#scaledsize) | 设备屏幕的大小。                      |
 
-### DisplayMetrics
+### ScaledSize
 
-| Type   |
+| 类型   |
 | ------ |
-| object |
+| 对象   |
 
-**Properties:**
+**属性:**
 
-| Name      | Type   |
+| 名称      | 类型   |
 | --------- | ------ |
 | width     | number |
 | height    | number |
