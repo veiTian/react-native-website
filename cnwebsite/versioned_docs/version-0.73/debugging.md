@@ -5,21 +5,104 @@ title: 调试
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-## 开启调试的快捷键
-
-React Native 在 iOS 模拟器上支持一些快捷键操作，具体会在下文中描述。要使用快捷键请**务必确保模拟器的 Hardware 菜单中，Keyboard 选项下的"Connect Hardware Keyboard"处于开启状态**，否则按键是没有响应的。
-
 ## 访问 App 内的开发菜单
 
-你可以通过摇晃设备或是选择 iOS 模拟器的"Hardware"菜单中的"Shake Gesture"选项来打开开发菜单。另外，如果是在 iOS 模拟器中运行，还可以按下**`Command`**`⌘` + **`D`** 快捷键，Android 模拟器对应的则是**`Command`**`⌘` + **`M`**（windows 上可能是 F1 或者 F2），或是直接在命令行中运行`adb shell input keyevent 82`来发送菜单键命令。
+React Native提供了一个内置的开发者菜单，其中包含多个调试选项。您可以通过摇动设备或使用键盘快捷键访问开发者菜单：
 
-![](assets/DevMenu.png)
+- iOS模拟器：按下 <kbd>Cmd ⌘</kbd> + <kbd>D</kbd>（或选择 设备 > 摇动）
+- Android模拟器：按下 <kbd>Cmd ⌘</kbd> + <kbd>M</kbd>（macOS）或 <kbd>Ctrl</kbd> + <kbd>M</kbd>（Windows和Linux）
 
-> 在发布（release）版本中开发者菜单将无法使用。
+或者，对于Android设备和模拟器，您可以在终端中运行 `adb shell input keyevent 82`。
+
+![React Native开发者菜单](/docs/assets/debugging-dev-menu.jpg)
+
+:::note
+在发布（release）版本中开发者菜单将无法使用。
+:::
+
+## 打开调试器
+
+调试器允许你了解和调试你的 JavaScript 代码的运行方式，类似于一个网页浏览器。
+
+:::info
+**在 Expo 项目中**，在命令行界面中按下 <kbd>j</kbd> 键直接打开 Hermes 调试器。
+:::
+
+<Tabs groupId="js-debugger" queryString defaultValue={constants.defaultJsDebugger} values={constants.jsDebuggers}>
+<TabItem value="hermes">
+
+Hermes 通过实现 Chrome DevTools 协议来支持 Chrome 调试器。这意味着可以使用 Chrome 的工具直接调试在 Hermes 上运行的 JavaScript，无论是在模拟器还是在物理设备上。
+
+1. 在 Chrome 浏览器窗口中，导航到 `chrome://inspect`。
+2. 使用 "Configure..." 按钮添加开发服务器地址（通常是 `localhost:8081`）。
+3. 现在应该能看到一个带有 **"inspect"** 链接的 "Hermes React Native" 目标。点击这个链接打开调试器。
+
+![Chrome 检查界面的概述和连接的 Hermes 调试器窗口](/docs/assets/debugging-hermes-debugger-instructions.jpg)
+
+</TabItem>
+<TabItem value="flipper">
+
+[Flipper](https://fbflipper.com/) 是一个本地调试工具，通过嵌入的 Chrome DevTools 面板为 React Native 提供 JavaScript 调试功能。
+
+要在 Flipper 中调试 JavaScript 代码，请从 Dev 菜单中选择 **"Open Debugger"**。了解有关 Flipper 的[更多信息](https://fbflipper.com/docs/features/react-native/)。
+
+:::info
+要使用 Flipper 进行调试，必须在您的系统上[安装 Flipper 应用](https://fbflipper.com/docs/getting-started/)。
+:::
+
+![Flipper 桌面应用打开的 Hermes 调试器面板](/docs/assets/debugging-flipper-console.jpg)
+
+:::warning
+使用 Flipper 调试 React Native 应用在 React Native 0.73 版本中[已弃用](https://github.com/react-native-community/discussions-and-proposals/pull/641)。我们最终将删除通过 Flipper 进行 JS 调试的内置集成（但你仍然可以手动添加集成）。
+:::
+
+</TabItem>
+<TabItem value="new-debugger">
+
+:::note
+**这是一个实验性功能**，目前可能有一些功能无法可靠运行。当这个功能在将来启用时，我们希望它能比当前的调试方法更完善。
+:::
+
+React Native团队正在致力于改进JavaScript调试器体验，旨在取代Flipper，预览版本已在React Native 0.73中可用。
+
+可以通过React Native CLI启用新的调试器。这也将启用<kbd>j</kbd>以进行调试。
+
+```sh
+npx react-native start --experimental-debugger
+```
+
+在开发菜单中选择**"打开调试器"**，将使用Google Chrome或Microsoft Edge启动新的调试器。
+
+![新调试器前端打开到“欢迎”窗格](/docs/assets/debugging-debugger-welcome.jpg)
+
+</TabItem>
+</Tabs>
+
+## React DevTools
+
+您可以使用 React DevTools 来检查 React 元素树、属性和状态。
+
+```sh
+npx react-devtools
+```
+
+![一个 React 开发工具窗口](/docs/assets/debugging-react-devtools-blank.jpg)
+
+:::tip
+
+**学习如何使用 React 开发工具！**
+
+- [React 开发工具指南](/docs/next/react-devtools)
+- [在 react.dev 上的 React 开发者工具](https://react.dev/learn/react-developer-tools)
+
+:::
+
 
 ## LogBox
 
 开发版本中的错误和警告会在您的应用程序内部的 LogBox 中显示。
+
+![A LogBox warning and an expanded LogBox syntax error](/docs/assets/debugging-logbox.jpg)
 
 :::note 注意
 LogBox 在发布版本（release）中是自动禁用的。
@@ -29,7 +112,7 @@ LogBox 在发布版本（release）中是自动禁用的。
 
 控制台错误和警告以红色或黄色徽章的形式显示为屏幕通知，并分别显示控制台中的错误或警告数量。要查看控制台中的错误或警告，点击通知以查看有关日志的完整信息，并在控制台中浏览所有日志。
 
-可以使用`LogBox.ignoreAllLogs()`来隐藏这些通知。例如，在进行产品演示时非常有用。此外，还可以通过`LogBox.ignoreLogs()`来按照每个日志隐藏通知。当存在无法修复的嘈杂警告（比如第三方依赖项）时，这非常有用。
+可以使用`LogBox.ignoreAllLogs()`来隐藏这些通知。例如，在进行产品演示时非常有用。此外，还可以通过`LogBox.ignoreLogs()`来针对特定的日志隐藏通知。当存在无法修复的嘈杂警告（比如第三方依赖项）时，这非常有用。
 
 :::info
 忽略日志只应作为最后的手段。请记得给自己创建任务或者注释，提醒自己修复任何被忽略的日志。
@@ -45,80 +128,12 @@ LogBox.ignoreLogs(['Warning: ...']);
 LogBox.ignoreAllLogs();
 ```
 
-### 未捕获的错误
-
-未处理的 JavaScript 错误，例如 `undefined is not a function`，将自动打开一个全屏的 LogBox 错误窗口，并显示错误的源代码。这些错误可以被关闭和最小化，以便在出现这些错误时查看应用程序的状态，但是应该始终予以解决。
-
 ### 语法错误
 
-语法错误将自动打开一个全屏的 LogBox 错误，显示出语法错误的源代码。这个错误是无法取消的，因为它代表了必须在继续使用应用程序之前修复的无效 JavaScript 执行。要解除这些错误，请修复语法错误并保存以自动解除（启用快速刷新）或按下 cmd+r 重新加载（禁用快速刷新）。
+当发生JavaScript语法错误时，LogBox 将显示错误的位置。在这种状态下，LogBox 无法关闭，因为无法执行您的代码。一旦语法错误被修复，LogBox 将自动关闭 - 无论是通过快速刷新还是手动重新加载。
 
-## Chrome 开发者工具
+## 性能监视器
 
-在开发者菜单中选择"Debug JS Remotely"选项，即可以开始在 Chrome 中调试 JavaScript 代码。点击这个选项的同时会自动打开调试页面 http://localhost:8081/debugger-ui (如果地址栏打开的是 ip 地址，则请自行改为 localhost)
+在Android和iOS上，在开发过程中可以通过在开发菜单中选择 **"Perf Monitor"** 来切换应用内性能叠加。有关此功能的更多信息，请参阅[此处](/docs/performance)。
 
-在 Chrome 的菜单中选择`Tools → Developer Tools`可以打开开发者工具，也可以通过键盘快捷键来打开（Mac 上是**`Command`**`⌘` + **`Option`**`⌥` + **`I`**，Windows 上是**`Ctrl`** + **`Shift`** + **`I`**或是 F12）。打开[有异常时暂停（Pause On Caught Exceptions）](http://stackoverflow.com/questions/2233339/javascript-is-there-a-way-to-get-chrome-to-break-on-all-errors/17324511#17324511)选项，能够获得更好的开发体验。
-
-> 请注意：在安卓设备上，如果调试器和设备之间的时间差距过大，可能会导致动画、事件行为等不正常或结果不准确。请通过在调试器机器上运行`` adb shell "date `date +%m%d%H%M%Y.%S%3N`"  ``来纠正这个问题。实际设备需要获取 root 权限才能使用。
-
-> 注意：Chrome 中并不能直接看到 App 的用户界面，而只能提供 console 的输出，以及在 sources 项中断点调试 js 脚本。一些老的教程和文章会提到 React 的 Chrome 插件，这一插件目前并不支持 React Native，而且调试本身并不需要这个插件。不过你可以安装独立（非插件）版本的 React Developer Tools 来辅助查看界面布局，下文会讲述具体安装方法。
-
-> 注意：使用 Chrome 调试目前无法观测到 React Native 中的网络请求，你可以使用功能更强大的第三方的[react-native-debugger](https://github.com/jhen0409/react-native-debugger)或是官方的[flipper](https://fbflipper.com/)（注意仅能在 0.62 以上版本可用）来观测。
-
-### 在真机上调试
-
-:::info 提示
-如果你正在使用 Expo CLI，这已经为你配置好了。
-:::
-
-<Tabs groupId="platform" defaultValue={constants.defaultPlatform} values={constants.platforms} className="pill-tabs">
-<TabItem value="ios">
-
-在 iOS 设备上，打开文件[`RCTWebSocketExecutor.mm`](https://github.com/facebook/react-native/blob/master/packages/react-native/React/CoreModules/RCTWebSocketExecutor.mm)，将"localhost"更改为您计算机的 IP 地址，然后从开发菜单中选择"Debug JS Remotely"。
-
-</TabItem>
-<TabItem value="android">
-
-在用 USB 线缆连接 Android 5.0+ 设备时，您可以使用[`adb`命令行工具](http://developer.android.com/tools/help/adb.html)将端口转发设置为从设备到计算机：
-
-```sh
-adb reverse tcp:8081 tcp:8081
-```
-
-或者，从开发菜单中选择“设置”，然后将“设备的调试服务器主机”设置更新为与您计算机的 IP 地址相匹配。
-
-</TabItem>
-</Tabs>
-
-:::note 注意
-如果你遇到任何问题，可能是因为你的 Chrome 扩展与调试器产生了意外的交互。尝试禁用所有扩展，并逐个重新启用它们，直到找到有问题的扩展。
-:::
-
-<details>
-<summary>进阶：使用自定义的 JavaScript 调试器来调试</summary>
-
-如果想用其他的 JavaScript 调试器来代替 Chrome，可以设置一个名为`REACT_DEBUGGER`的环境变量，其值为启动自定义调试器的命令。调试的流程依然是从开发者菜单中的"Debug JS Remotely"选项开始。
-
-被指定的调试器需要知道项目所在的目录（可以一次传递多个目录参数，以空格隔开）。例如，如果你设定了`REACT_DEBUGGER="node /某个路径/launchDebugger.js --port 2345 --type ReactNative"`，那么启动调试器的命令就应该是`node /某个路径/launchDebugger.js --port 2345 --type ReactNative /某个路径/你的RN项目目录`。
-
-:::note 注意
-以这种方式执行的调试器最好是一个短进程（short-lived processes），同时最好也不要有超过 200k 的文字输出。
-:::
-
-</details>
-
-## Safari Developer Tools
-
-你可以使用 Safari 来调试你的 iOS 版本的应用，而不必启用"Debug JS Remotely".
-
-- Enable Develop menu in Safari: `Preferences → Advanced → Select "Show Develop menu in menu bar"`
-- Select your app's JSContext: `Develop → Simulator → JSContext`
-- Safari's Web Inspector should open which has a Console and a Debugger
-
-虽然默认情况下可能没有启用 source map，但您可以按照[本指南](http://blog.nparashuram.com/2019/10/debugging-react-native-ios-apps-with.html)或[Youtube 视频](https://www.youtube.com/watch?v=GrGqIIz51k4)来启用 source map，并在源代码的正确位置设置断点。
-
-然而，每次重新加载应用程序（使用实时重新加载，或通过手动重新加载）时，都会创建一个新的 JSContext。选择 "自动显示 JSContextts 的 Web 检查器(Automatically Show Web Inspectors for JSContexts)"可以帮你自动选择最新的 JSContext。
-
-## 性能监测
-
-你可以在开发者菜单中选择"Pref Monitor"选项以开启一个悬浮层，其中会显示应用的当前帧数。
+![iOS和Android上的性能监视器叠加](/docs/assets/debugging-performance-monitor.jpg)

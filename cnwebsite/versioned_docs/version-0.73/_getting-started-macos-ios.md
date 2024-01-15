@@ -11,11 +11,11 @@ import RemoveGlobalCLI from './\_remove-global-cli.md';
 我们推荐使用[Homebrew](http://brew.sh/)来安装 Node 和 Watchman。在命令行中执行下列命令安装（如安装较慢可以尝试阿里云的[镜像源](https://developer.aliyun.com/mirror/homebrew)）：
 
 ```
-brew install node@16
+brew install node@18
 brew install watchman
 ```
 
-如果你已经安装了 Node，请检查其版本是否在 v16 以上。安装完 Node 后建议设置 npm 镜像（淘宝源）以加速后面的过程（或使用科学上网工具）。
+如果你已经安装了 Node，请检查其版本是否在 18 以上。安装完 Node 后建议设置 npm 镜像（淘宝源）以加速后面的过程（或使用科学上网工具）。
 
 > 注意：强烈建议始终选择 Node 当前的 LTS （长期维护）版本，一般是偶数版本，不要选择偏实验性质的奇数版本。
 
@@ -43,7 +43,7 @@ npm install -g yarn
 
 ### Xcode
 
-React Native 目前需要[Xcode](https://developer.apple.com/xcode/downloads/) 12 或更高版本。你可以通过 App Store 或是到[Apple 开发者官网](https://developer.apple.com/xcode/downloads/)上下载。这一步骤会同时安装 Xcode IDE、Xcode 的命令行工具和 iOS 模拟器。
+React Native 目前需要[Xcode](https://developer.apple.com/xcode/downloads/) 14.1 或更高版本。你可以通过 App Store 或是到[Apple 开发者官网](https://developer.apple.com/xcode/downloads/)上下载。这一步骤会同时安装 Xcode IDE、Xcode 的命令行工具和 iOS 模拟器。
 
 #### Xcode 的命令行工具
 

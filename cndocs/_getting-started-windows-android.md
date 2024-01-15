@@ -10,7 +10,7 @@ import RemoveGlobalCLI from './\_remove-global-cli.md';
 
 我们建议直接使用搜索引擎搜索下载 Node 和[Java SE Development Kit (JDK)](https://www.oracle.com/java/technologies/downloads/#java17)
 
-注意 Node 的版本应大于等于 16，安装完 Node 后建议设置 npm 镜像（淘宝源）以加速后面的过程（或使用科学上网工具）。
+注意 Node 的版本应大于等于 18，安装完 Node 后建议设置 npm 镜像（淘宝源）以加速后面的过程（或使用科学上网工具）。
 
 > 注意：强烈建议始终选择 Node 当前的 LTS （长期维护）版本，一般是偶数版本，不要选择偏实验性质的奇数版本。
 

@@ -8,7 +8,7 @@ import RemoveGlobalCLI from './\_remove-global-cli.md';
 
 ### Node
 
-参照 Node 官方的[Linux 安装指南](https://nodejs.org/en/download/package-manager/)来安装 Node 16 以上的版本。
+参照 Node 官方的[Linux 安装指南](https://nodejs.org/en/download/package-manager/)来安装 Node 18 以上的版本。
 
 > 注意：强烈建议始终选择 Node 当前的 LTS （长期维护）版本，一般是偶数版本，不要选择偏实验性质的奇数版本。
 

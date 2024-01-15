@@ -1,11 +1,11 @@
 ---
 id: profile-hermes
-title: Profiling with Hermes
+title: 在 Hermes 中进行性能分析
 ---
 
-You can visualize JavaScript's performance in a React Native app using [Hermes](https://github.com/facebook/hermes). Hermes is a small and lightweight JavaScript engine optimized for running React Native on Android (you can [read more about using it with React Native here](hermes). Hermes helps improve app performance and also exposes ways to analyze the performance of the JavaScript that it runs.
+你可以使用[Hermes](https://github.com/facebook/hermes)在React Native应用中可视化JavaScript的性能。Hermes是一个小型且轻量的JavaScript引擎（你可以[在这里阅读更多有关在React Native中使用它的信息](hermes)）。Hermes有助于提高应用性能，并且还提供了分析其运行的JavaScript性能的方式。
 
-In this section, you will learn how to profile your React Native app running on Hermes and how to visualize the profile using [the Performance tab on Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/reference)
+在本节中，您将学习如何对在Hermes上运行的React Native应用进行分析，并如何使用[Chrome DevTools上的性能选项卡](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/reference)可视化配置文件。
 
 :::caution 注意
 Be sure to [enable Hermes in your app](Hermes) before you get started!
@@ -43,7 +43,7 @@ npx react-native profile-hermes [destinationDir]
 ### Enabling source map
 
 :::info
-You may read about source maps on the [source maps](sourcemaps.md) page.
+You may read about source maps on the [Debugging Release Builds](debugging-release-builds.md) page.
 :::
 
 ### Common errors

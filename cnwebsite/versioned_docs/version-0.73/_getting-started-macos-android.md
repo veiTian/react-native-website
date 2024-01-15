@@ -11,11 +11,11 @@ import RemoveGlobalCLI from './\_remove-global-cli.md';
 我们推荐使用[Homebrew](http://brew.sh/)来安装 Node 和 Watchman。在命令行中执行下列命令安装（如安装较慢可以尝试阿里云的[镜像源](https://developer.aliyun.com/mirror/homebrew)）：
 
 ```shell
-brew install node@16
+brew install node@18
 brew install watchman
 ```
 
-如果你已经安装了 Node，请检查其版本是否在 v16 以上。安装完 Node 后建议设置 npm 镜像（淘宝源）以加速后面的过程（或使用科学上网工具）。
+如果你已经安装了 Node，请检查其版本是否在 18 以上。安装完 Node 后建议设置 npm 镜像（淘宝源）以加速后面的过程（或使用科学上网工具）。
 
 > 注意：强烈建议始终选择 Node 当前的 LTS （长期维护）版本，一般是偶数版本，不要选择偏实验性质的奇数版本。
 
