@@ -7,16 +7,17 @@ import NativeDeprecated from './the-new-architecture/\_markdown_native_deprecati
 
 <NativeDeprecated />
 
-Sometimes a React Native app needs to access a native platform API that is not available by default in JavaScript, for example the native APIs to access Apple or Android pay. Maybe you want to reuse some existing Objective-C, Swift, Java or C++ libraries without having to reimplement it in JavaScript, or write some high performance, multi-threaded code for things like image processing.
+有时候 App 需要访问平台 API，但 React Native 可能还没有相应的模块包装；或者你需要复用一些 Java 代码，而不是用 Javascript 重新实现一遍；又或者你需要实现某些高性能的、多线程的代码，譬如图片处理、数据库、或者各种高级扩展等等。
 
-The NativeModule system exposes instances of Java/Objective-C/C++ (native) classes to JavaScript (JS) as JS objects, thereby allowing you to execute arbitrary native code from within JS. While we don't expect this feature to be part of the usual development process, it is essential that it exists. If React Native doesn't export a native API that your JS app needs you should be able to export it yourself!
+我们把 React Native 设计为可以在其基础上编写真正的原生代码，并且可以访问平台所有的能力。这是一个相对高级的特性，我们并不认为它应当在日常开发的过程中经常出现，但具备这样的能力是很重要的。如果 React Native 还不支持某个你需要的原生特性，你应当可以自己实现该特性的封装。
 
 ## 创建原生模块
 
-There are two ways to write a native module for your React Native application:
+There are different ways to write a native module for your React Native application:
 
-1. Directly within your React Native application’s iOS/Android projects
-2. As a NPM package that can be installed as a dependency by your/other React Native applications
+1. Creating a local library that can be imported in your React Native application. Read [Creating local libraries](local-library-setup) guide to learn more.
+2. Directly within your React Native application's iOS/Android projects
+3. As a NPM package that can be installed as a dependency by your/other React Native applications.
 
 This guide will first walk you through implementing a native module directly within a React Native application. However the native module you build in the following guide can be distributed as an NPM package. Check out the [Setting Up a Native Module as a NPM Package](native-modules-setup) guide if you are interested in doing so.
 
