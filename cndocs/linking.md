@@ -7,24 +7,24 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import con
 
 `Linking`提供了一个通用的接口来与传入和传出的 App 链接进行交互。
 
-Every Link (URL) has a URL Scheme, some websites are prefixed with `https://` or `http://` and the `http` is the URL Scheme. Let's call it scheme for short.
+每个链接(URL)都有一个 URL Scheme，有些网站以 `https://` 或 `http://` 为前缀，而 `http` 就是 URL Scheme。我们简称它为 scheme。
 
-In addition to `https`, you're likely also familiar with the `mailto` scheme. When you open a link with the mailto scheme, your operating system will open an installed mail application. Similarly, there are schemes for making phone calls and sending SMS. Read more about [built-in URL](#built-in-url-schemes) schemes below.
+除了 `https`，你可能还熟悉 `mailto` scheme。当您打开带有 mailto scheme 的链接时，操作系统将打开已安装的邮件应用程序。同样，也有打电话和发短信的 schemes。阅读下面关于[内置 URL schemes](#built-in-url-schemes) 方案的更多信息。
 
-Like using the mailto scheme, it's possible to link to other applications by using custom url schemes. For example, when you get a **Magic Link** email from Slack, the **Launch Slack** button is an anchor tag with an href that looks something like: `slack://secret/magic-login/other-secret`. Like with Slack, you can tell the operating system that you want to handle a custom scheme. When the Slack app opens, it receives the URL that was used to open it. This is often referred to as deep linking. Read more about how to [get the deep link](#get-the-deep-link) into your app.
+与使用 mailto scheme 一样，可以通过使用自定义 url scheme 链接到其他应用程序。例如，当你收到一封来自 Slack 的 **Magic Link** 邮件时，**Launch Slack** 按钮是一个 anchor 标记，带有一个 href，看起来类似与 `slack://secret/magic-login/other-secret`。就像 Slack 一样，你可以告诉操作系统你想要处理一个自定义 scheme。当 Slack 应用程序打开时，它会接收用于打开它的 URL。这通常被称为 Deep Links。阅读更多关于如何[获得 Deep Links](#get-the-deep-link) 到你的应用程序。
 
-Custom URL scheme isn't the only way to open your application on mobile. You don't want to use a custom URL scheme in links in the email because then the links would be broken on desktop. Instead, you want to use a regular `https` links such as `https://www.myapp.io/records/1234546`. and on mobile you want that link open your app. Android calls it **Deep Links** (Universal Links - iOS).
+自定义 URL scheme 并不是在手机上打开应用程序的唯一方式。您不希望在电子邮件中的链接中使用自定义 URL scheme，因为这样链接在桌面上就会断开。相反，你想使用常规的 `https` 链接，如 `https://www.myapp.io/records/1234546`。在移动设备上，你希望这个链接打开你的应用程序。Android 称之为 **Deep Links** (Universal Links - iOS)。
 
-### Built-in URL Schemes
+### 内置 URL Schemes
 
-As mentioned in the introduction, there are some URL schemes for core functionality that exist on every platform. The following is a non-exhaustive list, but covers the most commonly used schemes.
+正如在介绍中提到的，每个平台上都存在一些核心功能的 URL schemes。以下是一个非详尽的列表，但涵盖了最常用的方案。
 
 | Scheme           | 说明                                       | iOS | Android |
 | ---------------- | ------------------------------------------ | --- | ------- |
-| `mailto`         | Open mail app, eg: mailto: support@expo.io | ✅  | ✅      |
-| `tel`            | Open phone app, eg: tel:+123456789         | ✅  | ✅      |
-| `sms`            | Open SMS app, eg: sms:+123456789           | ✅  | ✅      |
-| `https` / `http` | Open web browser app, eg: https://expo.io  | ✅  | ✅      |
+| `mailto`         | 打开 mail app, 例如: mailto: support@expo.io | ✅  | ✅      |
+| `tel`            | 打开 phone app, 例如: tel:+123456789         | ✅  | ✅      |
+| `sms`            | 打开 SMS app, 例如: sms:+123456789           | ✅  | ✅      |
+| `https` / `http` | 打开 web browser app, 例如: https://expo.io  | ✅  | ✅      |
 
 ### 基本用法
 
@@ -33,11 +33,11 @@ As mentioned in the introduction, there are some URL schemes for core functional
 <div className="banner-native-code-required">
   <h3>仅适用于非沙盒项目</h3>
   <p>
-    The following section only applies to projects with native code exposed. If you are using the managed Expo workflow, see the guide on <a href="https://docs.expo.dev/guides/linking/">Linking</a> in the Expo documentation for the appropriate alternative.
+    以下部分仅适用于 Native 项目。如果您正在使用 Expo 工作流，请参阅 Expo 文档中 <a href="https://docs.expo.dev/guides/linking/">Linking</a> 的指南，以获取正确替代方案。
   </p>
 </div>
 
-If you want to enable deep links in your app, please the below guide:
+如果你想在你的应用程序中启用 Deep Links，请遵循以下指南：
 
 <Tabs groupId="syntax" defaultValue={constants.defaultPlatform} values={constants.platforms}>
 <TabItem value="android">
@@ -98,15 +98,15 @@ If you want to enable deep links in your app, please the below guide:
 
 ### 处理 Deep Links
 
-There are two ways to handle URLs that open your app.
+有两种方法来处理打开应用程序的 URL。
 
-#### 1. If the app is already open, the app is foregrounded and a Linking 'url' event is fired
+#### 1. 如果应用程序已经打开，应用程序就会出现在前台，并触发一个链接 'url' 事件
 
-You can handle these events with `Linking.addEventListener('url', callback)` -- it calls `callback({ url })` with the linked URL
+你可以用 `Linking.addEventListener('url', callback)` 来处理这些事件——它使用链接的 URL 调用 `callback({ url })`
 
-#### 2. If the app is not already open, it is opened and the url is passed in as the initialURL
+#### 如果应用程序还没有打开，它就会被打开，并将 url 作为 initialURL 传入
 
-You can handle these events with `Linking.getInitialURL()` -- it returns a Promise that resolves to the URL, if there is one.
+你可以用 `Linking.getInitialURL()` 来处理这些事件——它会返回一个解析到 URL 的 Promise (如果有的话)。
 
 ---
 
@@ -541,7 +541,7 @@ static addEventListener(
 ): EmitterSubscription;
 ```
 
-Add a handler to Linking changes by listening to the `url` event type and providing the handler.
+通过监听 `url` 事件类型并提供处理程序，为链接更改添加处理程序。
 
 ---
 
@@ -556,6 +556,7 @@ static canOpenURL(url: string): Promise<boolean>;
 本方法会返回一个`Promise`对象。当确定传入的 URL 可以被处理时，promise 就会返回，值的第一个参数是表示是否可以打开 URL。
 
 The `Promise` will reject on Android if it was impossible to check if the URL can be opened or when targetting Android 11 (SDK 30) if you didn't specify the relevant intent queries in `AndroidManifest.xml`. Similarly on iOS, the promise will reject if you didn't add the specific scheme in the `LSApplicationQueriesSchemes` key inside `Info.plist` (see bellow).
+如果无法检查 URL 是否可以打开，或者当目标为 Android 11 (SDK 30) 平台且您没有在 `AndroidManifest.xml` 中指定相关的 intent queries，则 `Promise` 将在 Android 上拒绝。类似地，在 iOS 上，如果你没有在 `Info.plist` 中的 `LSApplicationQueriesSchemes` 键中添加特定的 scheme，`Promise` 将被拒绝（见下文）。
 
 **Parameters:**
 
@@ -647,7 +648,7 @@ static sendIntent(
 ): Promise<void>;
 ```
 
-Launch an Android intent with extras.
+启动 Android intent 时携带 extras。
 
 **Parameters:**
 
