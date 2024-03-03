@@ -7,12 +7,12 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import con
 
 ## 访问 App 内的开发菜单
 
-React Native提供了一个内置的开发者菜单，其中包含多个调试选项。您可以通过摇动设备或使用键盘快捷键访问开发者菜单：
+React Native 提供了一个内置的开发者菜单，其中包含多个调试选项。您可以通过摇动设备或使用键盘快捷键访问开发者菜单：
 
-- iOS模拟器：按下 <kbd>Cmd ⌘</kbd> + <kbd>D</kbd>（或选择 设备 > 摇动）
-- Android模拟器：按下 <kbd>Cmd ⌘</kbd> + <kbd>M</kbd>（macOS）或 <kbd>Ctrl</kbd> + <kbd>M</kbd>（Windows和Linux）
+- iOS 模拟器：按下 <kbd>Cmd ⌘</kbd> + <kbd>D</kbd>（或选择 设备 > 摇动）
+- Android 模拟器：按下 <kbd>Cmd ⌘</kbd> + <kbd>M</kbd>（macOS）或 <kbd>Ctrl</kbd> + <kbd>M</kbd>（Windows 和 Linux）
 
-或者，对于Android设备和模拟器，您可以在终端中运行 `adb shell input keyevent 82`。
+或者，对于 Android 设备和模拟器，您可以在终端中运行 `adb shell input keyevent 82`。
 
 ![React Native开发者菜单](/docs/assets/debugging-dev-menu.jpg)
 
@@ -63,15 +63,15 @@ Hermes 通过实现 Chrome DevTools 协议来支持 Chrome 调试器。这意味
 **这是一个实验性功能**，目前可能有一些功能无法可靠运行。当这个功能在将来启用时，我们希望它能比当前的调试方法更完善。
 :::
 
-React Native团队正在致力于改进JavaScript调试器体验，旨在取代Flipper，预览版本已在React Native 0.73中可用。
+React Native 团队正在致力于改进 JavaScript 调试器体验，旨在取代 Flipper，预览版本已在 React Native 0.73 中可用。
 
-可以通过React Native CLI启用新的调试器。这也将启用<kbd>j</kbd>以进行调试。
+可以通过 React Native CLI 启用新的调试器。这也将启用<kbd>j</kbd>以进行调试。
 
 ```sh
 npx react-native start --experimental-debugger
 ```
 
-在开发菜单中选择**"打开调试器"**，将使用Google Chrome或Microsoft Edge启动新的调试器。
+在开发菜单中选择**"打开调试器"**，将使用 Google Chrome 或 Microsoft Edge 启动新的调试器。
 
 ![新调试器前端打开到“欢迎”窗格](/docs/assets/debugging-debugger-welcome.jpg)
 
@@ -93,10 +93,9 @@ npx react-devtools
 **学习如何使用 React 开发工具！**
 
 - [React 开发工具指南](/docs/next/react-devtools)
-- [在 react.dev 上的 React 开发者工具](https://react.dev/learn/react-developer-tools)
+- [在 react.dev 上的 React 开发者工具](https://zh-hans.react.dev/learn/react-developer-tools)
 
 :::
-
 
 ## LogBox
 
@@ -121,19 +120,23 @@ LogBox 在发布版本（release）中是自动禁用的。
 ```jsx
 import {LogBox} from 'react-native';
 
-// Ignore log notification by message:
+// 根据字符串匹配来忽略日志信息
 LogBox.ignoreLogs(['Warning: ...']);
 
-// Ignore all log notifications:
+// 忽略所有日志信息
 LogBox.ignoreAllLogs();
 ```
 
 ### 语法错误
 
-当发生JavaScript语法错误时，LogBox 将显示错误的位置。在这种状态下，LogBox 无法关闭，因为无法执行您的代码。一旦语法错误被修复，LogBox 将自动关闭 - 无论是通过快速刷新还是手动重新加载。
+当发生 JavaScript 语法错误时，LogBox 将显示错误的位置。在这种状态下，LogBox 无法关闭，因为无法执行您的代码。一旦语法错误被修复，LogBox 将自动关闭 - 无论是通过快速刷新还是手动重新加载。
 
 ## 性能监视器
 
-在Android和iOS上，在开发过程中可以通过在开发菜单中选择 **"Perf Monitor"** 来切换应用内性能叠加。有关此功能的更多信息，请参阅[此处](/docs/performance)。
+在 Android 和 iOS 上，在开发过程中可以通过在开发菜单中选择 **"Perf Monitor"** 来切换应用内性能叠加。有关此功能的更多信息，请参阅[此处](/docs/performance)。
 
 ![iOS和Android上的性能监视器叠加](/docs/assets/debugging-performance-monitor.jpg)
+
+:::info
+性能监视器在应用中运行，仅作参考。我们建议使用 Android Studio 和 Xcode 中的本地性能工具来获得更准确的性能测量。
+:::

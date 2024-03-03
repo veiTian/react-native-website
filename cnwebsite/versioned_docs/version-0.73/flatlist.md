@@ -3,6 +3,8 @@ id: flatlist
 title: FlatList
 ---
 
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
+
 高性能的简单列表组件，支持下面这些常用的功能：
 
 - 完全跨平台。
@@ -381,9 +383,9 @@ renderItem({
 
 如果需要，提供附加的元数据，如`index`，以及一个更通用的`separators.updateProps`函数，该函数允许您设置要更改前导分隔符或尾随分隔符的渲染的任何属性，以防常见的`highlight`和`unhighlight`（设置`highlighted: boolean`属性）对您的用例不足够。
 
-| 类型      |
-| -------- |
-| 函数      |
+| 类型 |
+| ---- |
+| 函数 |
 
 - `item`（对象）：要渲染的来自`data`的项目。
 - `index`（数字）：在`data`数组中对应于此项目的索引。
@@ -467,9 +469,9 @@ renderItem({
 
 `ListFooterComponent` 内部视图的样式。
 
-| 类型                            |
-| ------------------------------ |
-| [视图样式](view-style-props)    |
+| 类型                         |
+| ---------------------------- |
+| [视图样式](view-style-props) |
 
 ---
 
@@ -487,8 +489,8 @@ renderItem({
 
 `ListHeaderComponent` 内部视图的样式。
 
-| 类型                           |
-| ------------------------------ |
+| 类型                         |
+| ---------------------------- |
 | [视图样式](view-style-props) |
 
 ---
@@ -696,12 +698,12 @@ renderItem({
 
 `viewabilityConfig` 接受类型为 `ViewabilityConfig` 的对象，具有以下属性
 
-| 属性                              | 类型    |
-| --------------------------------- | ------- |
-| minimumViewTime                   | number  |
-| viewAreaCoveragePercentThreshold  | number  |
-| itemVisiblePercentThreshold       | number  |
-| waitForInteraction                | boolean |
+| 属性                             | 类型    |
+| -------------------------------- | ------- |
+| minimumViewTime                  | number  |
+| viewAreaCoveragePercentThreshold | number  |
+| itemVisiblePercentThreshold      | number  |
+| waitForInteraction               | boolean |
 
 `viewAreaCoveragePercentThreshold` 或 `itemVisiblePercentThreshold` 至少需要其中之一。这需要在 `constructor` 中完成，以避免以下错误（[参考链接](https://github.com/facebook/react-native/issues/17408)）：
 
@@ -733,7 +735,7 @@ constructor (props) {
 
 #### viewAreaCoveragePercentThreshold
 
-视口的百分比，必须覆盖部分遮挡的物品才能算作“可见”，范围为0-100。始终将完全可见的物品视为可见。值为0意味着视口中的单个像素使物品可见，而值为100意味着物品必须完全可见或覆盖整个视口才能算作可见。
+视口的百分比，必须覆盖部分遮挡的物品才能算作“可见”，范围为 0-100。始终将完全可见的物品视为可见。值为 0 意味着视口中的单个像素使物品可见，而值为 100 意味着物品必须完全可见或覆盖整个视口才能算作可见。
 
 #### itemVisiblePercentThreshold
 
@@ -749,8 +751,8 @@ constructor (props) {
 
 `ViewabilityConfig`/`onViewableItemsChanged` 对的列表。当满足其相应的 `ViewabilityConfig` 条件时，将调用特定的 `onViewableItemsChanged`。有关流程类型和进一步文档，请参阅 `ViewabilityHelper.js`。
 
-| 类型                                      |
-| --------------------------------------- |
+| 类型                                 |
+| ------------------------------------ |
 | `ViewabilityConfigCallbackPair` 数组 |
 
 ## 方法
