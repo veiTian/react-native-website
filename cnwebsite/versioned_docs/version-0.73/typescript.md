@@ -3,170 +3,156 @@ id: typescript
 title: 使用 TypeScript
 ---
 
-[TypeScript][ts] is a language which extends JavaScript by adding type definitions, much like [Flow][flow]. While React Native is built in Flow, it supports both TypeScript _and_ Flow by default.
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
+
+[TypeScript][ts] 是一种通过添加类型定义来扩展 JavaScript 的语言。新的 React Native 项目默认以 TypeScript 为目标，同时也支持 JavaScript 和 Flow。
 
 ## 使用 TypeScript 开始新项目
 
-如果您要开始一个新项目，则有几种不同的上手方法。 您可以使用[TypeScript 模板][ts-template]:
+由 [React Native CLI](/docs/environment-setup#creating-a-new-application) 创建的新项目或使用 [Ignite][ignite] 等流行模板将默认使用 TypeScript。
 
-```sh
-npx react-native init MyApp --template react-native-template-typescript
-```
+TypeScript 也可以与 [Expo][expo] 一起使用，Expo 维护 TypeScript 模板，或者当向项目添加 `.ts` 或 `.tsx` 文件时，Expo 将提示您自动安装和配置 TypeScript。
 
-> **Note** 如果以上命令失败，则可能是您的 PC 上全局安装了旧版本的`react-native`或`react-native-cli`。 尝试卸载 cli 并使用`npx`运行 cli.
-
-您可以使用具有两个 TypeScript 模板的[Expo][expo]:
-
-```sh
-npm install -g expo-cli
-expo init MyTSProject
-```
-
-或者，您可以使用[Ignite][ignite]，它也具有 TypeScript 模板:
-
-```sh
-npm install -g ignite-cli
-ignite new MyTSProject
+```shell
+npx create-expo-app --template
 ```
 
 ## 在已有的项目中添加 TypeScript
 
-1. 将 TypeScript 以及 React Native 和 Jest 的依赖添加到您的项目中。
+1. 将 TypeScript，类型文件，以及 ESLint 插件等依赖添加到项目中。
 
-```sh
-yarn add --dev typescript @types/jest @types/react @types/react-native @types/react-test-renderer
-# or for npm
-npm install --save-dev typescript @types/jest @types/react @types/react-native @types/react-test-renderer
+<Tabs groupId="package-manager" queryString defaultValue={constants.defaultPackageManager} values={constants.packageManagers}>
+<TabItem value="npm">
+
+```shell
+npm install -D @tsconfig/react-native @types/jest @types/react @types/react-test-renderer typescript
 ```
 
-添加一个 TypeScript 配置文件。在项目的根目录中创建一个`tsconfig.json`：
+</TabItem>
+<TabItem value="yarn">
+
+```shell
+yarn add --dev @tsconfig/react-native @types/jest @types/react @types/react-test-renderer typescript
+```
+
+</TabItem>
+</Tabs>
+
+:::note
+该命令添加了每个依赖项的最新版本。版本可能需要更改，以匹配项目使用的现有软件包。您可以使用类似 [React Native Upgrade Helper](https://react-native-community.github.io/upgrade-helper/) 的工具查看 React Native 提供的版本。
+:::
+
+2. 添加一个 TypeScript 配置文件。在项目的根目录中创建一个`tsconfig.json`：
 
 ```json
 {
-  "compilerOptions": {
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "isolatedModules": true,
-    "jsx": "react-native",
-    "lib": ["es2017"],
-    "types": ["react-native", "jest"],
-    "moduleResolution": "node",
-    "noEmit": true,
-    "strict": true,
-    "target": "esnext"
-  },
-  "exclude": [
-    "node_modules",
-    "babel.config.js",
-    "metro.config.js",
-    "jest.config.js"
-  ]
+  "extends": "@tsconfig/react-native/tsconfig.json"
 }
 ```
 
-3. 创建一个`jest.config.js`文件来配置 Jest 以使用 TypeScript:
+3. 将 JavaScript 文件重命名为`* .tsx`:
 
-```js
-module.exports = {
-  preset: 'react-native',
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node']
-};
+> 请保留`./index.js`入口文件，否则可能将在打包生产版本时遇到问题。
+
+4. 运行 `tsc` 对 TypeScript 文件进行类型检查。
+
+<Tabs groupId="package-manager" queryString defaultValue={constants.defaultPackageManager} values={constants.packageManagers}>
+<TabItem value="npm">
+
+```shell
+npx tsc
 ```
 
-4. 将 JavaScript 文件重命名为`* .tsx`:
+</TabItem>
+<TabItem value="yarn">
 
-> 请保留`./index.js`入口文件，否则将在打包生产版本时遇到问题。
+```shell
+yarn tsc
+```
 
-5. 运行 `yarn tsc` 对 TypeScript 文件进行类型检查。
+</TabItem>
+</Tabs>
+
+## 使用 JavaScript 而非 TypeScript
+
+React Native 将新应用默认设置为 TypeScript，但仍可使用 JavaScript。具有 `.jsx` 或 `.js` 扩展名的文件将被视为 JavaScript 而非 TypeScript，并且不会进行类型检查。TypeScript 模块仍可导入 JavaScript 模块，反之亦然。
 
 ## TypeScript 和 React Native 是如何工作的
 
-无需额外配置，和非 TypeScript 的 React Native 项目一样都是直接通过 [Babel 体系][babel] 将您的文件转换为 JavaScript。我们建议您只使用 TypeScript 编译器的类型检查功能（而不是编译）。如果您有已经存在的 TypeScript 代码需要迁移到 React Native，这里有一些关于使用 Babel 而不是 TypeScript 编译器的[注意事项][babel-7-caveats]。
+无需额外配置，和非 TypeScript 的 React Native 项目一样都是直接通过 [Babel][babel] 将您的文件转换为 JavaScript。我们建议您只使用 TypeScript 编译器`tsc`的类型检查功能（而不是编译）。如果您有已经存在的 TypeScript 代码需要迁移到 React Native，这里有一些关于使用 Babel 而不是 TypeScript 编译器的[注意事项][babel-7-caveats]。
 
 ## 用 TypeScript 写 React Native 的示例
 
 可以用`interface`来为 React 的函数组件编写[Props][props]的类型（使用`React.FC<Props>`）。这样在后续编码的过程中，编辑器就会根据这一类型来做类型检查并提供自动补全。
 
-```tsx
-// components/Hello.tsx
+```tsx title="components/Hello.tsx"
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import {Button, StyleSheet, Text, View} from 'react-native';
 
-export interface Props {
+export type Props = {
   name: string;
-  enthusiasmLevel?: number;
-}
+  baseEnthusiasmLevel?: number;
+};
 
-const Hello: React.FC<Props> = (props) => {
+const Hello: React.FC<Props> = ({
+  name,
+  baseEnthusiasmLevel = 0,
+}) => {
   const [enthusiasmLevel, setEnthusiasmLevel] = React.useState(
-    props.enthusiasmLevel
+    baseEnthusiasmLevel,
   );
 
   const onIncrement = () =>
-    setEnthusiasmLevel((enthusiasmLevel || 0) + 1);
+    setEnthusiasmLevel(enthusiasmLevel + 1);
   const onDecrement = () =>
-    setEnthusiasmLevel((enthusiasmLevel || 0) - 1);
+    setEnthusiasmLevel(
+      enthusiasmLevel > 0 ? enthusiasmLevel - 1 : 0,
+    );
 
   const getExclamationMarks = (numChars: number) =>
-    Array(numChars + 1).join('!');
+    numChars > 0 ? Array(numChars + 1).join('!') : '';
+
   return (
-    <View style={styles.root}>
+    <View style={styles.container}>
       <Text style={styles.greeting}>
-        Hello{' '}
-        {props.name + getExclamationMarks(enthusiasmLevel || 0)}
+        Hello {name}
+        {getExclamationMarks(enthusiasmLevel)}
       </Text>
-
-      <View style={styles.buttons}>
-        <View style={styles.button}>
-          <Button
-            title="-"
-            onPress={onDecrement}
-            accessibilityLabel="decrement"
-            color="red"
-          />
-        </View>
-
-        <View style={styles.button}>
-          <Button
-            title="+"
-            onPress={onIncrement}
-            accessibilityLabel="increment"
-            color="blue"
-          />
-        </View>
+      <View>
+        <Button
+          title="Increase enthusiasm"
+          accessibilityLabel="increment"
+          onPress={onIncrement}
+          color="blue"
+        />
+        <Button
+          title="Decrease enthusiasm"
+          accessibilityLabel="decrement"
+          onPress={onDecrement}
+          color="red"
+        />
       </View>
     </View>
   );
 };
 
-// styles
 const styles = StyleSheet.create({
-  root: {
-    alignItems: 'center',
-    alignSelf: 'center'
-  },
-  buttons: {
-    flexDirection: 'row',
-    minHeight: 70,
-    alignItems: 'stretch',
-    alignSelf: 'center',
-    borderWidth: 5
-  },
-  button: {
+  container: {
     flex: 1,
-    paddingVertical: 0
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   greeting: {
-    color: '#999',
-    fontWeight: 'bold'
-  }
+    fontSize: 20,
+    fontWeight: 'bold',
+    margin: 16,
+  },
 });
 
 export default Hello;
 ```
 
-You can explore the syntax more in the [TypeScript playground][tsplay].
+你可以在[TypeScript playground][tsplay]中更深入地探索语法。
 
 ## 参考资料（英文）
 
@@ -178,44 +164,60 @@ You can explore the syntax more in the [TypeScript playground][tsplay].
 
 To use custom path aliases with TypeScript, you need to set the path aliases to work from both Babel and TypeScript. Here's how:
 
-1. Edit your `tsconfig.json` to have your [custom path mappings][path-map]. Set anything in the root of `src` to be available with no preceding path reference, and allow any test file to be accessed by using `test/File.tsx`:
+1. Edit your `tsconfig.json` to have your [custom path mappings][path-map]. Set anything in the root of `src` to be available with no preceding path reference, and allow any test file to be accessed by using `tests/File.tsx`:
 
 ```diff
-    "target": "esnext",
-+     "baseUrl": ".",
-+     "paths": {
-+       "*": ["src/*"],
-+       "tests": ["tests/*"],
-+       "@components/*": ["src/components/*"],
-+     },
-    }
+{
+-  "extends": "@tsconfig/react-native/tsconfig.json"
++  "extends": "@tsconfig/react-native/tsconfig.json",
++  "compilerOptions": {
++    "baseUrl": ".",
++    "paths": {
++      "*": ["src/*"],
++      "tests": ["tests/*"],
++      "@components/*": ["src/components/*"],
++    },
++  }
+}
 ```
 
-2. Configure the Babel side done by adding a new dependency, [`babel-plugin-module-resolver`][bpmr]:
+2. Add [`babel-plugin-module-resolver`][bpmr] as a development package to your project:
 
-```sh
-yarn add --dev babel-plugin-module-resolver
-# or
+<Tabs groupId="package-manager" queryString defaultValue={constants.defaultPackageManager} values={constants.packageManagers}>
+<TabItem value="npm">
+
+```shell
 npm install --save-dev babel-plugin-module-resolver
 ```
+
+</TabItem>
+<TabItem value="yarn">
+
+```shell
+yarn add --dev babel-plugin-module-resolver
+```
+
+</TabItem>
+</Tabs>
 
 3. Finally, configure your `babel.config.js` (note that the syntax for your `babel.config.js` is different from your `tsconfig.json`):
 
 ```diff
 {
-  plugins: [
+   presets: ['module:metro-react-native-babel-preset'],
++  plugins: [
 +    [
 +       'module-resolver',
 +       {
 +         root: ['./src'],
 +         extensions: ['.ios.js', '.android.js', '.js', '.ts', '.tsx', '.json'],
 +         alias: {
-+           "tests": ["./tests/"],
++           tests: ['./tests/'],
 +           "@components": "./src/components",
 +         }
 +       }
-+     ]
-  ]
++    ]
++  ]
 }
 ```
 

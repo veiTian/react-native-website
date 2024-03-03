@@ -26,12 +26,12 @@ fetch('https://mywebsite.com/endpoint/', {
   method: 'POST',
   headers: {
     Accept: 'application/json',
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
   },
   body: JSON.stringify({
     firstParam: 'yourValue',
-    secondParam: 'yourOtherValue'
-  })
+    secondParam: 'yourOtherValue',
+  }),
 });
 ```
 
@@ -41,9 +41,9 @@ fetch('https://mywebsite.com/endpoint/', {
 fetch('https://mywebsite.com/endpoint/', {
   method: 'POST',
   headers: {
-    'Content-Type': 'application/x-www-form-urlencoded'
+    'Content-Type': 'application/x-www-form-urlencoded',
   },
-  body: 'key1=value1&key2=value2'
+  body: 'key1=value1&key2=value2',
 });
 ```
 
@@ -60,13 +60,13 @@ fetch('https://mywebsite.com/endpoint/', {
 ```jsx
 function getMoviesFromApiAsync() {
   return fetch(
-    'https://facebook.github.io/react-native/movies.json'
+    'https://facebook.github.io/react-native/movies.json',
   )
-    .then((response) => response.json())
-    .then((responseJson) => {
+    .then(response => response.json())
+    .then(responseJson => {
       return responseJson.movies;
     })
-    .catch((error) => {
+    .catch(error => {
       console.error(error);
     });
 }
@@ -80,7 +80,7 @@ async function getMoviesFromApi() {
   try {
     // 注意这里的await语句，其所在的函数必须有async关键字声明
     let response = await fetch(
-      'https://facebook.github.io/react-native/movies.json'
+      'https://facebook.github.io/react-native/movies.json',
     );
     let responseJson = await response.json();
     return responseJson.movies;
@@ -189,7 +189,7 @@ React Native 中已经内置了[XMLHttpRequest API](https://developer.mozilla.or
 
 ```jsx
 const request = new XMLHttpRequest();
-request.onreadystatechange = (e) => {
+request.onreadystatechange = e => {
   if (request.readyState !== 4) {
     return;
   }
@@ -219,17 +219,17 @@ ws.onopen = () => {
   ws.send('something'); // send a message
 };
 
-ws.onmessage = (e) => {
+ws.onmessage = e => {
   // a message was received
   console.log(e.data);
 };
 
-ws.onerror = (e) => {
+ws.onerror = e => {
   // an error occurred
   console.log(e.message);
 };
 
-ws.onclose = (e) => {
+ws.onclose = e => {
   // connection closed
   console.log(e.code, e.reason);
 };
@@ -239,26 +239,26 @@ ws.onclose = (e) => {
 
 现在你的应用已经可以从各种渠道获取数据了，那么接下来面临的问题多半就是如何在不同的页面间组织和串联内容了。要管理页面的跳转，你需要学习[使用导航器跳转页面](navigation.md)。
 
-## Known Issues with `fetch` and cookie based authentication
+## 使用 `fetch` 和基于 cookie 的身份验证存在已知问题
 
-The following options are currently not working with `fetch`
+目前，以下选项在 `fetch` 中无法正常工作：
 
 - `redirect:manual`
 - `credentials:omit`
 
-* Having same name headers on Android will result in only the latest one being present. A temporary solution can be found here: https://github.com/facebook/react-native/issues/18837#issuecomment-398779994.
-* Cookie based authentication is currently unstable. You can view some of the issues raised here: https://github.com/facebook/react-native/issues/23185
-* As a minimum on iOS, when redirected through a `302`, if a `Set-Cookie` header is present, the cookie is not set properly. Since the redirect cannot be handled manually this might cause a scenario where infinite requests occur if the redirect is the result of an expired session.
+* 在 Android 上重复使用相同名称的标头将导致仅存在最新的标头。您可以在此处找到一个临时解决方案：https://github.com/facebook/react-native/issues/18837#issuecomment-398779994。
+* 基于 cookie 的身份验证目前不稳定。您可以在此处查看引发的一些问题：https://github.com/facebook/react-native/issues/23185
+* 在 iOS 上，至少在通过 `302` 重定向时，如果存在 `Set-Cookie` 标头，则 cookie 不会正确设置。由于无法手动处理重定向，由过期会话引起的重定向可能会导致无限请求的死循环发生。
 
-## Configuring NSURLSession on iOS
+## 在 iOS 上配置 NSURLSession
 
-For some applications it may be appropriate to provide a custom `NSURLSessionConfiguration` for the underlying `NSURLSession` that is used for network requests in a React Native application running on iOS. For instance, one may need to set a custom user agent string for all network requests coming from the app or supply `NSURLSession` with an emphemeral `NSURLSessionConfiguration`. The function `RCTSetCustomNSURLSessionConfigurationProvider` allows for such customization. Remember to add the following import to the file in which `RCTSetCustomNSURLSessionConfigurationProvider` will be called:
+对于一些应用程序，为在运行在 iOS 上的 React Native 应用程序中用于网络请求的底层`NSURLSession`提供自定义的`NSURLSessionConfiguration`可能是合适的。例如，可能需要为所有来自应用程序的网络请求设置自定义用户代理字符串，或者使用一个短暂的`NSURLSessionConfiguration`提供给`NSURLSession`。函数`RCTSetCustomNSURLSessionConfigurationProvider`允许进行这样的定制。记得在调用`RCTSetCustomNSURLSessionConfigurationProvider`的文件中添加以下导入：
 
 ```objectivec
 #import <React/RCTHTTPRequestHandler.h>
 ```
 
-`RCTSetCustomNSURLSessionConfigurationProvider` should be called early in the application life cycle such that it is readily available when needed by React, for instance:
+`RCTSetCustomNSURLSessionConfigurationProvider` 应在应用程序生命周期的早期调用，以便在 React 需要时可以轻松访问，例如：
 
 ```objectivec
 -(void)application:(__unused UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

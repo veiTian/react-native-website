@@ -1,11 +1,11 @@
 ---
 id: transforms
-title: Transforms
+title: 变换（Transform）
 ---
 
-Transforms are style properties that will help you modify the appearance and position of your components using 2D or 3D transformations. However, once you apply transforms, the layouts remain the same around the transformed component hence it might overlap with the nearby components. You can apply margin to the transformed component, the nearby components or padding to the container to prevent such overlaps.
+变换（Transform）是样式属性，可帮助您使用 2D 或 3D 变换修改组件的外观和位置。然而，即便使用了变换，使用变换的组件的布局并不会变化，因此可能会与附近的组件重叠。您可以对变换的组件、附近的组件应用边距，或对容器应用填充，以防止这种重叠。
 
-## Example
+## 示例
 
 ```SnackPlayer name=Transforms
 import React from 'react';
@@ -162,13 +162,13 @@ export default App;
 
 ---
 
-# Reference
+# 文档
 
 ## Transform
 
-`transform` accepts an array of transformation objects or space-separated string values. Each object specifies the property that will be transformed as the key, and the value to use in the transformation. Objects should not be combined. Use a single key/value pair per object.
+`transform`接受一组变换对象或以空格分隔的字符串值。每个对象都指定将作为键进行变换的属性，以及在变换中使用的值。不应组合对象。每个对象使用单个键/值对。
 
-The rotate transformations require a string so that the transform may be expressed in degrees (deg) or radians (rad). For example:
+旋转变换需要一个字符串，以便可以用度（deg）或弧度（rad）表示变换。例如：
 
 ```js
 {
@@ -176,7 +176,7 @@ The rotate transformations require a string so that the transform may be express
 }
 ```
 
-The same could also be achieved using a space-separated string:
+同样的效果也可以通过使用以空格分隔的字符串来实现：
 
 ```js
 {
@@ -184,7 +184,7 @@ The same could also be achieved using a space-separated string:
 }
 ```
 
-The skew transformations require a string so that the transform may be expressed in degrees (deg). For example:
+斜向变换需要一个字符串，以便可以用度数（度）表示变换。例如：
 
 ```js
 {
@@ -204,9 +204,9 @@ The skew transformations require a string so that the transform may be expressed
 
 ## Transform Origin
 
-The `transformOrigin` property sets the origin for a view's transformations. The transform origin is the point around which a transformation is applied. By default, the origin of a transform is `center`.
+`transformOrigin` 属性设置视图变换的原点。变换原点是应用变换的点。默认情况下，变换的原点是 `center`。
 
-# Example
+# 示例
 
 ```SnackPlayer name=TransformOrigin
 import React, {useRef, useEffect} from 'react';
@@ -270,13 +270,13 @@ export default App;
 
 ### Values
 
-Transform origin supports `px`, `percentage` and keywords `top`, `left`, `right`, `bottom`, `center` values.
+变换原点支持 `px`、`百分比` 和关键词 `top`、`left`、`right`、`bottom`、`center` 的值。
 
-The `transformOrigin` property may be specified using one, two, or three values, where each value represents an offset.
+`transformOrigin` 属性可以使用一个、两个或三个值进行指定，其中每个值表示一个偏移。
 
-#### One-value syntax:
+#### 仅设置一个值：
 
-- The value must be a `px`, a `percentage`, or one of the keywords `left`, `center`, `right`, `top`, and `bottom`.
+- 值必须是`px`、`百分比`或关键词`left`、`center`、`right`、`top`和`bottom`之一。
 
 ```js
 {
@@ -285,10 +285,10 @@ The `transformOrigin` property may be specified using one, two, or three values,
 }
 ```
 
-#### Two-value syntax:
+#### 同时设置两个值：
 
-- First value (x-offset) must be a `px`, a `percentage`, or one of the keywords `left`, `center`, and `right`.
-- The second value (y-offset) must be a `px`, a `percentage`, or one of the keywords `top`, `center`, and `bottom`.
+- 第一个值（x 偏移）必须是`px`、`百分比`或关键词`left`、`center`和`right`之一。
+- 第二个值（y 偏移）必须是`px`、`百分比`或关键词`top`、`center`和`bottom`之一。
 
 ```js
 {
@@ -298,10 +298,10 @@ The `transformOrigin` property may be specified using one, two, or three values,
 }
 ```
 
-#### Three-value syntax:
+#### 同时设置三个值：
 
-- The first two values are the same as for the two-value syntax.
-- The third value (z-offset) must be a `px`. It always represents the Z offset.
+- 第一和第二个值与两值语法相同。
+- 第三个值（z 偏移）必须是`px`。它始终表示 Z 偏移。
 
 ```js
 {
@@ -310,17 +310,17 @@ The `transformOrigin` property may be specified using one, two, or three values,
 }
 ```
 
-#### Array syntax
+#### 数组语法
 
-`transformOrigin` also supports an array syntax. It makes it convenient to use it with Animated APIs. It also avoids string parsing, so should be more efficient.
+`transformOrigin` 还支持数组语法。这使得在使用动画 API 时更加方便。它还避免了字符串解析，因此应该更加高效。
 
 ```js
 {
-  // Using numeric values
+  // 可以仅使用数值
   transformOrigin: [10, 30, 40],
-  // Mixing numeric and percentage values
+  // 也可以混合使用数值和百分数
   transformOrigin: [10, '20%', 0],
 }
 ```
 
-You may refer to MDN's guide on [Transform origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin) for additional information.
+你可以参考 MDN 的关于 [Transform origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin) 的指南获取额外信息。
