@@ -17,7 +17,7 @@
 
 <script src="//snack.expo.dev/embed.js" defer="defer"></script>
 <script src="//cdn.wwads.cn/js/makemoney.js" defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.56d3cdbf.css">
-<script src="/assets/js/runtime~main.59d66a1e.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.8f703fd0.js" defer="defer"></script>
 <script src="/assets/js/main.02e9c77e.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -32,7 +32,7 @@
 <p>If your application needs to access HTTP resources on production, see <a href="http://ste.vn/2015/06/10/configuring-app-transport-security-ios-9-osx-10-11/" target="_blank" rel="noopener noreferrer">this post</a> to learn how to configure ATS on your project.</p>
 </blockquote>
 <h3 class="anchor anchorWithStickyNavbar_JmGV" id="2-配置-release-scheme">2. 配置 release scheme<a href="#2-配置-release-scheme" class="hash-link" aria-label="标题的直接链接" title="标题的直接链接">​</a></h3>
-<p>需要在 Xcode 使用<code>Release</code> scheme 编译在 App Store 发布的 app。<code>Release</code>版本的应用会自动禁用开发者菜单，同时也会将 js 文件和静态图片打包压缩后内置到包中，这样应用可以在本地读取而无需访问开发服务器（同时这样一来你也无法再调试，需要调试请将 Buiid Configuration 再改为 debug）。<br>
+<p>需要在 Xcode 使用<code>Release</code> scheme 编译在 App Store 发布的 app。<code>Release</code>版本的应用会自动禁用开发者菜单，同时也会将 js 文件和静态图片打包压缩后内置到包中，这样应用可以在本地读取而无需访问开发服务器（同时这样一来你也无法再调试，需要调试请将 Build Configuration 再改为 debug）。<br>
 <!-- -->由于发布版本已经内置了 js 文件，因而也无法再通过开发服务器来实时更新。面向用户的热更新，请使用专门的<a href="https://pushy.reactnative.cn" target="_blank" rel="noopener noreferrer">热更新服务</a>。</p>
 <p>要配置 app 为使用<code>Release</code> scheme 编译，请前往<strong>Product</strong> → <strong>Scheme</strong> → <strong>Edit Scheme</strong>。选择侧边栏的<strong>Run</strong>标签，然后设置下拉的 Build Configuration 为<code>Release</code>。</p>
 <p><img loading="lazy" src="/assets/images/ConfigureReleaseScheme-68e17e8d9a2cf2b73adb47865b45399d.png" width="718" height="486" class="img_SS3x"></p>
