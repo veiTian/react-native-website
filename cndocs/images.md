@@ -228,10 +228,9 @@ return (
 
 图片解码有可能会需要超过一帧的时间。在 web 上这是页面掉帧的一大因素，因为解码是在主线程中完成的。然而在 React Native 中，图片解码则是在另一线程中完成的。在实际开发中，一般对图片还没下载完成时的场景都做了处理（添加 loading 等），而图片解码时显示的占位符只占用几帧时间，并不需要你改动代码去额外处理。
 
-## Configuring iOS Image Cache Limits
+## 配置 iOS 图像缓存限制​
 
-On iOS, we expose an API to override React Native's default image cache limits. This should be called from within your native AppDelegate code (e.g. within `didFinishLaunchingWithOptions`).
-
+在 iOS 上，我们公开了一个 API 来覆盖 React Native 的默认图像缓存限制。这应该从您的原生的 AppDelegate 代码中调用（例如在 didFinishLaunchingWithOptions 中）。
 ```objectivec
 RCTSetImageCacheLimits(4*1024*1024, 200*1024*1024);
 ```
@@ -240,7 +239,7 @@ RCTSetImageCacheLimits(4*1024*1024, 200*1024*1024);
 
 | Name           | Type   | Required | Description             |
 | -------------- | ------ | -------- | ----------------------- |
-| imageSizeLimit | number | Yes      | Image cache size limit. |
-| totalCostLimit | number | Yes      | Total cache cost limit. |
+| imageSizeLimit | number | Yes      | 图像缓存大小限制 |
+| totalCostLimit | number | Yes      | 图像缓存大小限制. |
 
-In the above code example the image size limit is set to 4 MB and the total cost limit is set to 200 MB.
+在上面的代码示例中，图像大小限制设置为 4 MB，总成本限制设置为 200 MB。
