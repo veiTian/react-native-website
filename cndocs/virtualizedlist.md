@@ -208,16 +208,6 @@ Rendered in between each item, but not at the top or bottom. By default, `highli
 
 ---
 
-### `listKey`
-
-A unique identifier for this list. If there are multiple VirtualizedLists at the same level of nesting within another VirtualizedList, this key is necessary for virtualization to work properly.
-
-| 类型   | Required |
-| ------ | -------- |
-| string | True     |
-
----
-
 ### `ListEmptyComponent`
 
 当列表为空时渲染。可以是一个 React 类，或者一个渲染函数，或者一个已渲染的元素。

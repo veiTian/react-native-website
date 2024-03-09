@@ -12,6 +12,8 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import con
 
 <TabItem value="androidtv">
 
+> **已过时。** TV 平台的支持已迁移到社区维护的 [React Native for TV](https://github.com/react-native-tvos/react-native-tvos) 项目。
+
 ## 编译修改
 
 - _原生端_: 在 Android TV 上运行 React Native 项目请先在`AndroidManifest.xml`中加入下列配置：
