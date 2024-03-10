@@ -3,8 +3,6 @@ id: optimizing-flatlist-configuration
 title: 列表配置优化
 ---
 
-import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
-
 ## 术语定义
 
 - **VirtualizedList:** `FlatList`背后的基础支撑组件（是 React Native 对[`虚拟列表 Virtual List`](https://bvaughn.github.io/react-virtualized/#/components/List)概念的实现）。
@@ -17,19 +15,19 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import con
 
 - **视口 Viewport:** 已渲染内容的可视区域。
 
-- **滑动窗口 Window:** The area in which items should be mounted, which is generally much larger than the viewport.
+- **滑动窗口 Window:** 内容组件应该被挂载的区域，通常比视口（viewport）大得多。
 
 ## Props
 
-Here are a list of props that can help to improve `FlatList` performance:
+下面列出了一些可以提升`FlatList`性能的重要技巧:
 
 ### removeClippedSubviews
 
-| 类型    | Default |
+| 类型    | 默认值 |
 | ------- | ------- |
 | Boolean | False   |
 
-If `true`, views that are outside of the viewport are detached from the native view hierarchy.
+如果设为 `true`，那些超出视口范围的视图会从原生视图层级结构中分离。
 
 **好处：** 启用此选项可减少花在主线程上的时间，从而降低丢帧的风险。原理是对视口之外的视图不进行本地渲染和绘图遍历。
 
@@ -37,27 +35,28 @@ If `true`, views that are outside of the viewport are detached from the native v
 
 ### maxToRenderPerBatch
 
-| 类型   | Default |
+| 类型   | 默认值 |
 | ------ | ------- |
 | Number | 10      |
 
-It is a `VirtualizedList` prop that can be passed through `FlatList`. This controls the amount of items rendered per batch, which is the next chunk of items rendered on every scroll.
+ 
+这是一个可以通过 `FlatList` 传递的 `VirtualizedList` 属性。它控制每批渲染的元素数量,也就是每次滚动时渲染的下一组元素。
 
-**好处：** Setting a bigger number means less visual blank areas when scrolling (increases the fill rate).
+**好处：** 设置较大的数值意味着在滚动时会减少视觉上的空白区域(提高填充率)。
 
-**坏处：** More items per batch means longer periods of JavaScript execution potentially blocking other event processing, like presses, hurting responsiveness.
+**坏处：** 每批处理更多元素意味着更长的 JavaScript 执行时间,可能会阻塞其他事件处理,例如按键操作,从而影响响应速度。
 
 ### updateCellsBatchingPeriod
 
-| 类型   | Default |
+| 类型   | 默认值 |
 | ------ | ------- |
 | Number | 50      |
 
-While `maxToRenderPerBatch` tells the amount of items rendered per batch, setting `updateCellsBatchingPeriod` tells your `VirtualizedList` the delay in milliseconds between batch renders (how frequently your component will be rendering the windowed items).
+`maxToRenderPerBatch` 告诉 `VirtualizedList` 每批次渲染的元素数量，而 `updateCellsBatchingPeriod` 则用于设置两次批量渲染之间的延迟毫秒数（也就是组件渲染可见区域内元素的频率）。
 
-**好处：** Combining this prop with `maxToRenderPerBatch` gives you the power to, for example, render more items in a less frequent batch, or less items in a more frequent batch.
+**好处：** 将这个属性与 `maxToRenderPerBatch` 结合使用，你就可以灵活控制渲染的节奏，比如在频率较低时渲染更多元素，或者在频率较高时渲染较少元素。
 
-**坏处：** Less frequent batches may cause blank areas, More frequent batches may cause responsiveness issues.
+**坏处：** 频率过低可能会导致出现空白区域，而频率过高则可能影响组件的响应速度。
 
 ### initialNumToRender
 
@@ -65,49 +64,65 @@ While `maxToRenderPerBatch` tells the amount of items rendered per batch, settin
 | ------ | ------- |
 | Number | 10      |
 
-The initial amount of items to render.
+初始渲染的元素数量。
 
 **好处：** 为每个设备定义精确的（刚好可以）覆盖屏幕的项目数量。这可以大大提升初始渲染的性能。
 
-**坏处：** Setting a low `initialNumToRender` may cause blank areas, especially if it's too small to cover the viewport on initial render.
+**坏处：** 如果设置的 `initialNumToRender` 值过低，尤其是小到不足以覆盖初始渲染时的可视区域，就可能会出现空白区域。
 
 ### windowSize
 
-| 类型   | Default |
+| 类型   | 默认值 |
 | ------ | ------- |
 | Number | 21      |
 
-The number passed here is a measurement unit where 1 is equivalent to your viewport height. The default value is 21 (10 viewports above, 10 below, and one in between).
+这里传递的数字是一个度量单位，其中 1 相当于视口高度。默认值为 21（上方 10 个视口，下方 10 个视口，中间一个视口）。
 
-**好处：** Bigger `windowSize` will result in less chance of seeing blank space while scrolling. On the other hand, smaller `windowSize` will result in fewer items mounted simultaneously, saving memory.
+**好处：** `windowSize` 值越大，滚动时看到空白区域的概率就越小。另一方面，`windowSize` 值越小，同时加载的元素就越少，从而节省内存。
 
-**坏处：** For a bigger `windowSize`, you will have more memory consumption. For a lower `windowSize`, you will have a bigger chance of seeing blank areas.
+**坏处：** 对于较大的 `windowSize`，内存消耗会更多。对于较小的 `windowSize`，看到空白区域的概率会更大。
 
-## List items
+## 列表组件的优化要点
 
-Below are some tips about list item components. They are the core of your list, so they need to be fast.
+接下来是展示列表项组件的一些小技巧。列表项组件是列表的核心，所以它们的性能要足够好。
 
 ### 使用简单组件
 
-组件越复杂一般渲染就越慢。Try to avoid a lot of logic and nesting in your list items. If you are reusing this list item component a lot in your app, create a component just for your big lists and make them with as little logic and nesting as possible.
+组件越复杂一般渲染就越慢。 
+在列表项中尽量避免过多的逻辑和嵌套。如果你在应用中经常复用这个列表项组件，那就专门为这些大型列表创建一个组件，尽可能减少其中的逻辑和嵌套。
 
 ### 使用轻量组件
 
 组件太重自然也会拖慢渲染。尽量避免使用大图片（优先使用裁剪过的版本或是缩略图，总之越小越好）。和负责设计的同事协商，在列表中尽可能简化特效和交互，精简要展示的信息，把长内容移到详情页中。
 
-### 使用 shouldComponentUpdate
+### 使用`memo()`
 
-Implement update verification to your components. React's `PureComponent` implement a [`shouldComponentUpdate`](https://zh-hans.reactjs.org/docs/react-component.html#shouldcomponentupdate) with shallow comparison. This is expensive here because it need to check all your props. If you want a good bit-level performance, create the strictest rules for your list item components, checking only props that could potentially change. If your list is simple enough, you could even use
+`React.memo()` 会创建一个带有记忆化功能的组件，只有当传递给组件的 props 发生变化时，该组件才会重新渲染。我们可以利用这个函数来优化 FlatList 中的组件。
 
-```jsx
-shouldComponentUpdate() {
-  return false
-}
+```tsx
+import React, {memo} from 'react';
+import {View, Text} from 'react-native';
+
+const MyListItem = memo(
+  ({title}: {title: string}) => (
+    <View>
+      <Text>{title}</Text>
+    </View>
+  ),
+  (prevProps, nextProps) => {
+    return prevProps.title === nextProps.title;
+  },
+);
+
+export default MyListItem;
 ```
+
+在这个例子中，我们决定只有在标题发生变化时才重新渲染`MyListItem`组件。我们将比较函数作为第二个参数传递给`React.memo()`，以便只在指定的属性发生变化时才重新渲染组件。如果比较函数返回`true`，则组件将不会被重新渲染。
 
 ### 使用优化缓存的图片库
 
-You can use the community packages (such as [react-native-fast-image](https://github.com/DylanVann/react-native-fast-image) from [@DylanVann](https://github.com/DylanVann)) for more performant images. Every image in your list is a `new Image()` instance. The faster it reaches the `loaded` hook, the faster your Javascript thread will be free again.
+ 
+你可以使用社区的扩展包（例如 @DylanVann 提供的 [react-native-fast-image](https://github.com/DylanVann/react-native-fast-image) ）来获得更高性能的图片加载体验。列表中的每张图片都是一个`new Image()`实例。它触发 loaded 钩子的速度越快，你的 Javascript 线程就能越快再次空闲下来。
 
 ### 使用 getItemLayout
 
@@ -117,47 +132,26 @@ You can use the community packages (such as [react-native-fast-image](https://gi
 
 ### 使用 keyExtractor 或 key
 
-You can set the [`keyExtractor`](flatlist#keyextractor) to your `FlatList` component. This prop is used for caching and as the React `key` to track item re-ordering.
-
-You can also use a `key` prop in you item component.
+你可以为 `FlatList` 组件设置 [`keyExtractor`](flatlist#keyextractor) 属性。这个属性用于缓存,同时作为 React 的 `key` 来跟踪列表项的重新排序。
+你也可以在列表项组件中使用 `key` 属性。
 
 ### 避免在 renderItem 中使用匿名函数
 
-Move out the `renderItem` function to the outside of render function, so it won't recreate itself each time render function called.
+ 
+对于函数式组件，把 `renderItem` 函数移到返回的 JSX 之外。另外，确保把它包裹在 `useCallback` 钩子里，防止每次渲染时都重新创建。
+对于类组件，把 `renderItem` 函数移到 render 函数之外，这样每次调用`render`函数时它就不会重新创建自己了。
 
-<Tabs groupId="syntax" defaultValue={constants.defaultSyntax} values={constants.syntax}>
-<TabItem value="classical">
-
-```jsx
-renderItem = ({ item }) => (<View key={item.key}><Text>{item.title}</Text></View>);
-
-render(){
-  // ...
-
-  <FlatList
-    data={items}
-    renderItem={renderItem}
-  />
-
-  // ...
-}
-```
-
-</TabItem>
-<TabItem value="functional">
-
-```jsx
-const renderItem = ({ item }) => (
+```tsx
+const renderItem = useCallback(({item}) => (
    <View key={item.key}>
       <Text>{item.title}</Text>
    </View>
- );
+ ), []);
+
 return (
   // ...
+
   <FlatList data={items} renderItem={renderItem} />;
   // ...
 );
 ```
-
-</TabItem>
-</Tabs>
