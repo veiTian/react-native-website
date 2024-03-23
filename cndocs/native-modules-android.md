@@ -12,9 +12,9 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import con
 
 我们把 React Native 设计为可以在其基础上编写真正的原生代码，并且可以访问平台所有的能力。这是一个相对高级的特性，我们并不认为它应当在日常开发的过程中经常出现，但具备这样的能力是很重要的。如果 React Native 还不支持某个你需要的原生特性，你应当可以自己实现该特性的封装。
 
-## Native Module Setup
+## 原生模块设置
 
-Native modules are usually distributed as npm packages, apart from the typical javascript files and resources they will contain an Android library project. This project is, from NPM's perspective just like any other media asset, meaning there isn't anything special about it from this point of view. To get the basic scaffolding make sure to read [Native Modules Setup](native-modules-setup) guide first.
+原生模块通常以 npm 软件包的形式发布,除了典型的 javascript 文件和资源外,它们还将包含一个 Android 库项目。从 NPM 的角度来看,这个项目就像任何其他媒体资产一样,这意味着从这个角度来看它没有任何特殊之处。要获取基本框架,请先阅读[原生模块设置](native-modules-setup)指南。
 
 ### 开启 Gradle Daemon
 
@@ -173,7 +173,7 @@ protected List<ReactPackage> getPackages() {
  * 2. int duration: The duration of the toast. May be ToastExample.SHORT or
  *    ToastExample.LONG
  */
-import { NativeModules } from 'react-native';
+import {NativeModules} from 'react-native';
 // 下一句中的ToastExample即对应上文
 // public String getName()中返回的字符串
 export default NativeModules.ToastExample;
@@ -227,12 +227,12 @@ public class UIManagerModule extends ReactContextBaseJavaModule {
 UIManager.measureLayout(
   100,
   100,
-  (msg) => {
+  msg => {
     console.log(msg);
   },
   (x, y, width, height) => {
     console.log(x + ':' + y + ':' + width + ':' + height);
-  }
+  },
 );
 ```
 
@@ -286,11 +286,11 @@ public class UIManagerModule extends ReactContextBaseJavaModule {
 ```jsx
 async function measureLayout() {
   try {
-    const { relativeX, relativeY, width, height } =
+    const {relativeX, relativeY, width, height} =
       await UIManager.measureLayout(100, 100);
 
     console.log(
-      relativeX + ':' + relativeY + ':' + width + ':' + height
+      relativeX + ':' + relativeY + ':' + width + ':' + height,
     );
   } catch (e) {
     console.error(e);

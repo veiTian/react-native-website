@@ -4,277 +4,121 @@ title: 在应用中启用的预备工作
 ---
 
 import NewArchitectureWarning from './\_markdown-new-architecture-warning.mdx';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import constants from '@site/core/TabsConstants';
 
 <NewArchitectureWarning/>
 
-There are a few prerequisites that should be addressed before the New Architecture is enabled in your application.
+在启用新架构之前，应先满足一些先决条件。
 
-## Use a React Native >= 0.68 release
+## 更新至最新版 React Native
 
-React Native released the support for the New Architecture with the release `0.68.0`.
+React Native 在 0.68.0 版本中发布了对新架构的支持。
 
-This guide is written with the expectation that you’re using the latest React Native release. At the moment of writing, this is `0.70.0`. Other than this guide, you can leverage the [upgrade helper](https://react-native-community.github.io/upgrade-helper/) to determine what other changes may be required for your project.
+本指南的撰写是基于你使用的是 [**最新发布**的 React Native 版本](https://github.com/facebook/react-native/releases/latest)。
 
-To update to the most recent version of React Native, you can run this command:
+你可以在[升级到新版本](/docs/upgrading)页面找到升级说明。
 
-```bash
-yarn add react-native@0.70.0
-```
+升级后记得重新安装依赖(运行`npm install`或`yarn`)。
 
-Starting from React Native `0.69.0`, you may also need to update the version of React to 18. You can do so by using this command:
+:::info
 
-```bash
-yarn add react@18.0.0
-```
-
-### Android specifics
-
-Using the New Architecture on Android has some prerequisites that you need to meet:
-
-1. Using Gradle 7.x and Android Gradle Plugin 7.x
-2. Using the **new React Gradle Plugin**
-3. Building `react-native` **from Source**
-
-You can update Gradle by running:
-
-```bash
-cd android && ./gradlew wrapper --gradle-version 7.3.3 --distribution-type=all
-```
-
-While the AGP version should be updated inside the **top-level** `build.gradle` file at the `com.android.tools.build:gradle` dependency line.
-
-Now, you can edit your **top-level** `settings.gradle` file to include the following line at the end of the file:
-
-```groovy
-includeBuild('../node_modules/react-native-gradle-plugin')
-
-include(":ReactAndroid")
-project(":ReactAndroid").projectDir = file('../node_modules/react-native/ReactAndroid')
-include(":ReactAndroid:hermes-engine")
-project(":ReactAndroid:hermes-engine").projectDir = file('../node_modules/react-native/ReactAndroid/hermes-engine')
-```
-
-Then, open the `android/app/src/main/AndroidManifest.xml` file and add this line:
-
-```diff
-android:windowSoftInputMode="adjustResize"
-+ android:exported="true">
-<intent-filter>
-```
-
-Then, edit your **top-level Gradle file** to include the highlighted lines:
-
-```groovy
-buildscript {
-    ext {
-        buildToolsVersion = "31.0.0"
-        minSdkVersion = 21
-        compileSdkVersion = 31
-        targetSdkVersion = 31
-        if (System.properties['os.arch'] == "aarch64") {
-            // For M1 Users we need to use the NDK 24 which added support for aarch64
-            ndkVersion = "24.0.8215888"
-        } else {
-            // Otherwise we default to the side-by-side NDK version from AGP.
-            ndkVersion = "21.4.7075529"
-        }
-    }
-
-    // ...
-    dependencies {
-        // Make sure that AGP is at least at version 7.x
-        classpath("com.android.tools.build:gradle:7.2.0")
-
-        // Add those lines
-        classpath("com.facebook.react:react-native-gradle-plugin")
-        classpath("de.undercouch:gradle-download-task:4.1.2")
-    }
-}
-```
-
-Edit your **module-level** **Gradle file** (usually `app/build.gradle[.kts]`) to include the following:
-
-```diff
-// ...
-
-apply plugin: "com.android.application"
-
-// ...
-
-if (enableHermes) {
--    def hermesPath = "../../node_modules/hermes-engine/android/";
--    debugImplementation files(hermesPath + "hermes-debug.aar")
--    releaseImplementation files(hermesPath + "hermes-release.aar")
-+    //noinspection GradleDynamicVersion
-+    implementation("com.facebook.react:hermes-engine:+") { // From node_modules
-+        exclude group:'com.facebook.fbjni'
-+    }
-} else {
-
-// ...
-
-+ configurations.all {
-+     resolutionStrategy.dependencySubstitution {
-+         substitute(module("com.facebook.react:react-native"))
-+                 .using(project(":ReactAndroid"))
-+                 .because("On New Architecture we're building React Native from source")
-+         substitute(module("com.facebook.react:hermes-engine"))
-+                .using(project(":ReactAndroid:hermes-engine"))
-+                .because("On New Architecture we're building Hermes from source")
-+     }
-+ }
-
-// Run this once to be able to run the application with BUCK
-// puts all compile dependencies into folder libs for BUCK to use
-task copyDownloadableDepsToLibs(type: Copy) {
-
-// ...
-
-+ def isNewArchitectureEnabled() {
-+     // To opt-in for the New Architecture, you can either:
-+     // - Set `newArchEnabled` to true inside the `gradle.properties` file
-+     // - Invoke gradle with `-newArchEnabled=true`
-+     // - Set an environment variable `ORG_GRADLE_PROJECT_newArchEnabled=true`
-+     return project.hasProperty("newArchEnabled") && project.newArchEnabled == "true"
-+ }
-```
-
-Finally, it’s time to update your project to use the `react-native` dependency from source, rather than using a precompiled artifact from the NPM package. This is needed as the later setup will rely on building the native code from source.
-
-Let’s edit your **module-level** `build.gradle` (the one inside `app/` folder) and change the following line:
-
-```diff
-dependencies {
--  implementation "com.facebook.react:react-native:+"  // From node_modules
-+  implementation project(":ReactAndroid")  // From node_modules
-```
-
-## Use Hermes
-
-Hermes is an open-source JavaScript engine optimized for React Native. Hermes is enabled by default and you have to explicitly disable it if you want to use JSC.
-
-We highly recommend using Hermes in your application. With Hermes enabled, you will be able to use the JavaScript debugger in Flipper to directly debug your JavaScript code.
-
-Please [follow the instructions on the React Native website](hermes) to learn how to enable/disable Hermes.
-
-:::caution 注意
-
-**iOS:** If you opt out of using Hermes, you will need to replace `HermesExecutorFactory` with `JSCExecutorFactory` in any examples used throughout the rest of this guide.
+每当你需要重命名`ios`文件夹中的某些文件时，请**使用 Xcode 重命名它们**。这可确保 Xcode 工程中的文件引用也会更新。你可能需要先清理构建文件夹(**Project**→**Clean Build Folder**或<kbd>Cmd ⌘</kbd> + <kbd>Shift ⇪</kbd> + <kbd>K</kbd>)，然后重新构建应用。如果文件是在 Xcode 之外重命名的，你可能需要点击旧的`.m`文件引用，并定位到新文件。
 
 :::
 
-### Android
+## Android - 启用新架构
 
-To enable Hermes in Android, open the `android/app/build.gradle` and apply the following changes:
+如果你已成功将项目更新到最新版本的 React Native，那么你**已经满足**在 Android 上使用新架构的所有先决条件。
 
-```diff
-project.ext.react = [
--    enableHermes: true,  // clean and rebuild if changing
-+    enableHermes: true,  // clean and rebuild if changing
-]
-// ...
-
-}
-
-if (enableHermes) {
--    def hermesPath = "../../node_modules/hermes-engine/android/";
--    debugImplementation files(hermesPath + "hermes-debug.aar")
--    releaseImplementation files(hermesPath + "hermes-release.aar")
-+    //noinspection GradleDynamicVersion
-+    implementation("com.facebook.react:hermes-engine:+") { // From node_modules
-+        exclude group:'com.facebook.fbjni'
-+    }
-} else {
-```
-
-Moreover, you'll need to update the `proguard-rules`, adding the following ones:
-
-```
--keep class com.facebook.hermes.unicode.** { *; }
--keep class com.facebook.jni.** { *; }
-```
-
-After that, remember to cleanup the project, running
-
-```sh
-cd android
-./gradlew clean
-```
-
-## iOS: Make the project build
-
-After upgrading the project, there are a few changes you need to apply:
-
-1. Fix an API change in the `AppDelegate.m`. Open this file and apply this change:
+你只需要按如下方式更新`android/gradle.properties`文件:
 
 ```diff
-#if DEBUG
--       return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
-+       return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index"];
-#else
+# 使用此属性启用对新架构的支持。
+# 这将允许你在应用中使用TurboModules和Fabric渲染器。
+# 如果你想编写自定义TurboModules/Fabric组件或使用提供它们的库，
+# 你应该启用此标志。
+-newArchEnabled=false
++newArchEnabled=true
 ```
 
-2. Target the proper iOS version. Open the `Podfile` and apply this change:
+## iOS - 启用新架构
 
-```diff
-- platform :ios, '11.0'
-+ platform :ios, '12.4'
+如果你已成功将项目更新到最新版 React Native，那么你**已经满足**在 iOS 上使用新架构的所有先决条件。
+
+你只需通过运行带有正确标志的`pod install`来重新安装 pods:
+
+```bash
+# 运行带标志的pod install:
+RCT_NEW_ARCH_ENABLED=1 bundle exec pod install
 ```
 
-3. Create an `.xcode.env` file to export the locaion of the NODE_BINARY. Navigate to the `ios` folder and run this command:
+## 运行应用
 
-```sh
-echo 'export NODE_BINARY=$(command -v node)' > .xcode.env
+现在是时候运行应用以验证一切正常了:
+
+<Tabs groupId="run-app" queryString defaultValue={constants.defaultPackageManager} values={constants.packageManagers} >
+<TabItem value="yarn">
+
+```bash
+# 运行Android
+yarn android
+
+# 运行iOS
+yarn ios
 ```
 
-If you need it, you can also open the file and replace the `$(command -v node)` with the path to the node executable.
-React Native supports also a local version of this file `.xcode.env.local`. This file is not synced with the repository to let you customize your local setup, if it differs from the Continuous Integration or the team one.
+</TabItem>
+<TabItem value="npm">
 
-## iOS: Use Objective-C++ (`.mm` extension)
+```bash
+# 运行Android
+npm run android
 
-TurboModules can be written using Objective-C or C++. In order to support both cases, any source files that include C++ code should use the `.mm` file extension. This extension corresponds to Objective-C++, a language variant that allows for the use of a combination of C++ and Objective-C in source files.
-
-:::info 提示
-
-Use Xcode to rename existing files to ensure file references persist in your project. You might need to clean the build folder (_Project → Clean Build Folder_) before re-building the app. If the file is renamed outside of Xcode, you may need to click on the old `.m` file reference and Locate the new file.
-
-:::
-
-## iOS: TurboModules: Ensure your App Provides an `RCTCxxBridgeDelegate`
-
-In order to set up the TurboModule system, you will add some code to interact with the bridge in your AppDelegate. Before you start, go ahead and rename your AppDelegate file to use the `.mm` extension.
-
-Now you will have your AppDelegate conform to `RCTCxxBridgeDelegate`. Start by adding the following imports at the top of your AppDelegate file:
-
-```objc
-#import <reacthermes/HermesExecutorFactory.h>
-#import <React/RCTCxxBridgeDelegate.h>
-#import <React/RCTJSIExecutorRuntimeInstaller.h>
+# 运行iOS
+npm run ios
 ```
 
-Then, declare your app delegate as a `RCTCxxBridgeDelegate` provider:
+</TabItem>
+</Tabs>
 
-```objc
-@interface AppDelegate () <RCTCxxBridgeDelegate> {
-  // ...
-}
-@end
+在你的 Metro 终端日志中，你现在会看到以下日志，确认 Fabric 正在正确运行:
+
+```
+BUNDLE ./App.tsx
+LOG Running "App" with {"fabric":true，"initialProps":{"concurrentRoot": "true"}，"rootTag":1}
 ```
 
-To conform to the `RCTCxxBridgeDelegate` protocol, you will need to implement the `jsExecutorFactoryForBridge:` method. Typically, this is where you would return a `JSCExecutorFactory` or `HermesExecutorFactory`, and we will use it to install our TurboModules bindings later on.
+## 高级 - 在互操作层中传递你的组件
 
-You can implement the `jsExecutorFactoryForBridge:` method like this:
+如果你按照前面的步骤操作，但你的应用使用了一些尚未完全迁移到新架构的自定义本地组件，你会看到一些红色/粉色框，说明该组件与 Fabric 不兼容。这是因为为旧架构编写的自定义本地组件无法在新架构中原封不动地运行。
 
-```objc
-#pragma mark - RCTCxxBridgeDelegate
+从**React Native 0.72.0**开始，我们在互操作层上做了一些工作，让你不需要等待它们迁移到新架构的情况下，就可以在新架构中使用遗留组件。
 
-- (std::unique_ptr<facebook::react::JSExecutorFactory>)jsExecutorFactoryForBridge:(RCTBridge *)bridge
-{
-  return std::make_unique<facebook::react::HermesExecutorFactory>(facebook::react::RCTJSIExecutorRuntimeInstaller([bridge](facebook::jsi::Runtime &runtime) {
-      if (!bridge) {
-        return;
-      }
-    })
-  );
-}
+你可以阅读更多关于互操作层及如何使用它的内容[这里](https://github.com/reactwg/react-native-new-architecture/discussions/135)。按照该指南注册你的组件，然后使用以下命令重新运行应用:
+
+<Tabs groupId="run-app" queryString defaultValue={constants.defaultPackageManager} values={constants.packageManagers} >
+<TabItem value="yarn">
+
+```bash
+# To run android
+yarn android
+
+# To run iOS
+yarn ios
 ```
+
+</TabItem>
+<TabItem value="npm">
+
+```bash
+# To run android
+npm run android
+
+# To run iOS
+npm run ios
+```
+
+</TabItem>
+</Tabs>

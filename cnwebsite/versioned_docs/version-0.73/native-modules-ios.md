@@ -13,9 +13,9 @@ import NativeDeprecated from './the-new-architecture/\_markdown_native_deprecati
 
 本文是关于如何封装原生模块的高级向导，我们假设您已经具备 Objective-C 或者 Swift，以及 iOS 核心库（Foundation、UIKit）的相关知识。
 
-## Native Module Setup
+## 原生模块设置
 
-Native modules are usually distributed as npm packages, except that for them to be native modules they will contain an Xcode library project. To get the basic scaffolding make sure to read [Native Modules Setup](native-modules-setup) guide first.
+原生模块通常作为 npm 包进行分发，只是要成为原生模块，它们将包含一个 Xcode 库项目。要获得基本的框架，请务必先阅读[原生模块设置](native-modules-setup)指南。
 
 ## iOS 日历模块演示
 
@@ -69,11 +69,11 @@ RCT_EXPORT_METHOD(addEvent:(NSString *)name location:(NSString *)location)
 现在从 Javascript 里可以这样调用这个方法：
 
 ```jsx
-import { NativeModules } from 'react-native';
+import {NativeModules} from 'react-native';
 const CalendarManager = NativeModules.CalendarManager;
 CalendarManager.addEvent(
   'Birthday Party',
-  '4 Privet Drive, Surrey'
+  '4 Privet Drive, Surrey',
 );
 ```
 
@@ -129,7 +129,7 @@ RCT_EXPORT_METHOD(addEvent:(NSString *)name location:(NSString *)location date:(
 CalendarManager.addEvent(
   'Birthday Party',
   '4 Privet Drive, Surrey',
-  date.getTime()
+  date.getTime(),
 ); // 把日期以unix时间戳形式传递
 ```
 
@@ -139,7 +139,7 @@ CalendarManager.addEvent(
 CalendarManager.addEvent(
   'Birthday Party',
   '4 Privet Drive, Surrey',
-  date.toISOString()
+  date.toISOString(),
 ); // 把日期以ISO-8601的字符串形式传递
 ```
 
@@ -164,7 +164,7 @@ RCT_EXPORT_METHOD(addEvent:(NSString *)name details:(NSDictionary *)details)
 CalendarManager.addEvent('Birthday Party', {
   location: '4 Privet Drive, Surrey',
   time: date.getTime(),
-  description: '...'
+  description: '...',
 });
 ```
 
@@ -195,7 +195,7 @@ CalendarManager.findEvents((error, events) => {
   if (error) {
     console.error(error);
   } else {
-    this.setState({ events: events });
+    this.setState({events: events});
   }
 });
 ```
@@ -234,7 +234,7 @@ async function updateEvents() {
   try {
     const events = await CalendarManager.findEvents();
 
-    this.setState({ events });
+    this.setState({events});
   } catch (e) {
     console.error(e);
   }
@@ -319,12 +319,12 @@ console.log(CalendarManager.firstDayOfTheWeek);
 
 ### 实现 `+ requiresMainQueueSetup`
 
-If you override `- constantsToExport` then you should also implement `+ requiresMainQueueSetup` to let React Native know if your module needs to be initialized on the main thread. Otherwise you will see a warning that in the future your module may be initialized on a background thread unless you explicitly opt out with `+ requiresMainQueueSetup`:
+如果您重写 `- constantsToExport`，那么您也应该实现 `+ requiresMainQueueSetup`，以便让 React Native 知道您的模块是否需要在主线程上初始化。否则，您将会看到一个警告：在未来，除非您明确选择退出使用 `+ requiresMainQueueSetup`，否则您的模块可能会在后台线程上进行初始化。
 
 ```objectivec
 + (BOOL)requiresMainQueueSetup
 {
-  return YES;  // only do this if your module initialization relies on calling UIKit!
+  return YES;  // 请仅在您的模块初始化需要调用 UIKit 时才这样做！
 }
 ```
 
@@ -339,8 +339,9 @@ static func moduleName() -> String! {
 static func requiresMainQueueSetup() -> Bool {
     return true
 }
+```
 
-If your module does not require access to UIKit, then you should respond to `+ requiresMainQueueSetup` with `NO`.
+如果你的模块不需要访问 UIKit, 那么应该在实现 `+requiresMainQueueSetup` 方法时返回 `NO` 。
 
 ### 枚举常量
 
@@ -516,10 +517,10 @@ RCT_EXTERN_METHOD(addEvent:(NSString *)name location:(NSString *)location date:(
 
 同样的，你也可以使用`RCT_EXTERN_REMAP_MODULE`和`RCT_EXTERN_REMAP_METHOD`来改变导出模块和方法的 JavaScript 调用名称。了解更多信息，请参阅[`RCTBridgeModule`](https://github.com/facebook/react-native/blob/master/React/Base/RCTBridgeModule.h).
 
-> **Important when making third party modules**: Static libraries with Swift are only supported in Xcode 9 and later. In order for the Xcode project to build when you use Swift in the iOS static library you include in the module, your main app project must contain Swift code and a bridging header itself. If your app project does not contain any Swift code, a workaround can be a single empty .swift file and an empty bridging header.
+> **在制作第三方模块时的重要注意事项**: 只有 Xcode 9 及更高版本才支持在静态库中使用 Swift。为了在使用包含在模块中的 iOS 静态库中的 Swift 时构建 Xcode 项目，您的主应用程序项目必须包含 Swift 代码和桥接头文件本身。如果您的应用程序项目不包含任何 Swift 代码，则解决方法可以是一个空的 .swift 文件和一个空的桥接头。
 
-## Reserved Method Names
+# 保留的方法名
 
-### invalidate()
+## invalidate()
 
-Native modules can conform to the [RCTInvalidating](https://github.com/facebook/react-native/blob/aa0ef15335fe27c0c193e3e968789886d82e82ed/React/Base/RCTInvalidating.h) protocol on iOS by implementing the `invalidate` method. This method [can be invoked](https://github.com/facebook/react-native/blob/18e3303cd46a72668caae46e28c7c6ae69fbf8f8/ReactCommon/turbomodule/core/platform/ios/RCTTurboModuleManager.mm#L456) when the native bridge is invalidated (ie: on devmode reload). You should avoid implementing this method in general, as this mechanism exists for backwards compatibility and may be removed in the future.
+在 iOS 上，原生模块可以通过实现 `invalidate` 方法来符合 [RCTInvalidating](https://github.com/facebook/react-native/blob/aa0ef15335fe27c0c193e3e968789886d82e82ed/React/Base/RCTInvalidating.h) 协议。当本地桥接被失效时（例如：开发模式重新加载），可以调用这个方法[链接](https://github.com/facebook/react-native/blob/18e3303cd46a72668caae46e28c7c6ae69fbf8f8/ReactCommon/turbomodule/core/platform/ios/RCTTurboModuleManager.mm#L456)。通常情况下，您应避免实现此方法，因为这种机制是为了向后兼容而存在的，未来可能会被移除。

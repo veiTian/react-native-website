@@ -13,18 +13,18 @@ import NativeDeprecated from './the-new-architecture/\_markdown_native_deprecati
 
 ## 创建原生模块
 
-There are different ways to write a native module for your React Native application:
+有多种方法可以为您的 React Native 应用程序编写原生模块：
 
-1. Creating a local library that can be imported in your React Native application. Read [Creating local libraries](local-library-setup) guide to learn more.
-2. Directly within your React Native application's iOS/Android projects
-3. As a NPM package that can be installed as a dependency by your/other React Native applications.
+1. 创建一个可在您的 React Native 应用程序中导入的原生库。阅读[创建原生库]（local-library-setup）指南以了解更多信息。
+2. 直接在您的 React Native 应用程序的 iOS / Android 项目中
+3. 作为一个 NPM 包，可以被您/其他 React Native 应用程序作为依赖项安装。
 
-This guide will first walk you through implementing a native module directly within a React Native application. However the native module you build in the following guide can be distributed as an NPM package. Check out the [Setting Up a Native Module as a NPM Package](native-modules-setup) guide if you are interested in doing so.
+本指南将首先介绍如何直接在 React Native 应用程序内实现原生模块。但是，在以下指南中构建的原生模块可以作为 NPM 包进行分发。如果您有兴趣这样做，请查看[设置为 NPM 包的原生模块]（native-modules-setup）指南。
 
 ## 教程
 
-In the following sections we will walk you through guides on how to build a native module directly within a React Native application. As a prerequisite, you will need a React Native application to work within. You can follow the steps [here](getting-started) to setup a React Native application if you do not already have one.
+在接下来的部分中，我们将带您了解如何在 React Native 应用程序内直接构建一个原生模块的指南。作为一个先决条件，您需要一个 React Native 应用程序来工作。如果您还没有，可以按照[这里](getting-started)的步骤设置一个 React Native 应用程序。
 
-Imagine that you want to access the iOS/Android native calendar APIs from JavaScript within a React Native application in order to create calendar events. React Native does not expose a JavaScript API to communicate with the native calendar libraries. However, through native modules, you can write native code that communicates with native calendar APIs. Then you can invoke that native code through JavaScript in your React Native application.
+想象一下，您想在 React Native 应用程序内的 JavaScript 中访问 iOS/Android 原生日历 API，以创建日历事件。React Native 没有公开与原生日历库通信的 JavaScript API。然而，通过原生模块，您可以编写与原生日历 API 通信的原生代码。然后您可以在 React Native 应用程序中的 JavaScript 里调用该原生代码。
 
-In the following sections you will create such a Calendar native module for both [Android](native-modules-android) and [iOS](native-modules-ios).
+在接下来的部分中，您将为[Android](native-modules-android)和[iOS](native-modules-ios)创建这样一个 Calendar 原生模块。
