@@ -659,7 +659,7 @@ export default App;
 
 ### `margin`
 
-设置`margin`相同于同时设置`marginTop`、`marginLeft`、`marginBottom`以及`marginRight`。访问 https://developer.mozilla.org/en-US/docs/Web/CSS/margin 来进一步了解。
+设置`margin`相当于同时设置`marginTop`、`marginLeft`、`marginBottom`以及`marginRight`。访问 https://developer.mozilla.org/en-US/docs/Web/CSS/margin 来进一步了解。
 
 | 类型           | 必需 |
 | -------------- | ---- |
@@ -689,7 +689,7 @@ export default App;
 
 ### `marginHorizontal`
 
-设置`marginHorizontal`相同于同时设置`marginLeft`和`marginRight`。
+设置`marginHorizontal`相当于同时设置`marginLeft`和`marginRight`。
 
 | 类型           | 必需 |
 | -------------- | ---- |
@@ -739,7 +739,7 @@ export default App;
 
 ### `marginVertical`
 
-设置`marginVertical`相同于同时设置`marginTop`和`marginBottom`。
+设置`marginVertical`相当于同时设置`marginTop`和`marginBottom`。
 
 | 类型           | 必需 |
 | -------------- | ---- |
@@ -749,7 +749,7 @@ export default App;
 
 ### `maxHeight`
 
-`maxHeight` is the maximum height for this component, in logical pixels.
+`maxHeight` 是该组件的最大高度，以逻辑像素为单位。
 
 它的表现和 CSS 上的`max-height`类似，但是在 React Native 上只能使用逻辑像素值（数字单位）或百分比，而不能使用 em 或是任何其他单位。
 
@@ -763,7 +763,7 @@ export default App;
 
 ### `maxWidth`
 
-`maxWidth` is the maximum width for this component, in logical pixels.
+`maxWidth` 是该组件的最大宽度，以逻辑像素为单位。
 
 它的表现和 CSS 上的`max-width`类似，但是在 React Native 上只能使用逻辑像素值（数字单位）或百分比，而不能使用 em 或是任何其他单位。
 
@@ -777,7 +777,7 @@ export default App;
 
 ### `minHeight`
 
-`minHeight` is the minimum height for this component, in logical pixels.
+`minHeight` 是该组件的最小高度，以逻辑像素为单位。
 
 它的表现和 CSS 上的`min-height`类似，但是在 React Native 上只能使用逻辑像素值（数字单位）或百分比，而不能使用 em 或是任何其他单位。
 
@@ -791,7 +791,7 @@ export default App;
 
 ### `minWidth`
 
-`minWidth` is the minimum width for this component, in logical pixels.
+`minWidth` 是该组件的最小宽度，以逻辑像素为单位。
 
 它的表现和 CSS 上的`min-width`类似，但是在 React Native 上只能使用逻辑像素值（数字单位）或百分比，而不能使用 em 或是任何其他单位。
 
@@ -805,7 +805,7 @@ export default App;
 
 ### `overflow`
 
-`overflow` controls how children are measured and displayed. `overflow: hidden` causes views to be clipped while `overflow: scroll` causes views to be measured independently of their parents main axis. It works like `overflow` in CSS (default: visible). 访问 https://developer.mozilla.org/en/docs/Web/CSS/overflow 来进一步了解。
+`overflow` 控制子元素的测量和显示方式。`overflow: hidden` 会导致视图被裁剪，而 `overflow: scroll` 会导致视图独立于其父元素的主轴进行测量。它的工作原理类似于 CSS 中的 `overflow`（默认值：visible）。 访问 https://developer.mozilla.org/en/docs/Web/CSS/overflow 来进一步了解。
 
 | 类型                                | 必需 |
 | ----------------------------------- | ---- |
@@ -815,7 +815,7 @@ export default App;
 
 ### `padding`
 
-设置`padding`相同于同时设置`paddingTop`、`paddingBottom`、`paddingLeft`以及`paddingRight`。访问 https://developer.mozilla.org/en-US/docs/Web/CSS/padding 来进一步了解。
+设置`padding`相当于同时设置`paddingTop`、`paddingBottom`、`paddingLeft`以及`paddingRight`。访问 https://developer.mozilla.org/en-US/docs/Web/CSS/padding 来进一步了解。
 
 | 类型           | 必需 |
 | -------------- | ---- |
@@ -835,7 +835,7 @@ export default App;
 
 ### `paddingEnd`
 
-When direction is `ltr`, `paddingEnd` is equivalent to `paddingRight`. When direction is `rtl`, `paddingEnd` is equivalent to `paddingLeft`.
+ 当方向为 `ltr` 时,`paddingEnd` 相当于 `paddingRight`。当方向为 `rtl` 时,`paddingEnd` 相当于 `paddingLeft`。
 
 | 类型           | 必需 |
 | -------------- | ---- |
@@ -845,7 +845,7 @@ When direction is `ltr`, `paddingEnd` is equivalent to `paddingRight`. When dire
 
 ### `paddingHorizontal`
 
-设置`paddingHorizontal`相同于同时设置`paddingLeft`和`paddingRight`。
+设置`paddingHorizontal`相当于同时设置`paddingLeft`和`paddingRight`。
 
 | 类型           | 必需 |
 | -------------- | ---- |
@@ -875,7 +875,7 @@ When direction is `ltr`, `paddingEnd` is equivalent to `paddingRight`. When dire
 
 ### `paddingStart`
 
-When direction is `ltr`, `paddingStart` is equivalent to `paddingLeft`. When direction is `rtl`, `paddingStart` is equivalent to `paddingRight`.
+当方向为 `ltr` 时，`paddingStart` 等同于 `paddingLeft`。当方向为 `rtl` 时，`paddingStart` 等同于 `paddingRight`。
 
 | 类型           | 必需 |
 | -------------- | ---- |
@@ -895,7 +895,7 @@ When direction is `ltr`, `paddingStart` is equivalent to `paddingLeft`. When dir
 
 ### `paddingVertical`
 
-设置`paddingVertical`相同于同时设置`paddingTop`和`paddingBottom`。
+设置`paddingVertical`相当于同时设置`paddingTop`和`paddingBottom`。
 
 | 类型           | 必需 |
 | -------------- | ---- |
@@ -905,13 +905,13 @@ When direction is `ltr`, `paddingStart` is equivalent to `paddingLeft`. When dir
 
 ### `position`
 
-`position` in React Native is similar to regular CSS, but everything is set to `relative` by default, so `absolute` positioning is always relative to the parent.
+在React Native中，`position`与常规CSS类似，但默认情况下所有元素都设置为`relative`，因此`absolute`定位始终是相对于父元素的。
 
-If you want to position a child using specific numbers of logical pixels relative to its parent, set the child to have `absolute` position.
+如果您想要使用特定数量的逻辑像素相对于其父元素来定位子元素，请将子元素设置为具有`absolute`位置。
 
-If you want to position a child relative to something that is not its parent, don't use styles for that. Use the component tree.
+如果您想要将子元素相对于不是其父元素的对象进行定位，请不要为此使用样式。请使用组件树。
 
-See https://github.com/facebook/yoga for more details on how `position` differs between React Native and CSS.
+有关React Native和CSS之间`position`差异的更多详细信息，请参见 https://github.com/facebook/yoga
 
 | 类型                         | 必需 |
 | ---------------------------- | ---- |
@@ -925,7 +925,7 @@ See https://github.com/facebook/yoga for more details on how `position` differs 
 
 它的表现和 CSS 上的`right`类似，但是在 React Native 上只能使用逻辑像素值（数字单位）或百分比，而不能使用 em 或是任何其他单位。
 
-访问 https://developer.mozilla.org/en-US/docs/Web/CSS/right for more details of how `right` affects layout.
+访问 https://developer.mozilla.org/en-US/docs/Web/CSS/right 来进一步了解。
 
 | 类型           | 必需 |
 | -------------- | ---- |
@@ -935,7 +935,7 @@ See https://github.com/facebook/yoga for more details on how `position` differs 
 
 ### `rowGap`
 
-`rowGap` works like `row-gap` in CSS. Only pixel units are supported in React Native. See https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap for more details.
+`rowGap` 的功能类似于 CSS 中的 `row-gap`。React Native 仅支持像素单位。有关更多详细信息，请查看 https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap
 
 | 类型   | 必需 |
 | ------ | -------- |
@@ -961,7 +961,7 @@ See https://github.com/facebook/yoga for more details on how `position` differs 
 
 它的表现和 CSS 上的`top`类似，但是在 React Native 上只能使用逻辑像素值（数字单位）或百分比，而不能使用 em 或是任何其他单位。
 
-访问 https://developer.mozilla.org/en-US/docs/Web/CSS/top for more details of how `top` affects layout.
+访问 https://developer.mozilla.org/en-US/docs/Web/CSS/top 来进一步了解。
 
 | 类型           | 必需 |
 | -------------- | ---- |
