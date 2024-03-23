@@ -5,11 +5,11 @@ title: 布局属性
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-> More detailed examples about those properties can be found on the [Layout with Flexbox](flexbox) page.
+> 更多关于这些属性的详细示例可以在[Flexbox 布局](flexbox)页面上找到。
 
 ### 示例
 
-The following example shows how different properties can affect or shape a React Native layout. You can try for example to add or remove squares from the UI while changing the values of the property `flexWrap`.
+以下示例展示了不同属性如何影响或塑造 React Native 布局。您可以尝试添加或删除 UI 中的正方形，同时更改属性`flexWrap`的值。
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -367,9 +367,9 @@ export default App;
 
 ### `alignContent`
 
-`alignContent` controls how rows align in the cross direction, overriding the `alignContent` of the parent. 访问 https://developer.mozilla.org/en-US/docs/Web/CSS/align-content 来进一步了解。
+`alignContent`控制行在交叉轴上的对齐方式,会覆盖父级元素设置的`alignContent`属性。访问 https://developer.mozilla.org/en-US/docs/Web/CSS/align-content 来进一步了解。
 
-| Type                                                                                                 | 必需 |
+| 类型                                                                                                 | 必需 |
 | ---------------------------------------------------------------------------------------------------- | ---- |
 | enum('flex-start', 'flex-end', 'center', 'stretch', 'space-between', 'space-around', 'space-evenly') | 否   |
 
@@ -377,131 +377,131 @@ export default App;
 
 ### `alignItems`
 
-`alignItems` aligns children in the cross direction. For example, if children are flowing vertically, `alignItems` controls how they align horizontally. It works like `align-items` in CSS (default: stretch). See https://developer.mozilla.org/en-US/docs/Web/CSS/align-items for more details.
+`alignItems` 属性用于控制子元素在交叉轴上的对齐方式。举个例子，如果子元素垂直排列,那么 `alignItems` 就决定了它们在水平方向上的对齐方式。它的用法类似 CSS 中的`align-items`(默认值为 stretch)。详情请参阅 https://developer.mozilla.org/en-US/docs/Web/CSS/align-items
 
-| Type                                                            | Required |
-| --------------------------------------------------------------- | -------- |
-| enum('flex-start', 'flex-end', 'center', 'stretch', 'baseline') | No       |
+| 类型                                                            | 必需 |
+| --------------------------------------------------------------- | ---- |
+| enum('flex-start', 'flex-end', 'center', 'stretch', 'baseline') | 否   |
 
 ---
 
 ### `alignSelf`
 
-`alignSelf` controls how a child aligns in the cross direction, overriding the `alignItems` of the parent. It works like `align-self` in CSS (default: auto). See https://developer.mozilla.org/en-US/docs/Web/CSS/align-self for more details.
+`alignSelf` 控制子元素在纵向上的对齐方式，会覆盖父元素的 `alignItems` 属性。其作用类似于 CSS 中的`align-self`(默认值:auto)。详情请参阅 https://developer.mozilla.org/zh-CN/docs/Web/CSS/align-self
 
-| Type                                                                    | Required |
-| ----------------------------------------------------------------------- | -------- |
-| enum('auto', 'flex-start', 'flex-end', 'center', 'stretch', 'baseline') | No       |
+| 类型                                                                    | 必需 |
+| ----------------------------------------------------------------------- | ---- |
+| enum('auto', 'flex-start', 'flex-end', 'center', 'stretch', 'baseline') | 否   |
 
 ---
 
 ### `aspectRatio`
 
-Aspect ratio controls the size of the undefined dimension of a node. See https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio for more details.
+长宽比控制了节点未定义维度的尺寸。详情请参阅 https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio
 
-- On a node with a set width/height, aspect ratio controls the size of the unset dimension
-- On a node with a set flex basis, aspect ratio controls the size of the node in the cross axis if unset
-- On a node with a measure function, aspect ratio works as though the measure function measures the flex basis
-- On a node with flex grow/shrink, aspect ratio controls the size of the node in the cross axis if unset
-- Aspect ratio takes min/max dimensions into account
+- 对于设置了宽度/高度的节点，长宽比控制着未设置尺寸的一边大小。
+- 对于设置了 flex 值的节点，若未设置其在交叉轴方向的尺寸，长宽比决定着该节点沿交叉轴的尺寸。
+- 若节点使用了测量函数，长宽比将视同测量函数测量了 flex 值。
+- 对于设置了 flex grow/shrink 的节点，若其在交叉轴方向的尺寸未设置，长宽比将决定该尺寸。
+- 长宽比同时考虑了最小/最大尺寸约束。
 
-| Type           | Required |
-| -------------- | -------- |
-| number, string | No       |
+| 类型           | 必需 |
+| -------------- | ---- |
+| number, string | 否   |
 
 ---
 
 ### `borderBottomWidth`
 
-`borderBottomWidth` works like `border-bottom-width` in CSS. See https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-width for more details.
+borderBottomWidth 与 CSS 中的 border-bottom-width 属性作用相同。详情请参阅 https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-bottom-width
 
-| Type   | Required |
-| ------ | -------- |
-| number | No       |
+| 类型   | 必需 |
+| ------ | ---- |
+| number | 否   |
 
 ---
 
 ### `borderEndWidth`
 
-When direction is `ltr`, `borderEndWidth` is equivalent to `borderRightWidth`. When direction is `rtl`, `borderEndWidth` is equivalent to `borderLeftWidth`.
+当方向为 `ltr` 时，`borderEndWidth` 等同于 `borderRightWidth`。当方向为 `rtl` 时，`borderEndWidth` 等同于 `borderLeftWidth`。
 
-| Type   | Required |
-| ------ | -------- |
-| number | No       |
+| 类型   | 必需 |
+| ------ | ---- |
+| number | 否   |
 
 ---
 
 ### `borderLeftWidth`
 
-`borderLeftWidth` works like `border-left-width` in CSS. See https://developer.mozilla.org/en-US/docs/Web/CSS/border-left-width for more details.
+`borderLeftWidth` 的作用类似于 CSS 中的 `border-left-width`。详情请参阅 https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-left-width
 
-| Type   | Required |
-| ------ | -------- |
-| number | No       |
+| 类型   | 必需 |
+| ------ | ---- |
+| number | 否   |
 
 ---
 
 ### `borderRightWidth`
 
-`borderRightWidth` works like `border-right-width` in CSS. See https://developer.mozilla.org/en-US/docs/Web/CSS/border-right-width for more details.
+`borderRightWidth` 的作用与 CSS 中的 `border-right-width` 属性类似。详情请参阅 https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-right-width
 
-| Type   | Required |
-| ------ | -------- |
-| number | No       |
+| 类型   | 必需 |
+| ------ | ---- |
+| number | 否   |
 
 ---
 
 ### `borderStartWidth`
 
-When direction is `ltr`, `borderStartWidth` is equivalent to `borderLeftWidth`. When direction is `rtl`, `borderStartWidth` is equivalent to `borderRightWidth`.
+当方向为 `ltr` 时，`borderStartWidth` 相当于 `borderLeftWidth`。当方向为 `rtl` 时，`borderStartWidth` 相当于 `borderRightWidth`。
 
-| Type   | Required |
-| ------ | -------- |
-| number | No       |
+| 类型   | 必需 |
+| ------ | ---- |
+| number | 否   |
 
 ---
 
 ### `borderTopWidth`
 
-`borderTopWidth` works like `border-top-width` in CSS. See https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-width for more details.
+`borderTopWidth` 的作用类似于 CSS 中的 `border-top-width`。详情请参阅 https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-top-width
 
-| Type   | Required |
-| ------ | -------- |
-| number | No       |
+| 类型   | 必需 |
+| ------ | ---- |
+| number | 否   |
 
 ---
 
 ### `borderWidth`
 
-`borderWidth` works like `border-width` in CSS. See https://developer.mozilla.org/en-US/docs/Web/CSS/border-width for more details.
+`borderWidth` 的作用类似于 CSS 中的 `border-width`。详情请参阅 https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-width
 
-| Type   | Required |
-| ------ | -------- |
-| number | No       |
+| 类型   | 必需 |
+| ------ | ---- |
+| number | 否   |
 
 ---
 
 ### `bottom`
 
-`bottom` is the number of logical pixels to offset the bottom edge of this component.
+`bottom` 是指将此组件底部边缘向下偏移的逻辑像素数。
 
-It works similarly to `bottom` in CSS, but in React Native you must use points or percentages. Ems and other units are not supported.
+它与 CSS 中的 `bottom` 类似，但在 React Native 中，您必须使用点或百分比。不支持 em 和其他单位。
 
-See https://developer.mozilla.org/en-US/docs/Web/CSS/bottom for more details of how `bottom` affects layout.
+有关 `bottom` 如何影响布局的更多详细信息，请参见 https://developer.mozilla.org/en-US/docs/Web/CSS/bottom
 
-| Type           | Required |
-| -------------- | -------- |
-| number, string | No       |
+| 类型           | 必需 |
+| -------------- | ---- |
+| number, string | 否   |
 
 ---
 
 ### `columnGap`
 
-`columnGap` works like `column-gap` in CSS. Only pixel units are supported in React Native. See https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap for more details.
+`columnGap` 的作用类似于 CSS 中的 `column-gap`。在 React Native 中仅支持像素单位。有关更多详细信息，请查看 https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap。
 
-| Type   | Required |
-| ------ | -------- |
-| number | No       |
+| 类型   | 必需 |
+| ------ | ---- |
+| number | 否   |
 
 ---
 
@@ -559,7 +559,7 @@ See https://developer.mozilla.org/en-US/docs/Web/CSS/bottom for more details of 
 
 ### `flexBasis`
 
-`flexBasis` is an axis-independent way of providing the default size of an item along the main axis. Setting the `flexBasis` of a child is similar to setting the `width` of that child if its parent is a container with `flexDirection: row` or setting the `height` of a child if its parent is a container with `flexDirection: column`. The `flexBasis` of an item is the default size of that item, the size of the item before any `flexGrow` and `flexShrink` calculations are performed.
+`flexBasis` 是一种与轴无关的提供项目沿主轴默认大小的方式。设置一个子元素的 `flexBasis` 与其父元素为 `flexDirection: row` 的容器时设置该子元素的 `width` 类似，或者与其父元素为 `flexDirection: column` 的容器时设置该子元素的 `height` 类似。一个项目的 `flexBasis` 是该项目的默认大小，即在执行任何 `flexGrow` 和 `flexShrink` 计算之前项目的大小。
 
 | 类型           | 必需 |
 | -------------- | ---- |
@@ -569,7 +569,7 @@ See https://developer.mozilla.org/en-US/docs/Web/CSS/bottom for more details of 
 
 ### `flexDirection`
 
-`flexDirection` controls which directions children of a container go. `row` goes left to right, `column` goes top to bottom, and you may be able to guess what the other two do. It works like `flex-direction` in CSS, except the default is `column`. 访问 https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction 来进一步了解。
+`flexDirection` 控制容器内子元素的排列方向。`row` 为从左到右排列,`column` 为从上到下排列,你可以猜测其他两种方式的效果。它的作用类似于 CSS 中的 `flex-direction` 属性，只不过默认值是 `column`。 访问 https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction 来进一步了解。
 
 | 类型                                                   | 必需 |
 | ------------------------------------------------------ | ---- |
@@ -579,9 +579,8 @@ See https://developer.mozilla.org/en-US/docs/Web/CSS/bottom for more details of 
 
 ### `flexGrow`
 
-`flexGrow` describes how any space within a container should be distributed among its children along the main axis. After laying out its children, a container will distribute any remaining space according to the flex grow values specified by its children.
-
-`flexGrow` accepts any floating point value >= 0, with 0 being the default value. A container will distribute any remaining space among its children weighted by the children’s `flexGrow` values.
+在设置 flexGrow 属性时,它描述了在主轴方向上容器中的剩余空间应该如何分配给子元素。在布局子元素后,容器将根据子元素的 flexGrow 值按比例分配剩余空间。
+flexGrow 接受任意大于等于 0 的浮点数,默认值为 0。容器中剩余的空间将按子元素的 flexGrow 值加权分配。
 
 | 类型   | 必需 |
 | ------ | ---- |
@@ -591,9 +590,9 @@ See https://developer.mozilla.org/en-US/docs/Web/CSS/bottom for more details of 
 
 ### `flexShrink`
 
-[`flexShrink`](layout-props#flexshrink) describes how to shrink children along the main axis in the case in which the total size of the children overflows the size of the container on the main axis. `flexShrink` is very similar to `flexGrow` and can be thought of in the same way if any overflowing size is considered to be negative remaining space. These two properties also work well together by allowing children to grow and shrink as needed.
+[`flexShrink`](layout-props#flexshrink) 描述了在子元素的总大小超出主轴方向容器大小时，如何沿着主轴缩小子元素。`flexShrink` 与 `flexGrow` 非常相似，如果将任何溢出的大小视为负剩余空间，可以以相同的方式考虑它。这两个属性一起使用效果也很好，允许子元素根据需要进行扩展和收缩。
 
-`flexShrink` accepts any floating point value >= 0, with 0 being the default value. A container will shrink its children weighted by the children’s `flexShrink` values.
+`flexShrink` 接受任何大于等于 0 的浮点值，其中 0 是默认值。容器会根据子元素的 `flexShrink` 值加权缩小其子元素。
 
 | 类型   | 必需 |
 | ------ | ---- |
@@ -603,7 +602,8 @@ See https://developer.mozilla.org/en-US/docs/Web/CSS/bottom for more details of 
 
 ### `flexWrap`
 
-`flexWrap` controls whether children can wrap around after they hit the end of a flex container. It works like `flex-wrap` in CSS (default: nowrap). 访问 https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap 来进一步了解。Note it does not work anymore with `alignItems: stretch` (the default), so you may want to use `alignItems: flex-start` for example (breaking change details: https://github.com/facebook/react-native/releases/tag/v0.28.0).
+`flexWrap` 控制子元素在到达弹性容器末端后是否可以换行。它的工作原理类似于 CSS 中的 `flex-wrap`（默认值：nowrap）。访问 https://developer.mozilla.org/zh-CN/docs/Web/CSS/flex-wrap
+以获取更多信息。注意，它不再与 `alignItems: stretch`（默认值）一起工作，因此您可能希望使用例如 `alignItems: flex-start`（破坏性变更详情：https://github.com/facebook/react-native/releases/tag/v0.28.0）。
 
 | 类型                                   | 必需 |
 | -------------------------------------- | ---- |
@@ -613,11 +613,11 @@ See https://developer.mozilla.org/en-US/docs/Web/CSS/bottom for more details of 
 
 ### `gap`
 
-`gap` works like `gap` in CSS. Only pixel units are supported in React Native. See https://developer.mozilla.org/en-US/docs/Web/CSS/gap for more details.
+`gap`效果和 CSS 中的`gap`一样。React Native 中仅支持像素单位。更多细节请参阅https://developer.mozilla.org/en-US/docs/Web/CSS/gap
 
-| Type   | Required |
-| ------ | -------- |
-| number | No       |
+| 类型   | 必需 |
+| ------ | ---- |
+| number | 否   |
 
 ---
 
@@ -635,7 +635,7 @@ See https://developer.mozilla.org/en-US/docs/Web/CSS/bottom for more details of 
 
 ### `justifyContent`
 
-`justifyContent` aligns children in the main direction. For example, if children are flowing vertically, `justifyContent` controls how they align vertically. It works like `justify-content` in CSS (default: flex-start). 访问 https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content 来进一步了解。
+`justifyContent` 用于在主方向上对齐子元素。例如，如果子元素垂直流动，`justifyContent` 控制它们如何垂直对齐。它的作用类似于 CSS 中的 `justify-content`（默认值：flex-start）。 访问 https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content 来进一步了解。
 
 | 类型                                                                                      | 必需 |
 | ----------------------------------------------------------------------------------------- | ---- |
@@ -649,7 +649,7 @@ See https://developer.mozilla.org/en-US/docs/Web/CSS/bottom for more details of 
 
 它的表现和 CSS 上的`left`类似， but in React Native 只能使用逻辑像素值（数字单位）或百分比，而不能使用 em 或是任何其他单位。
 
-访问 https://developer.mozilla.org/en-US/docs/Web/CSS/left for more details of how `left` affects layout.
+想了解 `left` 属性对布局的影响,请访问 https://developer.mozilla.org/zh-CN/docs/Web/CSS/left 查看更多细节。
 
 | 类型           | 必需 |
 | -------------- | ---- |
@@ -659,7 +659,7 @@ See https://developer.mozilla.org/en-US/docs/Web/CSS/bottom for more details of 
 
 ### `margin`
 
-设置`margin`相同于同时设置`marginTop`、`marginLeft`、`marginBottom`以及`marginRight`。访问 https://developer.mozilla.org/en-US/docs/Web/CSS/margin 来进一步了解。
+设置`margin`相当于同时设置`marginTop`、`marginLeft`、`marginBottom`以及`marginRight`。访问 https://developer.mozilla.org/en-US/docs/Web/CSS/margin 来进一步了解。
 
 | 类型           | 必需 |
 | -------------- | ---- |
@@ -679,7 +679,7 @@ See https://developer.mozilla.org/en-US/docs/Web/CSS/bottom for more details of 
 
 ### `marginEnd`
 
-When direction is `ltr`, `marginEnd` is equivalent to `marginRight`. When direction is `rtl`, `marginEnd` is equivalent to `marginLeft`.
+当方向为 `ltr` 时，`marginEnd` 相当于 `marginRight`。当方向为 `rtl` 时，`marginEnd` 相当于 `marginLeft`。
 
 | 类型           | 必需 |
 | -------------- | ---- |
@@ -689,7 +689,7 @@ When direction is `ltr`, `marginEnd` is equivalent to `marginRight`. When direct
 
 ### `marginHorizontal`
 
-设置`marginHorizontal`相同于同时设置`marginLeft`和`marginRight`。
+设置`marginHorizontal`相当于同时设置`marginLeft`和`marginRight`。
 
 | 类型           | 必需 |
 | -------------- | ---- |
@@ -719,7 +719,7 @@ When direction is `ltr`, `marginEnd` is equivalent to `marginRight`. When direct
 
 ### `marginStart`
 
-When direction is `ltr`, `marginStart` is equivalent to `marginLeft`. When direction is `rtl`, `marginStart` is equivalent to `marginRight`.
+当方向为 `ltr` 时，`marginStart` 相当于 `marginLeft`。当方向为 `rtl` 时，`marginStart` 相当于 `marginRight`。
 
 | 类型           | 必需 |
 | -------------- | ---- |
@@ -739,7 +739,7 @@ When direction is `ltr`, `marginStart` is equivalent to `marginLeft`. When direc
 
 ### `marginVertical`
 
-设置`marginVertical`相同于同时设置`marginTop`和`marginBottom`。
+设置`marginVertical`相当于同时设置`marginTop`和`marginBottom`。
 
 | 类型           | 必需 |
 | -------------- | ---- |
@@ -749,7 +749,7 @@ When direction is `ltr`, `marginStart` is equivalent to `marginLeft`. When direc
 
 ### `maxHeight`
 
-`maxHeight` is the maximum height for this component, in logical pixels.
+`maxHeight` 是该组件的最大高度，以逻辑像素为单位。
 
 它的表现和 CSS 上的`max-height`类似，但是在 React Native 上只能使用逻辑像素值（数字单位）或百分比，而不能使用 em 或是任何其他单位。
 
@@ -763,7 +763,7 @@ When direction is `ltr`, `marginStart` is equivalent to `marginLeft`. When direc
 
 ### `maxWidth`
 
-`maxWidth` is the maximum width for this component, in logical pixels.
+`maxWidth` 是该组件的最大宽度，以逻辑像素为单位。
 
 它的表现和 CSS 上的`max-width`类似，但是在 React Native 上只能使用逻辑像素值（数字单位）或百分比，而不能使用 em 或是任何其他单位。
 
@@ -777,7 +777,7 @@ When direction is `ltr`, `marginStart` is equivalent to `marginLeft`. When direc
 
 ### `minHeight`
 
-`minHeight` is the minimum height for this component, in logical pixels.
+`minHeight` 是该组件的最小高度，以逻辑像素为单位。
 
 它的表现和 CSS 上的`min-height`类似，但是在 React Native 上只能使用逻辑像素值（数字单位）或百分比，而不能使用 em 或是任何其他单位。
 
@@ -791,7 +791,7 @@ When direction is `ltr`, `marginStart` is equivalent to `marginLeft`. When direc
 
 ### `minWidth`
 
-`minWidth` is the minimum width for this component, in logical pixels.
+`minWidth` 是该组件的最小宽度，以逻辑像素为单位。
 
 它的表现和 CSS 上的`min-width`类似，但是在 React Native 上只能使用逻辑像素值（数字单位）或百分比，而不能使用 em 或是任何其他单位。
 
@@ -805,7 +805,7 @@ When direction is `ltr`, `marginStart` is equivalent to `marginLeft`. When direc
 
 ### `overflow`
 
-`overflow` controls how children are measured and displayed. `overflow: hidden` causes views to be clipped while `overflow: scroll` causes views to be measured independently of their parents main axis. It works like `overflow` in CSS (default: visible). 访问 https://developer.mozilla.org/en/docs/Web/CSS/overflow 来进一步了解。
+`overflow` 控制子元素的测量和显示方式。`overflow: hidden` 会导致视图被裁剪，而 `overflow: scroll` 会导致视图独立于其父元素的主轴进行测量。它的工作原理类似于 CSS 中的 `overflow`（默认值：visible）。 访问 https://developer.mozilla.org/en/docs/Web/CSS/overflow 来进一步了解。
 
 | 类型                                | 必需 |
 | ----------------------------------- | ---- |
@@ -815,7 +815,7 @@ When direction is `ltr`, `marginStart` is equivalent to `marginLeft`. When direc
 
 ### `padding`
 
-设置`padding`相同于同时设置`paddingTop`、`paddingBottom`、`paddingLeft`以及`paddingRight`。访问 https://developer.mozilla.org/en-US/docs/Web/CSS/padding 来进一步了解。
+设置`padding`相当于同时设置`paddingTop`、`paddingBottom`、`paddingLeft`以及`paddingRight`。访问 https://developer.mozilla.org/en-US/docs/Web/CSS/padding 来进一步了解。
 
 | 类型           | 必需 |
 | -------------- | ---- |
@@ -835,7 +835,7 @@ When direction is `ltr`, `marginStart` is equivalent to `marginLeft`. When direc
 
 ### `paddingEnd`
 
-When direction is `ltr`, `paddingEnd` is equivalent to `paddingRight`. When direction is `rtl`, `paddingEnd` is equivalent to `paddingLeft`.
+当方向为 `ltr` 时,`paddingEnd` 相当于 `paddingRight`。当方向为 `rtl` 时,`paddingEnd` 相当于 `paddingLeft`。
 
 | 类型           | 必需 |
 | -------------- | ---- |
@@ -845,7 +845,7 @@ When direction is `ltr`, `paddingEnd` is equivalent to `paddingRight`. When dire
 
 ### `paddingHorizontal`
 
-设置`paddingHorizontal`相同于同时设置`paddingLeft`和`paddingRight`。
+设置`paddingHorizontal`相当于同时设置`paddingLeft`和`paddingRight`。
 
 | 类型           | 必需 |
 | -------------- | ---- |
@@ -875,7 +875,7 @@ When direction is `ltr`, `paddingEnd` is equivalent to `paddingRight`. When dire
 
 ### `paddingStart`
 
-When direction is `ltr`, `paddingStart` is equivalent to `paddingLeft`. When direction is `rtl`, `paddingStart` is equivalent to `paddingRight`.
+当方向为 `ltr` 时，`paddingStart` 等同于 `paddingLeft`。当方向为 `rtl` 时，`paddingStart` 等同于 `paddingRight`。
 
 | 类型           | 必需 |
 | -------------- | ---- |
@@ -895,7 +895,7 @@ When direction is `ltr`, `paddingStart` is equivalent to `paddingLeft`. When dir
 
 ### `paddingVertical`
 
-设置`paddingVertical`相同于同时设置`paddingTop`和`paddingBottom`。
+设置`paddingVertical`相当于同时设置`paddingTop`和`paddingBottom`。
 
 | 类型           | 必需 |
 | -------------- | ---- |
@@ -905,13 +905,13 @@ When direction is `ltr`, `paddingStart` is equivalent to `paddingLeft`. When dir
 
 ### `position`
 
-`position` in React Native is similar to regular CSS, but everything is set to `relative` by default, so `absolute` positioning is always relative to the parent.
+在 React Native 中，`position`与常规 CSS 类似，但默认情况下所有元素都设置为`relative`，因此`absolute`定位始终是相对于父元素的。
 
-If you want to position a child using specific numbers of logical pixels relative to its parent, set the child to have `absolute` position.
+如果您想要使用特定数量的逻辑像素相对于其父元素来定位子元素，请将子元素设置为具有`absolute`位置。
 
-If you want to position a child relative to something that is not its parent, don't use styles for that. Use the component tree.
+如果您想要将子元素相对于不是其父元素的对象进行定位，请不要为此使用样式。请使用组件树。
 
-See https://github.com/facebook/yoga for more details on how `position` differs between React Native and CSS.
+有关 React Native 和 CSS 之间`position`差异的更多详细信息，请参见 https://github.com/facebook/yoga
 
 | 类型                         | 必需 |
 | ---------------------------- | ---- |
@@ -925,7 +925,7 @@ See https://github.com/facebook/yoga for more details on how `position` differs 
 
 它的表现和 CSS 上的`right`类似，但是在 React Native 上只能使用逻辑像素值（数字单位）或百分比，而不能使用 em 或是任何其他单位。
 
-访问 https://developer.mozilla.org/en-US/docs/Web/CSS/right for more details of how `right` affects layout.
+访问 https://developer.mozilla.org/en-US/docs/Web/CSS/right 来进一步了解。
 
 | 类型           | 必需 |
 | -------------- | ---- |
@@ -935,11 +935,11 @@ See https://github.com/facebook/yoga for more details on how `position` differs 
 
 ### `rowGap`
 
-`rowGap` works like `row-gap` in CSS. Only pixel units are supported in React Native. See https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap for more details.
+`rowGap` 的功能类似于 CSS 中的 `row-gap`。React Native 仅支持像素单位。有关更多详细信息，请查看 https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap
 
-| Type   | Required |
-| ------ | -------- |
-| number | No       |
+| 类型   | 必需 |
+| ------ | ---- |
+| number | 否   |
 
 ---
 
@@ -961,7 +961,7 @@ See https://github.com/facebook/yoga for more details on how `position` differs 
 
 它的表现和 CSS 上的`top`类似，但是在 React Native 上只能使用逻辑像素值（数字单位）或百分比，而不能使用 em 或是任何其他单位。
 
-访问 https://developer.mozilla.org/en-US/docs/Web/CSS/top for more details of how `top` affects layout.
+访问 https://developer.mozilla.org/en-US/docs/Web/CSS/top 来进一步了解。
 
 | 类型           | 必需 |
 | -------------- | ---- |

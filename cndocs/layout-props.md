@@ -5,11 +5,11 @@ title: 布局属性
 
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem'; import constants from '@site/core/TabsConstants';
 
-> 更多关于这些属性的详细示例可以在[Flexbox布局](flexbox)页面上找到。
+> 更多关于这些属性的详细示例可以在[Flexbox 布局](flexbox)页面上找到。
 
 ### 示例
 
-以下示例展示了不同属性如何影响或塑造React Native布局。您可以尝试添加或删除UI中的正方形，同时更改属性`flexWrap`的值。
+以下示例展示了不同属性如何影响或塑造 React Native 布局。您可以尝试添加或删除 UI 中的正方形，同时更改属性`flexWrap`的值。
 
 <Tabs groupId="language" queryString defaultValue={constants.defaultSnackLanguage} values={constants.snackLanguages}>
 <TabItem value="javascript">
@@ -367,7 +367,7 @@ export default App;
 
 ### `alignContent`
 
- `alignContent`控制行在交叉轴上的对齐方式,会覆盖父级元素设置的`alignContent`属性。访问 https://developer.mozilla.org/en-US/docs/Web/CSS/align-content 来进一步了解。
+`alignContent`控制行在交叉轴上的对齐方式,会覆盖父级元素设置的`alignContent`属性。访问 https://developer.mozilla.org/en-US/docs/Web/CSS/align-content 来进一步了解。
 
 | 类型                                                                                                 | 必需 |
 | ---------------------------------------------------------------------------------------------------- | ---- |
@@ -377,21 +377,21 @@ export default App;
 
 ### `alignItems`
 
- `alignItems` 属性用于控制子元素在交叉轴上的对齐方式。举个例子，如果子元素垂直排列,那么 `alignItems` 就决定了它们在水平方向上的对齐方式。它的用法类似CSS中的`align-items`(默认值为stretch)。详情请参阅 https://developer.mozilla.org/en-US/docs/Web/CSS/align-items
+`alignItems` 属性用于控制子元素在交叉轴上的对齐方式。举个例子，如果子元素垂直排列,那么 `alignItems` 就决定了它们在水平方向上的对齐方式。它的用法类似 CSS 中的`align-items`(默认值为 stretch)。详情请参阅 https://developer.mozilla.org/en-US/docs/Web/CSS/align-items
 
 | 类型                                                            | 必需 |
-| --------------------------------------------------------------- | -------- |
-| enum('flex-start', 'flex-end', 'center', 'stretch', 'baseline') | 否       |
+| --------------------------------------------------------------- | ---- |
+| enum('flex-start', 'flex-end', 'center', 'stretch', 'baseline') | 否   |
 
 ---
 
 ### `alignSelf`
 
-`alignSelf` 控制子元素在纵向上的对齐方式，会覆盖父元素的 `alignItems` 属性。其作用类似于CSS中的`align-self`(默认值:auto)。详情请参阅 https://developer.mozilla.org/zh-CN/docs/Web/CSS/align-self
+`alignSelf` 控制子元素在纵向上的对齐方式，会覆盖父元素的 `alignItems` 属性。其作用类似于 CSS 中的`align-self`(默认值:auto)。详情请参阅 https://developer.mozilla.org/zh-CN/docs/Web/CSS/align-self
 
 | 类型                                                                    | 必需 |
-| ----------------------------------------------------------------------- | -------- |
-| enum('auto', 'flex-start', 'flex-end', 'center', 'stretch', 'baseline') | 否       |
+| ----------------------------------------------------------------------- | ---- |
+| enum('auto', 'flex-start', 'flex-end', 'center', 'stretch', 'baseline') | 否   |
 
 ---
 
@@ -400,24 +400,24 @@ export default App;
 长宽比控制了节点未定义维度的尺寸。详情请参阅 https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio
 
 - 对于设置了宽度/高度的节点，长宽比控制着未设置尺寸的一边大小。
-- 对于设置了flex值的节点，若未设置其在交叉轴方向的尺寸，长宽比决定着该节点沿交叉轴的尺寸。
-- 若节点使用了测量函数，长宽比将视同测量函数测量了flex值。
-- 对于设置了flex grow/shrink的节点，若其在交叉轴方向的尺寸未设置，长宽比将决定该尺寸。
+- 对于设置了 flex 值的节点，若未设置其在交叉轴方向的尺寸，长宽比决定着该节点沿交叉轴的尺寸。
+- 若节点使用了测量函数，长宽比将视同测量函数测量了 flex 值。
+- 对于设置了 flex grow/shrink 的节点，若其在交叉轴方向的尺寸未设置，长宽比将决定该尺寸。
 - 长宽比同时考虑了最小/最大尺寸约束。
 
 | 类型           | 必需 |
-| -------------- | -------- |
-| number, string | 否       |
+| -------------- | ---- |
+| number, string | 否   |
 
 ---
 
 ### `borderBottomWidth`
 
- borderBottomWidth与CSS中的border-bottom-width属性作用相同。详情请参阅 https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-bottom-width
+borderBottomWidth 与 CSS 中的 border-bottom-width 属性作用相同。详情请参阅 https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-bottom-width
 
 | 类型   | 必需 |
-| ------ | -------- |
-| number | 否       |
+| ------ | ---- |
+| number | 否   |
 
 ---
 
@@ -426,8 +426,8 @@ export default App;
 当方向为 `ltr` 时，`borderEndWidth` 等同于 `borderRightWidth`。当方向为 `rtl` 时，`borderEndWidth` 等同于 `borderLeftWidth`。
 
 | 类型   | 必需 |
-| ------ | -------- |
-| number | 否       |
+| ------ | ---- |
+| number | 否   |
 
 ---
 
@@ -436,8 +436,8 @@ export default App;
 `borderLeftWidth` 的作用类似于 CSS 中的 `border-left-width`。详情请参阅 https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-left-width
 
 | 类型   | 必需 |
-| ------ | -------- |
-| number | 否       |
+| ------ | ---- |
+| number | 否   |
 
 ---
 
@@ -446,8 +446,8 @@ export default App;
 `borderRightWidth` 的作用与 CSS 中的 `border-right-width` 属性类似。详情请参阅 https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-right-width
 
 | 类型   | 必需 |
-| ------ | -------- |
-| number | 否       |
+| ------ | ---- |
+| number | 否   |
 
 ---
 
@@ -456,8 +456,8 @@ export default App;
 当方向为 `ltr` 时，`borderStartWidth` 相当于 `borderLeftWidth`。当方向为 `rtl` 时，`borderStartWidth` 相当于 `borderRightWidth`。
 
 | 类型   | 必需 |
-| ------ | -------- |
-| number | 否       |
+| ------ | ---- |
+| number | 否   |
 
 ---
 
@@ -466,8 +466,8 @@ export default App;
 `borderTopWidth` 的作用类似于 CSS 中的 `border-top-width`。详情请参阅 https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-top-width
 
 | 类型   | 必需 |
-| ------ | -------- |
-| number | 否       |
+| ------ | ---- |
+| number | 否   |
 
 ---
 
@@ -476,8 +476,8 @@ export default App;
 `borderWidth` 的作用类似于 CSS 中的 `border-width`。详情请参阅 https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-width
 
 | 类型   | 必需 |
-| ------ | -------- |
-| number | 否       |
+| ------ | ---- |
+| number | 否   |
 
 ---
 
@@ -490,8 +490,8 @@ export default App;
 有关 `bottom` 如何影响布局的更多详细信息，请参见 https://developer.mozilla.org/en-US/docs/Web/CSS/bottom
 
 | 类型           | 必需 |
-| -------------- | -------- |
-| number, string | 否       |
+| -------------- | ---- |
+| number, string | 否   |
 
 ---
 
@@ -500,8 +500,8 @@ export default App;
 `columnGap` 的作用类似于 CSS 中的 `column-gap`。在 React Native 中仅支持像素单位。有关更多详细信息，请查看 https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap。
 
 | 类型   | 必需 |
-| ------ | -------- |
-| number | 否       |
+| ------ | ---- |
+| number | 否   |
 
 ---
 
@@ -569,7 +569,7 @@ export default App;
 
 ### `flexDirection`
 
- `flexDirection` 控制容器内子元素的排列方向。`row` 为从左到右排列,`column` 为从上到下排列,你可以猜测其他两种方式的效果。它的作用类似于 CSS 中的 `flex-direction` 属性，只不过默认值是 `column`。 访问 https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction 来进一步了解。
+`flexDirection` 控制容器内子元素的排列方向。`row` 为从左到右排列,`column` 为从上到下排列,你可以猜测其他两种方式的效果。它的作用类似于 CSS 中的 `flex-direction` 属性，只不过默认值是 `column`。 访问 https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction 来进一步了解。
 
 | 类型                                                   | 必需 |
 | ------------------------------------------------------ | ---- |
@@ -579,8 +579,8 @@ export default App;
 
 ### `flexGrow`
 
- 在设置 flexGrow 属性时,它描述了在主轴方向上容器中的剩余空间应该如何分配给子元素。在布局子元素后,容器将根据子元素的 flexGrow 值按比例分配剩余空间。
- flexGrow 接受任意大于等于 0 的浮点数,默认值为 0。容器中剩余的空间将按子元素的 flexGrow 值加权分配。
+在设置 flexGrow 属性时,它描述了在主轴方向上容器中的剩余空间应该如何分配给子元素。在布局子元素后,容器将根据子元素的 flexGrow 值按比例分配剩余空间。
+flexGrow 接受任意大于等于 0 的浮点数,默认值为 0。容器中剩余的空间将按子元素的 flexGrow 值加权分配。
 
 | 类型   | 必需 |
 | ------ | ---- |
@@ -602,8 +602,8 @@ export default App;
 
 ### `flexWrap`
 
-`flexWrap` 控制子元素在到达弹性容器末端后是否可以换行。它的工作原理类似于 CSS 中的 `flex-wrap`（默认值：nowrap）。访问 https://developer.mozilla.org/zh-CN/docs/Web/CSS/flex-wrap 
- 以获取更多信息。注意，它不再与 `alignItems: stretch`（默认值）一起工作，因此您可能希望使用例如 `alignItems: flex-start`（破坏性变更详情：https://github.com/facebook/react-native/releases/tag/v0.28.0）。
+`flexWrap` 控制子元素在到达弹性容器末端后是否可以换行。它的工作原理类似于 CSS 中的 `flex-wrap`（默认值：nowrap）。访问 https://developer.mozilla.org/zh-CN/docs/Web/CSS/flex-wrap
+以获取更多信息。注意，它不再与 `alignItems: stretch`（默认值）一起工作，因此您可能希望使用例如 `alignItems: flex-start`（破坏性变更详情：https://github.com/facebook/react-native/releases/tag/v0.28.0）。
 
 | 类型                                   | 必需 |
 | -------------------------------------- | ---- |
@@ -613,11 +613,11 @@ export default App;
 
 ### `gap`
 
- `gap`效果和CSS中的`gap`一样。React Native中仅支持像素单位。更多细节请参阅https://developer.mozilla.org/en-US/docs/Web/CSS/gap
+`gap`效果和 CSS 中的`gap`一样。React Native 中仅支持像素单位。更多细节请参阅https://developer.mozilla.org/en-US/docs/Web/CSS/gap
 
 | 类型   | 必需 |
-| ------ | -------- |
-| number | 否       |
+| ------ | ---- |
+| number | 否   |
 
 ---
 
@@ -648,7 +648,7 @@ export default App;
 `left`值是指将本组件定位到距离左边多少个逻辑像素（左边的定义取决于`position`属性）。
 
 它的表现和 CSS 上的`left`类似， but in React Native 只能使用逻辑像素值（数字单位）或百分比，而不能使用 em 或是任何其他单位。
- 
+
 想了解 `left` 属性对布局的影响,请访问 https://developer.mozilla.org/zh-CN/docs/Web/CSS/left 查看更多细节。
 
 | 类型           | 必需 |
@@ -835,7 +835,7 @@ export default App;
 
 ### `paddingEnd`
 
- 当方向为 `ltr` 时,`paddingEnd` 相当于 `paddingRight`。当方向为 `rtl` 时,`paddingEnd` 相当于 `paddingLeft`。
+当方向为 `ltr` 时,`paddingEnd` 相当于 `paddingRight`。当方向为 `rtl` 时,`paddingEnd` 相当于 `paddingLeft`。
 
 | 类型           | 必需 |
 | -------------- | ---- |
@@ -905,13 +905,13 @@ export default App;
 
 ### `position`
 
-在React Native中，`position`与常规CSS类似，但默认情况下所有元素都设置为`relative`，因此`absolute`定位始终是相对于父元素的。
+在 React Native 中，`position`与常规 CSS 类似，但默认情况下所有元素都设置为`relative`，因此`absolute`定位始终是相对于父元素的。
 
 如果您想要使用特定数量的逻辑像素相对于其父元素来定位子元素，请将子元素设置为具有`absolute`位置。
 
 如果您想要将子元素相对于不是其父元素的对象进行定位，请不要为此使用样式。请使用组件树。
 
-有关React Native和CSS之间`position`差异的更多详细信息，请参见 https://github.com/facebook/yoga
+有关 React Native 和 CSS 之间`position`差异的更多详细信息，请参见 https://github.com/facebook/yoga
 
 | 类型                         | 必需 |
 | ---------------------------- | ---- |
@@ -938,8 +938,8 @@ export default App;
 `rowGap` 的功能类似于 CSS 中的 `row-gap`。React Native 仅支持像素单位。有关更多详细信息，请查看 https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap
 
 | 类型   | 必需 |
-| ------ | -------- |
-| number | 否       |
+| ------ | ---- |
+| number | 否   |
 
 ---
 
