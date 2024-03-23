@@ -3,15 +3,15 @@ id: inputaccessoryview
 title: InputAccessoryView
 ---
 
-A component which enables customization of the keyboard input accessory view on iOS. The input accessory view is displayed above the keyboard whenever a `TextInput` has focus. This component can be used to create custom toolbars.
+一个可以在iOS上自定义键盘输入辅助视图的组件。当`TextInput`获得焦点时，输入辅助视图显示在键盘上方。该组件可用于创建自定义工具栏。
 
-To use this component wrap your custom toolbar with the InputAccessoryView component, and set a `nativeID`. Then, pass that `nativeID` as the `inputAccessoryViewID` of whatever `TextInput` you desire. A simple example:
+要使用此组件，请将您的自定义工具栏包装在InputAccessoryView组件中，并设置一个`nativeID`。然后，将该`nativeID`作为您想要的任何`TextInput `的`inputAccessoryViewID'。一个基本的例子：
 
 ```SnackPlayer name=InputAccessoryView&supportedPlatforms=ios
-import React, { useState } from 'react';
-import { Button, InputAccessoryView, ScrollView, TextInput } from 'react-native';
+import React, {useState} from 'react';
+import {Button, InputAccessoryView, ScrollView, TextInput} from 'react-native';
 
-export default App = () => {
+const App = () => {
   const inputAccessoryViewID = 'uniqueID';
   const initialText = '';
   const [text, setText] = useState(initialText);
@@ -31,17 +31,16 @@ export default App = () => {
         />
       </ScrollView>
       <InputAccessoryView nativeID={inputAccessoryViewID}>
-        <Button
-          onPress={() => setText(initialText)}
-          title="Clear text"
-        />
+        <Button onPress={() => setText(initialText)} title="Clear text" />
       </InputAccessoryView>
     </>
   );
-}
+};
+
+export default App;
 ```
 
-This component can also be used to create sticky text inputs (text inputs which are anchored to the top of the keyboard). To do this, wrap a `TextInput` with the `InputAccessoryView` component, and don't set a `nativeID`. For an example, look at [InputAccessoryViewExample.js](https://github.com/facebook/react-native/blob/master/packages/rn-tester/js/examples/InputAccessoryView/InputAccessoryViewExample.js).
+该组件还可用于创建粘性文本输入框（锚定在键盘顶部的文本输入框）。为此，用`InputAccessoryView`组件包裹一个`TextInput`，并不要设置`nativeID`。示例请参考[InputAccessoryViewExample.js](https://github.com/facebook/react-native/blob/main/packages/rn-tester/js/examples/InputAccessoryView/InputAccessoryViewExample.js)。
 
 ---
 
@@ -59,7 +58,7 @@ This component can also be used to create sticky text inputs (text inputs which 
 
 ### `nativeID`
 
-An ID which is used to associate this `InputAccessoryView` to specified TextInput(s).
+一个用于将此 `InputAccessoryView` 与指定的 TextInput(s) 关联的 ID。
 
 | 类型   |
 | ------ |
