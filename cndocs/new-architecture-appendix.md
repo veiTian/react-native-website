@@ -219,7 +219,7 @@ Callback functions are not type checked, and are generalized as `Object`s.
 
 > 本节包含特定于 React Native v0.66 的信息。
 
-通常在构建时调用 Codegen，但是您可能会发现按需生成本机接口代码以进行故障排除很有用。
+通常在构建时调用 Codegen，但是您可能会发现按需生成原生接口代码以进行故障排除很有用。
 
 如果您希望手动调用 codegen，有两个选项：
 
@@ -275,7 +275,7 @@ node node_modules/react-native/scripts/generate-specs-cli.js \
 
 ##### 示例
 
-以下是调用 Codegen 脚本的基本示例，用于为提供原生模块的库生成本机 iOS 界面代码。此库的 JavaScript 规范源文件位于`js/`子目录中，而该库的原生代码期望在`ios`子目录中可用原生接口。
+以下是调用 Codegen 脚本的基本示例，用于为提供原生模块的库生成原生 iOS 界面代码。此库的 JavaScript 规范源文件位于`js/`子目录中，而该库的原生代码期望在`ios`子目录中可用原生接口。
 
 ```bash
 # 生成模式 - 仅在JS规范更改时需要执行

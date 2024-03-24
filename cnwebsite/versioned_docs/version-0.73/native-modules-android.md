@@ -1,6 +1,6 @@
 ---
-id: new-architecture-app-modules-android
-title: 在 Android 上启用 TurboModule
+id: native-modules-android
+title: Android 原生模块
 ---
 
 import NativeDeprecated from './the-new-architecture/\_markdown_native_deprecation.mdx'
@@ -267,7 +267,7 @@ class MyAppPackage : ReactPackage {
 
 这个文件导入了你创建的原生模块`CalendarModule`。然后在`createNativeModules()`函数中实例化了`CalendarModule`并将其作为`NativeModules`列表返回以便注册。如果将来你添加更多原生模块，也可以在这里实例化它们并添加到返回的列表中。
 
-值得注意的是，这种注册原生模块的方式会在应用启动时饥渴地初始化所有原生模块，从而增加了应用的启动时间。你可以使用[TurboReactPackage](https://github.com/facebook/react-native/blob/main/packages/react-native/ReactAndroid/src/main/java/com/facebook/react/TurboReactPackage.java)作为替代方案。与返回已实例化的原生模块对象列表的`createNativeModules`不同，TurboReactPackage 实现了一个`getModule(String name， ReactApplicationContext rac)`方法，在需要时创建原生模块对象。目前实现 TurboReactPackage 有点复杂。除了实现`getModule()`方法外，你还必须实现一个`getReactModuleInfoProvider()`方法，该方法返回包可实例化的所有原生模块列表以及实例化它们的函数，示例[在此](https://github.com/facebook/react-native/blob/8ac467c51b94c82d81930b4802b2978c85539925/ReactAndroid/src/main/java/com/facebook/react/CoreModulesPackage.java#L86-L165)。再次说明，使用 TurboReactPackage 将使你的应用拥有更快的启动时间，但目前编写起来有些麻烦。所以如果你选择使用 TurboReactPackage，请小心谨慎。
+值得注意的是，这种注册原生模块的方式会在应用启动时主动地初始化所有原生模块，从而增加了应用的启动时间。你可以使用[TurboReactPackage](https://github.com/facebook/react-native/blob/main/packages/react-native/ReactAndroid/src/main/java/com/facebook/react/TurboReactPackage.java)作为替代方案。与返回已实例化的原生模块对象列表的`createNativeModules`不同，TurboReactPackage 实现了一个`getModule(String name， ReactApplicationContext rac)`方法，在需要时创建原生模块对象。目前实现 TurboReactPackage 有点复杂。除了实现`getModule()`方法外，你还必须实现一个`getReactModuleInfoProvider()`方法，该方法返回包可实例化的所有原生模块列表以及实例化它们的函数，示例[在此](https://github.com/facebook/react-native/blob/8ac467c51b94c82d81930b4802b2978c85539925/ReactAndroid/src/main/java/com/facebook/react/CoreModulesPackage.java#L86-L165)。再次说明，使用 TurboReactPackage 将使你的应用拥有更快的启动时间，但目前编写起来有些麻烦。所以如果你选择使用 TurboReactPackage，请小心谨慎。
 
 要注册`CalendarModule`包，你必须将`MyAppPackage`添加到 ReactNativeHost 的`getPackages()`方法返回的包列表中。打开`MainApplication.java`或`MainApplication.kt`文件，位于如下路径:`android/app/src/main/java/com/your-app-name/`。
 
@@ -376,7 +376,7 @@ yarn android
 
 ### 小结 ✨
 
-现在，您应该能够在应用程序中调用本机模块上的`createCalendarEvent()`方法。在我们的示例中，这是通过按下`NewModuleButton`来实现的。您可以通过查看在`createCalendarEvent()`方法中设置的日志来确认这一点。您可以按照[这些步骤](https://developer.android.com/studio/debug/am-logcat.html)在应用中查看 ADB 日志。然后，您应该能够搜索您的`Log.d`消息(在我们的示例中是"Create event called with name: testName and location: testLocation")，并在每次调用本机模块方法时看到您的消息被记录。
+现在，您应该能够在应用程序中调用原生模块上的`createCalendarEvent()`方法。在我们的示例中，这是通过按下`NewModuleButton`来实现的。您可以通过查看在`createCalendarEvent()`方法中设置的日志来确认这一点。您可以按照[这些步骤](https://developer.android.com/studio/debug/am-logcat.html)在应用中查看 ADB 日志。然后，您应该能够搜索您的`Log.d`消息(在我们的示例中是"Create event called with name: testName and location: testLocation")，并在每次调用原生模块方法时看到您的消息被记录。
 
 <figure>
   <img src="/docs/assets/native-modules-android-logs.png" width="1000" alt="Image of logs." />

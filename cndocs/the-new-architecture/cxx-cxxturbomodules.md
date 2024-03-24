@@ -10,7 +10,7 @@ import NewArchitectureWarning from '../\_markdown-new-architecture-warning.mdx';
 
 <NewArchitectureWarning/>
 
-本指南将向您展示如何仅使用 C++ 实现Turbo 原生模块，以便与任何支持的平台（Android、iOS、macOS或Windows）共享相同的实现。
+本指南将向您展示如何仅使用 C++ 实现 Turbo 原生模块，以便与任何支持的平台（Android、iOS、macOS 或 Windows）共享相同的实现。
 
 在继续本指南之前，请阅读[Turbo Native Modules](./pillars-turbomodule.md)部分。作为进一步参考，我们为 RNTester 应用准备了一个示例（[NativeCxxModuleExample](https://github.com/facebook/react-native/tree/main/packages/rn-tester/NativeCxxModuleExample)），并在我们的社区代码库中提供了另一个示例（[run/pure-cxx-module](https://github.com/react-native-community/RNNewArchitectureApp/tree/run/pure-cxx-module)）。
 
@@ -23,10 +23,10 @@ import NewArchitectureWarning from '../\_markdown-new-architecture-warning.mdx';
 
 要创建 C++ Turbo 原生模块，您需要：
 
-1. 定义JavaScript规范。
-2. 配置Codegen以生成脚手架。
+1. 定义 JavaScript 规范。
+2. 配置 Codegen 以生成脚手架。
 3. 注册本地模块。
-4. 编写本机代码来完成模块的实现。
+4. 编写原生代码来完成模块的实现。
 
 ### 为新架构设置一个测试应用
 
@@ -53,7 +53,7 @@ RCT_NEW_ARCH_ENABLED=1 bundle exec pod install
 
 ### Turbo 模块文件夹设置
 
-在项目中创建一个`tm`文件夹。它将包含您的应用程序的所有C++ Turbo模块。最终结果应该如下所示：
+在项目中创建一个`tm`文件夹。它将包含您的应用程序的所有 C++ Turbo 模块。最终结果应该如下所示：
 
 ```sh
 CxxTurboModulesGuide
@@ -198,7 +198,7 @@ target_link_libraries(tm
         react_codegen_AppSpecs)
 ```
 
-它将`tm`文件夹定义为本地代码的来源，并设置了必要的依赖项。
+它将`tm`文件夹定义为原生代码的来源，并设置了必要的依赖项。
 
 您需要将其添加为应用程序的依赖项，例如在`android/app/build.gradle`文件的末尾：
 
@@ -220,7 +220,7 @@ android {
 
 ### iOS
 
-要在您的应用程序中注册一个C++ Turbo 原生模块，您需要在`ios/CxxTurboModulesGuide/AppDelegate.mm`文件中更新以下条目：
+要在您的应用程序中注册一个 C++ Turbo 原生模块，您需要在`ios/CxxTurboModulesGuide/AppDelegate.mm`文件中更新以下条目：
 
 ```diff
 #import "AppDelegate.h"
@@ -256,7 +256,7 @@ android {
 
 ### Android
 
-Android应用默认情况下没有设置原生代码编译。
+Android 应用默认情况下没有设置原生代码编译。
 
 1. 创建文件夹 `android/app/src/main/jni`
 2. 从[node_modules/react-native/ReactAndroid/cmake-utils/default-app-setup](https://github.com/facebook/react-native/tree/main/packages/react-native/ReactAndroid/cmake-utils/default-app-setup)复制`CMakeLists.txt`和`Onload.cpp`到 `android/app/src/main/jni` 文件夹中。
@@ -301,7 +301,7 @@ include(${REACT_ANDROID_DIR}/cmake-utils/ReactNative-application.cmake)
 
 ## 4. C++ 原生代码
 
-在最后一步中，您需要编写一些原生代码来连接JavaScript端和本地平台。这个过程包括两个主要步骤：
+在最后一步中，您需要编写一些原生代码来连接 JavaScript 端和本地平台。这个过程包括两个主要步骤：
 
 - 运行**Codegen**以查看它生成了什么。
 - 编写您的原生代码，实现生成的接口。
@@ -312,7 +312,7 @@ include(${REACT_ANDROID_DIR}/cmake-utils/ReactNative-application.cmake)
 阅读 [Codegen](./pillars-codegen) 指南获取更多信息。
 :::
 
-在iOS上，每次在`ios`文件夹中执行时都会运行Codegen：
+在 iOS 上，每次在`ios`文件夹中执行时都会运行 Codegen：
 
 ```sh
 RCT_NEW_ARCH_ENABLED=1 bundle exec pod install
@@ -330,9 +330,9 @@ yarn android
 
 您可以检查位于 `CxxTurboModulesGuide/android/app/build/generated/source/codegen/jni` 文件夹内的生成的 `AppSpecsJSI.h` 和 `AppSpecsJSI-generated.cpp` 文件。
 
-只有当您更改了 JavaScript 规范时才需要重新运行codegen。
+只有当您更改了 JavaScript 规范时才需要重新运行 codegen。
 
-JavaScript 规范文件生成的C++函数如下：
+JavaScript 规范文件生成的 C++函数如下：
 
 ```cpp
 virtual jsi::String reverseString(jsi::Runtime &rt, jsi::String input) = 0;
@@ -371,7 +371,7 @@ class NativeSampleModule : public NativeSampleModuleCxxSpec<NativeSampleModule> 
 } // namespace facebook::react
 ```
 
-在这种情况下，您可以使用任何与`jsi::String`相对应的C++类型 - 默认类型或[自定义类型](./cxx-custom-types.md)。但是，您不能指定不兼容的类型，例如`bool`、`float`或者 `std::vector<>`，因为它们无法与 `jsi::String` 进行“桥接”，从而导致编译错误。
+在这种情况下，您可以使用任何与`jsi::String`相对应的 C++类型 - 默认类型或[自定义类型](./cxx-custom-types.md)。但是，您不能指定不兼容的类型，例如`bool`、`float`或者 `std::vector<>`，因为它们无法与 `jsi::String` 进行“桥接”，从而导致编译错误。
 
 现在，请添加一个名为 `NativeSampleModule.cpp` 的文件，并对其进行实现：
 
@@ -390,15 +390,15 @@ std::string NativeSampleModule::reverseString(jsi::Runtime& rt, std::string inpu
 } // namespace facebook::react
 ```
 
-我们在`ios`文件夹中添加了新的C++文件，如下所示：
+我们在`ios`文件夹中添加了新的 C++文件，如下所示：
 
 ```sh
 RCT_NEW_ARCH_ENABLED=1 bundle exec pod install
 ```
 
-对于iOS来说，在Xcode中它们会出现在`Pods`目标下的`Development Pods \ TurboModules`子文件夹中。
+对于 iOS 来说，在 Xcode 中它们会出现在`Pods`目标下的`Development Pods \ TurboModules`子文件夹中。
 
-现在你应该能够同时编译你的Android和iOS应用程序了。
+现在你应该能够同时编译你的 Android 和 iOS 应用程序了。
 
 ```sh
 CxxTurboModulesGuide
@@ -423,7 +423,7 @@ CxxTurboModulesGuide
     └── TurboModules.podspec
 ```
 
-## 5. 将C++ Turbo 原生模块添加到您的应用程序
+## 5. 将 C++ Turbo 原生模块添加到您的应用程序
 
 为了演示目的，我们可以在我们的应用程序的`App.tsx|jsx`中更新以下条目：
 
@@ -455,11 +455,11 @@ import {
 //...
 ```
 
-运行应用以查看您的C++ Turbo 原生模块的效果！
+运行应用以查看您的 C++ Turbo 原生模块的效果！
 
 ## App TurboModuleProvider [可选]
 
-通过声明一个AppTurboModuleProvider，您可以避免在添加多个C++ Turbo 原生模块时出现一些代码重复：
+通过声明一个 AppTurboModuleProvider，您可以避免在添加多个 C++ Turbo 原生模块时出现一些代码重复：
 
 ```cpp title="AppTurboModuleProvider.h"
 #pragma once
@@ -501,7 +501,7 @@ std::shared_ptr<TurboModule> AppTurboModuleProvider::getTurboModule(
 } // namespace facebook::react
 ```
 
-然后在Android的`OnLoad.cpp`和iOS的`AppDelegate.mm`相应的函数中复用它：
+然后在 Android 的`OnLoad.cpp`和 iOS 的`AppDelegate.mm`相应的函数中复用它：
 
 ```cpp
 static facebook::react::AppTurboModuleProvider appTurboModuleProvider;
@@ -510,9 +510,9 @@ return appTurboModuleProvider.getTurboModule(name, jsInvoker);
 
 ## 调用特定操作系统的 API
 
-您仍然可以在编译单元中调用特定于操作系统的函数（例如，在苹果上使用`NS/CF` API或在Windows上使用`Win32/WinRT` API），只要方法签名只使用 `std::` 或 `jsi::` 类型。
+您仍然可以在编译单元中调用特定于操作系统的函数（例如，在苹果上使用`NS/CF` API 或在 Windows 上使用`Win32/WinRT` API），只要方法签名只使用 `std::` 或 `jsi::` 类型。
 
-对于苹果特定的API，您需要将实现文件的扩展名从`.cpp`更改为`.mm`，以便能够使用 `NS/CF` API。
+对于苹果特定的 API，您需要将实现文件的扩展名从`.cpp`更改为`.mm`，以便能够使用 `NS/CF` API。
 
 ## 扩展 C++ Turbo 原生模块
 

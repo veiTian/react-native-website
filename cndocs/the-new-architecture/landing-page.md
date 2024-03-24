@@ -11,7 +11,7 @@ import NewArchitectureWarning from '../\_markdown-new-architecture-warning.mdx';
 
 为了实现这些好处，我们必须重新思考本地模块和本地组件的工作方式。这促使我们开发了[新架构的支柱](Pillars)。
 
-- [新的原生模块体系 - Turbo Modules](pillars-turbomodules)，一个支持与本地代码高效、灵活集成的框架。
+- [新的原生模块体系 - Turbo Modules](pillars-turbomodules)，一个支持与原生代码高效、灵活集成的框架。
 - [Fabric 渲染器和组件](pillars-fabric-components)，它提供了更好的功能、跨平台的一致性和渲染性能。
 - [Codegen](pillars-codegen)，它通过 JavaScript 的静态类型化，生成新架构所需的 C++ 模板。
 

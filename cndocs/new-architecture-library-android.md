@@ -7,15 +7,15 @@ import NewArchitectureWarning from './\_markdown-new-architecture-warning.mdx'; 
 
 <NewArchitectureWarning/>
 
-Once you have defined the JavaScript specs for your native modules as part of the [prerequisites](new-architecture-library-intro), set up the configuration of the Codegen, and follow the Android/Gradle setup, you are now ready to migrate your library to the new architecture. Here are the steps you can follow to accomplish this.
+一旦您在[先决条件](new-architecture-library-intro)中定义了本机模块的 JavaScript 规范，设置了 CodeGen 配置，并遵循了 Android/Gradle 设置，然后就可以将您的库迁移到新架构。以下是迁移所需的步骤。
 
-## 1. Extend or Implement the Code-generated Native Interfaces
+## 1. 扩展或实现代码生成的本地接口
 
-The JavaScript spec for your native module or component will be used to generate native interface code for each supported platform (i.e., Android and iOS). These native interface files will be generated **when a React Native application that depends on your library is built**.
+您为原生模块或组件定义的 JavaScript 规范将用于为每个支持的平台（即 Android 和 iOS）生成本地接口代码。这些本地接口文件将在构建依赖于您的库的反应应用程序时**生成**。
 
-While this generated native interface code **will not ship as part of your library**, you do need to make sure your Java/Kotlin code conforms to the protocols provided by these native interface files.
+虽然这种生成的本地接口代码**不会作为您图书馆的一部分进行运输**，但您确实需要确保您的 Java / Kotlin 代码符合这些本地接口文件提供的协议。
 
-You can invoke the `generateCodegenArtifactsFromSchema` Gradle task to generate your library’s native interface code in order to use them **as a reference:**
+您可以调用`generateCodegenArtifactsFromSchema` Gradle 任务来为您的库生成本机接口代码，以便将其用作**参考：**
 
 ```bash
 ./gradlew generateCodegenArtifactsFromSchema
@@ -57,7 +57,7 @@ Update your native module or component to ensure it **extends the abstract class
 
 Following the example set forth in the previous section, your library might import `NativeAwesomeManagerSpec`, implement the relevant native interface and the necessary methods for it:
 
-<Tabs groupId="android-language" defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
+<Tabs groupId="android-language" queryString defaultValue={constants.defaultAndroidLanguage} values={constants.androidLanguages}>
 
 <TabItem value="java">
 
@@ -115,4 +115,4 @@ class NativeAwesomeManager(reactContext: ReactApplicationContext) :
 </TabItem>
 </Tabs>
 
-Please note that the **generated abstract class** that you’re now extending (`MyAwesomeSpec` in this example) is itself extending `ReactContextBaseJavaModule`. Therefore you should not use access to any of the method/fields you were previously using (e.g., the `ReactApplicationContext` and so on). Moreover, the generated class will now also implement the `TurboModule` interface for you.
+Please note that the **generated abstract class** that you’re now extending (`MyAwesomeSpec` in this example) is itself extending `ReactContextBaseJavaModule`. Therefore you should not lose access to any of the method/fields you were previously using (e.g., the `ReactApplicationContext` and so on). Moreover, the generated class will now also implement the `TurboModule` interface for you.
